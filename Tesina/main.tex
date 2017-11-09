@@ -1,0 +1,67 @@
+\documentclass[12pt,a4paper,twoside,openany]{book}
+\usepackage{textcomp}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage[italian]{babel}
+\usepackage{pdfpages}
+\usepackage{graphicx}
+\usepackage{rotating}
+\usepackage[formats]{listings}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{booktabs}
+\usepackage{picture}
+\usepackage{multirow}
+\usepackage{pifont}
+\usepackage[hidelinks]{hyperref}
+%codice per mettere logo in sfondo ad ogni pagina
+\usepackage{eso-pic}
+
+
+\AddToShipoutPicture
+{
+  \put(\LenToUnit{.4\textwidth}, \LenToUnit{.5\textheight}){\includegraphics{Immagini/logo}}%
+}
+
+
+\makeatletter
+\newcommand{\lstuppercase}{\uppercase\expandafter{\expandafter\lst@token\expandafter{\the\lst@token}}}
+\newcommand{\lstlowercase}{\lowercase\expandafter{\expandafter\lst@token\expandafter{\the\lst@token}}}
+\makeatother
+
+\lstdefinelanguage{myLang}
+{
+	morekeywords={
+		select, from, on, where, group, by, order, sort, join, and, int, string, load, create, into, overwrite, if, table, not, exists, data, inpath, row, format, delimited, fields, terminated, by, stored, as, textfile, FROM, ON, WHERE, GROUP, BY, ORDER, SORT, JOIN, AND, INT, STRING, CREATE, LOAD, DATA, INPATH, OVERWRITE, INTO, TABLE, IF, NOT, EXISTS
+	}
+}
+
+\lstset{
+	language=myLang,
+	basicstyle=\ttfamily,
+	keywordstyle=\lstuppercase\color{blue}\bfseries,commentstyle=\color{green}\bfseries, stringstyle=\color{red},
+	showstringspaces=false, frame=single, numbers=left, numbersep=5pt, numberstyle=\tiny\color{black}, breaklines=true,flexiblecolumns=true,
+	inputpath=Sorgenti/,
+	sensitive=false
+}
+
+%\lstset{basicstyle=\footnotesize\ttfamily\color{black}, language=C,keepspaces=true, format=C, inputpath=Sorgenti/,tabsize=2, keywordstyle=\color{blue}\bfseries,commentstyle=\color{green}\bfseries, stringstyle=\color{black}, showstringspaces=false, frame=single, numbers=left, numbersep=5pt, numberstyle=\tiny\color{black}, breaklines=true,flexiblecolumns=true}
+
+%NOTA: Per ogni nuovo capitolo inserito: creare una cartella col nome dell'esercizio in Immagini ed inserirvi tutte le immagini relative all'esercizio. In seguito inserire il path nell'istruzione graphicspath secondo la sintassi {Immagini/NomeCartellaImmaginiEsercizio/} senza separazione con virgole. Notare lo slash dopo il nome della cartella per indicare che il nome inserito è una cartella.
+\graphicspath{{Immagini/}}
+\author{Andrea Scognamiglio - Mtr M63/598 \\ Cristian Tommasino - Mtr. M63/615}
+\title{
+	\centering
+	\textbf{Impianti di Elaborazione}
+}
+\date{}
+
+\pagestyle{plain}
+
+\begin{document}
+\frontmatter
+\maketitle
+\setcounter{page}{1}
+\tableofcontents
+\mainmatter
+\end{document}
