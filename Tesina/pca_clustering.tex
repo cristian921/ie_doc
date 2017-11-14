@@ -8,35 +8,34 @@ Estrapolare un Workload sintetico a partire dal workload reale riportato nel fil
  \textit{PCA-CLASTERING-2017.jmp}.
 
 \section{Obiettivo}
-Considerato il workload reale si vuole ottenere un workload sintetico
-che contenga un numero di osservazioni minori ma che conservando quanta
+A partire dal workload reale, si vuole ottenere un \textbf{workload sintetico},
+caratterizzato da un numero di osservazioni minori, che conservi quanta
 più varianza possibile.
 
 \section{Estrazione del Workload Sintetico}
-Per l'estrazione del workload sintetico, dopo aver visionato i dati, si è scelto
-di seguire i seguenti step:
+Per estrarre il workload sintetico, dopo aver visionato i dati, si è scelto
+di seguire il seguente procedimento:
 
 \begin{itemize}
-  \item Analisi del \textbf{\textit{CV(Coefficente di Variazione)}} per
-  eliminazione di parametri statisticamente non significativi;
-  \item \textbf{\textit{PCA(Principal Component Analysis)}} per la riduzione del
-  numero di parametri e per l'eliminazione della correlazione tra essi;
-  \item \textbf{\textit{Clustering}} per la riduzione del numero di esperimenti.
+  \item Analisi del \textbf{\textit{CV(Coefficiente di Variazione)}} per
+  eliminare i parametri statisticamente non significativi;
+  \item \textbf{\textit{PCA(Principal Component Analysis)}} per ridurre il
+  numero di parametri e per eliminare la correlazione tra essi;
+  \item \textbf{\textit{Clustering}} per ridurre il numero di esperimenti.
 \end{itemize}
 
 
 \subsection{Analisi del Coefficiente di Variazione}
-In prima istanza è stata effettuata un'analisi sul coefficiente di variazione(COV)
-il quale esprime quanta varianza contiene un parametro.\\
-Quando il coefficiente di variazione è troppo piccolo il parametro corrispondente
-non è statisticamente significativo, quindi in questa fase si eliminano i parametri
-con COV nullo.\\
-Nella figura si nota che non ci sono colonna con coefficiente di variazione nulla,
+In prima istanza, è stata effettuata un'analisi sul coefficiente di variazione(CV),
+il quale esprime la dispersione dei valori dei singoli parametri attorno alla loro media.\\
+Quando il coefficiente di variazione è troppo piccolo (in questo caso 0), il parametro
+corrispondente non è statisticamente significativo e quindi è possibile eliminarlo.\\
+Nella figura si nota che non ci sono colonne con coefficiente di variazione nullo,
 quindi tutti i parametri saranno utilizzati nelle successive analisi.
 
 \begin{figure}[!htbp]
 	\includegraphics[width=.7\linewidth,keepaspectratio]{cov.png}
-  \caption{Cofficenti di Variazione(CV)}
+  \caption{Coefficiente di Variazione(CV)}
   \label{}
 \end{figure}
 
@@ -44,16 +43,16 @@ quindi tutti i parametri saranno utilizzati nelle successive analisi.
 In questa fase è stata applicata la
 \textbf{\textit{PCA(Principal Component Analysis)}}
 la quale trasforma un workload con parametri correlati in uno contente parametri
-non correlati.\\
-L'utilizzo della PCA in questa è necessario anche per la fase successiva, in
-quanto il clustering funziona meglio se i parametri non sono correlati.\\
-Per effettuare la PCA si è fatto utilizzo del tool \textit{\textbf{JMP}}, nella
-figura è riportato l'output.\\
+non correlati, ottenuti come combinazione lineare, pesata, dei parametri iniziali.\\
+L'utilizzo della PCA è fondamentale anche per la successiva fase di clustering, in
+quanto quest'ultimo funziona meglio quando i parametri sono incorrelati.\\
+Per effettuare la PCA si è fatto utilizzo del tool statistico \textit{\textbf{JMP}}, nella
+\figurename~\ref{pca} è riportato l'output.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{pca.png}
   \caption{Risultato PCA}
-  \label{}
+  \label{pca}
 \end{figure}
 
 \begin{figure}[!htbp]
@@ -62,22 +61,23 @@ figura è riportato l'output.\\
   \label{grafico_scree}
 \end{figure}
 
-Considerando il grafico in \figurename~\ref{grafico_scree}, rappresentate
+A partire dalla \figurename~\ref{grafico_scree}, rappresentante
 sull'asse delle x il numero di componenti principali e sull'asse delle y
-gli autovalori, per scegliere il numero di componenti principali ci si
-posiziona nel ginocchio della curva, poichè in quel punto ci si assicura che
-aggiungendo un'ulteriore componente la varianza conservata non aumenta
-significativamente.\\
+gli autovalori, per scegliere il numero di componenti principali, si considera
+il ginocchio della curva.\\
+In quel punto si è sicuri che aggiungendo un'ulteriore componente la varianza
+conservata non aumenta significativamente.\\
 Quindi si è scelto di considerare 6 componenti principali.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{autovettori.png}
   \caption{Autovettori}
-  \label{}
+  \label{autovettori}
 \end{figure}
 
-Nella figura sono evidenziati in rosso i parametri che hanno contribuito maggiormente,
-in segno positivo o negativo, alla creazione delle componenti principali scelti.\\
+Nella \figurename~\ref{autovettori} sono evidenziati in rosso i parametri che
+hanno contribuito maggiormente, in segno positivo o negativo, alla creazione
+delle componenti principali scelte.\\
 In particolare:
 \begin{itemize}
   \item \textbf{\textit{Principale 1:}} \textit{Free\_chached, LostRam, TotalFree,
@@ -92,13 +92,12 @@ In particolare:
 \end{itemize}
 
 \subsection{Clustering}
-In questa fase è stato effettuate un operazione di clustering sul risultato
-ottenuto nello step precedente.\\
-La tecnica di clasterizzazione scelta è di tipo gerarchico agglomerativo,
-in particolare è stata utilizzata la metrica di word
-per l'aggregazione dei cluster.\\
-In figura è riportato il dendogramma risultante.\\
-
+In questa fase è stato effettuata un'operazione di clustering sul risultato
+ottenuto dallo step precedente.\\
+La tecnica di clusterizzazione scelta è di tipo gerarchico agglomerativo,
+in particolare è stata utilizzata la metrica di \textbf{Ward} per l'aggregazione
+dei cluster.\\
+In \figurename~\ref{dendogramma} è riportato il dendogramma risultante.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{dendogramma.png}
@@ -106,42 +105,48 @@ In figura è riportato il dendogramma risultante.\\
   \label{dendogramma}
 \end{figure}
 
-Facendo riferimento alla \figurename~\ref{dendogramma}, si può scegliere il numero
-di cluster posizionandosi nel ginocchio della curva rappresentante le distanze tra cluster.\\
+\begin{figure}[!htbp]
+	\includegraphics[width=\linewidth,keepaspectratio]{curva_dendogramma.png}
+  \caption{Curva di Clustering}
+  \label{curva_dendogramma}
+\end{figure}
+
+Facendo riferimento alla \figurename~\ref{curva_dendogramma}, si sceglie il numero
+di cluster posizionandosi nel ginocchio della curva, rappresentante le distanze tra cluster.\\
 \clearpage
 In maniera analoga si può scegliere il numero di cluster utilizzando il criterio
-clusterizzazione cubica, riportato il \figurename~\ref{ccc}, scegliendo il numero
-cluster utilizzando la regola del massimo salto.\\
+di clusterizzazione cubica(\textbf{CCC}), riportato in \figurename~\ref{ccc},
+scegliendo il numero di cluster in funzione della regola del massimo salto.\\
 
 \begin{figure}[htbp]
 \centering
 \includegraphics[width=50mm]{gerarchia_clustering.png}% "%" necessario
 \qquad\qquad
 \includegraphics[width=50mm]{ccc.png}
-\caption{Gerarchia clustering e Criterio di Clasterizzazione Cubica}
+\caption{Gerarchia Clustering e Criterio di Clusterizzazione Cubica}
 \label{ccc}
 \end{figure}
 
-Sulla base dei criteri sopra descritti si è scelto di considerare 6 cluster, per
-la generazione del workload sitnetico si è scelto di estrarre randomicamente
+Sulla base dei criteri illustrati, si è scelto di considerare 6 cluster.\\
+Per generare il workload sintetico, inoltre, si è scelto di estrarre ``\textit{Random}''
 un esperimento da ogni cluster.\\
 \clearpage
+
 \section{Conclusioni}
-Dagli step descritti abbiamo ottenuto un Workload sintetico,
-ma non si è detto quanta varianza si è conservato.\\
-Per calcolare quanta varianza abbiamo conservato bisogna calcolare quanta
-ne abbiamo conservato in ogni ogni step.\\
-Per la PCA la varianza conservata è 95,702\%, valore ottenuto da JMP.\\
-Per il clustering non si può  utlizzare la varianza ma bisogna utilizzare la devianza
-poichè essa è indipendente dal grado di libertà dei cluster i quali hanno diverse
-dimensioni.\\
-Per il calcolo della percentuale di devianza conservata utilizzando il clustering
-si è calcolata la devianza del workload sottoposto a PCA, in quanto il clustering è stato
-effettuato successivamente.\\
-La devianza conservata è calcolata come la somma della  devianza inter-cluster
-e intra-cluster, poichè utilizzando il clustering si perde varianza inter-cluster
-e scegliendo un campione per ogni cluster si perde varianza infra-cluster.\\
-Nella seguente figure è riportata la devianza del workload sottoposto a PCA.\\
+Ottenuto il Workload Sintetico, è fondamentale osservare quanta varianza si è conservata.\\
+Per fare ciò bisogna calcolare la varianza persa in ogni fase del procedimento seguito.\\
+A valle della PCA, scegliendo solo 6 componenti principali, la varianza conservata
+ risulta essere il 95,702\% della totale(valore ottenuto in JMP).\\
+Per definire la significatività del workload ottenuto con il clustering, invece, bisogna
+utilizzare la devianza.\\
+Quest'ultima è una grandezza indipendente dal grado di libertà, quindi si presta
+perfettamente all'uso con i cluster, i quali hanno cardinalità differente.\\
+
+La devianza del clustering è calcolata come la somma della devianza \textbf{inter-cluster}
+e \textbf{intra-cluster}.\\
+Tipicamente, per effettuare un buon clustering, si cerca di massimizzare la varianza
+inter-clustering e minimizzare quella intra-clustering.\\
+Nella seguente figura è riportata la devianza del workload sottoposto a PCA.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=.7\linewidth,keepaspectratio]{devianza_pca.png}
@@ -150,7 +155,7 @@ Nella seguente figure è riportata la devianza del workload sottoposto a PCA.\\
 \end{figure}
 \clearpage
 
-Nella seguente figura è riportato la devianza inter-cluster.\\
+Nella seguente figura è riportata la devianza inter-cluster.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=.7\linewidth,keepaspectratio]{devianza_inter_clustering.png}
@@ -158,7 +163,7 @@ Nella seguente figura è riportato la devianza inter-cluster.\\
   \label{}
 \end{figure}
 
-Nella seguente figura è riportato la devianza intra-cluster.\\
+Nella seguente figura è riportata la devianza intra-cluster.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=.7\linewidth,keepaspectratio]{devianza_intra_clustering.png}
@@ -167,11 +172,11 @@ Nella seguente figura è riportato la devianza intra-cluster.\\
 \end{figure}
 \clearpage
 
-Quindi per il calcolo della percentuale di devianza conservata utilizzando la
-tecnica di clasterizzazione si utilizzata la seguente formula:
+Concludendo, per calcolare la percentuale di devianza conservata utilizzando la
+tecnica di clusterizzazione si è utilizzata la seguente formula:
 $$1-{devianza_{inter\_cluster}+devianza_{intra\_cluster}\over {devianza_{pca}}}$$
 
-In tabella è riportato la percentuale di devianza persa/conservata utilizzando
+In tabella sono riportate le percentuali di devianza persa e conservata, utilizzando
 il clustering.\\
 
 \vspace{5 mm}
@@ -182,9 +187,9 @@ il clustering.\\
 \hline
 \textbf{Devianza Clustering(intra-cluster+inter-cluster)}	& 2645,1867 \\
 \hline
-\textbf{Percentuale devianza persa clusterizzando}	& 34,22\% \\
+\textbf{Percentuale devianza persa con il clustering}	& 34,22\% \\
 \hline
-\textbf{Percentuale devianza conservata clusterizzando}	& 65,78\% \\
+\textbf{Percentuale devianza conservata con il clustering}	& 65,78\% \\
 \hline
 \textbf{Significatività PCA} &	95,70\% \\
 \hline
@@ -192,8 +197,8 @@ il clustering.\\
 
 \vspace{5 mm}
 
-Nella seguente figure è riportata la percentuale di varianza persa/conservata del
-workload sintetico.\\
+In \figurename~\ref{significativita_workload} è riportata la significatività
+del workload sintetico.\\
 
 \vspace{5 mm}
 
@@ -206,9 +211,10 @@ workload sintetico.\\
  \hline
  \textbf{Clustering} &	62,95\%	& 37,05\% \\
  \hline
+ \label{significativita_workload}
 \end{tabular}
 
 \vspace{5 mm}
 
-In conclusione utilizzando 6 componenti principali e 6 cluster si perde il 37,05\%
+In conclusione, utilizzando 6 componenti principali e 6 cluster, si perde il 37,05\%
 di significatività rispetto al workload reale.

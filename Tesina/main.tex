@@ -1,68 +1,153 @@
-\documentclass[12pt,a4paper,twoside,openany]{book}
-\usepackage{textcomp}
-\usepackage[T1]{fontenc}
-\usepackage[utf8]{inputenc}
+\documentclass[oneside]{scrbook} %KOMA-Script book
 \usepackage[italian]{babel}
-\usepackage{pdfpages}
-\usepackage{graphicx}
-\usepackage{rotating}
-\usepackage[formats]{listings}
-\usepackage{caption}
-\usepackage{float}
-\usepackage{booktabs}
+%Per i commenti
+\usepackage{comment}
+%Per l'interlinea
+\usepackage{setspace}
+%Codifica caratteri
+\usepackage[utf8]{inputenc}
+\usepackage{xspace}
+\usepackage{eurosym}
+%Fonts Scientifici
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
+%Pacchetto grafici
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{/pgf/number format/use comma,compat=newest}
 \usepackage{picture}
+\usepackage{graphicx}
+%Impostazioni tabelle avanzate e colorate
+\usepackage{multicol}
 \usepackage{multirow}
-\usepackage{pifont}
-\usepackage[hidelinks]{hyperref}
-%codice per mettere logo in sfondo ad ogni pagina
-\usepackage{eso-pic}
+\usepackage{soul}
+\usepackage{ulem}
+\usepackage{booktabs}
+%\usepackage{subfig}
+\usepackage{subfigure}
+\usepackage{array}
+\usepackage{color}
+\usepackage{colortbl}
+%Pacchetto per gli pseudocodici
+\usepackage{algpseudocode}
+%\usepackage{listings}
+\usepackage{listings,xcolor,courier,bookmark}
+\usepackage{listingsutf8}
+%Impostazioni tabelle avanzate
+\usepackage{multicol}
+\usepackage{multirow}
+\definecolor{darkblue}{named}{blue}
+\definecolor{darkred}{named}{red}
+\definecolor{grau}{named}{gray}
+%Per i margini
+\usepackage{chngpage}
+\sloppy
 
+\graphicspath{{Immagini/}}
 
-\AddToShipoutPicture
-{
-  \put(\LenToUnit{.4\textwidth}, \LenToUnit{.5\textheight}){\includegraphics{Immagini/logo}}%
-}
-
-
-\makeatletter
-\newcommand{\lstuppercase}{\uppercase\expandafter{\expandafter\lst@token\expandafter{\the\lst@token}}}
-\newcommand{\lstlowercase}{\lowercase\expandafter{\expandafter\lst@token\expandafter{\the\lst@token}}}
-\makeatother
-
-\lstdefinelanguage{myLang}
-{
-	morekeywords={
-		select, from, on, where, group, by, order, sort, join, and, int, string, load, create, into, overwrite, if, table, not, exists, data, inpath, row, format, delimited, fields, terminated, by, stored, as, textfile, FROM, ON, WHERE, GROUP, BY, ORDER, SORT, JOIN, AND, INT, STRING, CREATE, LOAD, DATA, INPATH, OVERWRITE, INTO, TABLE, IF, NOT, EXISTS
-	}
-}
+\let\Righttorque\relax
 
 \lstset{
-	language=myLang,
-	basicstyle=\ttfamily,
-	keywordstyle=\lstuppercase\color{blue}\bfseries,commentstyle=\color{green}\bfseries, stringstyle=\color{red},
-	showstringspaces=false, frame=single, numbers=left, numbersep=5pt, numberstyle=\tiny\color{black}, breaklines=true,flexiblecolumns=true,
-	inputpath=Sorgenti/,
-	sensitive=false
+	captionpos=b,
+	commentstyle=\color[rgb]{0.133,0.545,0.133},
+	keywordstyle=\color{darkblue},
+	stringstyle=\color{purple},
+	extendedchars=true,
+	basicstyle=\small\ttfamily,
+	showstringspaces=false,
+	tabsize=2,
+	numbers=left,
+	numberstyle=\tiny,
+	breakautoindent  = true,
+	breakindent      = 2em,
+	breaklines       = true,
+	postbreak        = ,
+	prebreak         = \raisebox{-.8ex}[0ex][0ex]{\Righttorque},
+	showspaces=false,
+	showtabs=false,
+	showstringspaces=false,
+	language=C++,
+	frame=single,
+	morecomment=[s]{°°}
 }
 
-%\lstset{basicstyle=\footnotesize\ttfamily\color{black}, language=C,keepspaces=true, format=C, inputpath=Sorgenti/,tabsize=2, keywordstyle=\color{blue}\bfseries,commentstyle=\color{green}\bfseries, stringstyle=\color{black}, showstringspaces=false, frame=single, numbers=left, numbersep=5pt, numberstyle=\tiny\color{black}, breaklines=true,flexiblecolumns=true}
+\renewcommand*{\lstlistingname}{Codice}
+\renewcommand*{\lstlistlistingname}{Elenco dei codici}
 
-%NOTA: Per ogni nuovo capitolo inserito: creare una cartella col nome dell'esercizio in Immagini ed inserirvi tutte le immagini relative all'esercizio. In seguito inserire il path nell'istruzione graphicspath secondo la sintassi {Immagini/NomeCartellaImmaginiEsercizio/} senza separazione con virgole. Notare lo slash dopo il nome della cartella per indicare che il nome inserito è una cartella.
-\graphicspath{{Immagini/}}
-\author{Andrea Scognamiglio - Mtr M63/598 \\ Cristian Tommasino - Mtr. M63/615}
-\title{
-	\centering
-	\textbf{Impianti di Elaborazione}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\chaptermark}[1]{\markboth{\MakeUppercase{\thechapter.\ #1}}{}}
+\fancypagestyle{plain} %stile delle pagine anche a quella iniziale del capitolo
+
+\fancyhead{}
+\fancyfoot{}
+
+\fancyhead[R]{\bfseries \nouppercase{\leftmark}}
+\fancyhead[L]{
+	\includegraphics*[scale=0.8]{logo_dieti2.png}
 }
+\fancyfoot[R]{\thepage}
+\fancyfoot[L]{Tesina di Impianti di Elaborazione}
+\renewcommand{\headrulewidth}{0.4pt}
+\renewcommand{\footrulewidth}{0.4pt}
+
 \date{}
+\cfoot{}
+\usepackage{eso-pic,graphicx}
 
-\pagestyle{plain}
+%Per sottosezioni
+\setcounter{secnumdepth}{4}
+\setcounter{tocdepth}{4}
 
 \begin{document}
-\frontmatter
-\maketitle
-\setcounter{page}{1}
-\tableofcontents
-\mainmatter
-\include{pca_clustering}
+
+	% Per evitare che i collegamenti nell'indice abbiano i riquadri rossi
+	\hypersetup {linkbordercolor=white}
+
+	\AddToShipoutPicture{\AtPageCenter{\makebox(0,0){\includegraphics{logo.png}}}}
+	\frontmatter
+	\pagenumbering{Roman}
+
+	\begin{titlepage}
+		\centering
+		%{\Huge \textsc{Università degli Studi di Napoli ``Federico II''}}
+
+		%\vspace*{\stretch{2.5}}
+
+		%\includegraphics[width=1\linewidth]{logo_federico_II.png}
+
+		\includegraphics[width=1\linewidth]{logo_dieti2.png}
+
+		\vspace*{2cm}
+
+		{\Huge \textsl{Tesina di\\IMPIANTI DI ELABORAZIONE}\par}
+
+		\vspace*{2cm}
+
+		{\huge \text{Prof. Domenico Cotroneo}}
+
+		\vspace*{5cm}
+
+		{\LARGE \textit{Andrea Scognamiglio - Matr. M63/598\\Cristian Tommasino - Matr. M63/615}}
+
+		\vspace*{2.5cm}
+
+		{\Large \textsc{A.A. 2017/2018}}
+	\end{titlepage}
+
+	\setcounter{page}{1}
+
+	\newpage
+	\tableofcontents
+
+	%\newpage
+	%\lstlistoflistings
+
+	\newpage
+	\mainmatter
+
+	\input{pca_clustering.tex}
+
 \end{document}
