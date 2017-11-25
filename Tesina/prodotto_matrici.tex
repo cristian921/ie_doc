@@ -8,9 +8,9 @@
 \chapter{Prodotto Matrici}
 
 \section{Traccia}
-Confrontare in Java e in $C++$  l'esecuzione del prodotto di matrici quadrate
+Confrontare in Java e in C++ l'esecuzione del prodotto di matrici quadrate
 di dimensione: 10000, 100000, 1000000.\\
-Il benchmark è utilizzato per valutare le prestazione dei
+Tale benchmark è utilizzato per valutare le prestazione dei
 due linguaggi di programmazione.\\
 
 \section{System Under Test}
@@ -23,15 +23,15 @@ La macchina target utilizzata per l'esecuzione degli algoritmi è:
 \end{itemize}
 
 \section{Soluzione}
-Il classico algoritmo di prodotto matriciale ha una complessità computazionale
-$O(n^3)$, dunque l'esecuzione di tale algoritmo per le dimensioni assegnate
-richiederebbe un tempo di esecuzione elevato.\\
-Quindi si è scelto di ridurre notevolmente le dimensioni ed utilizzare l'algoritmo di
-\textbf{Strassen} il quale ha una complessità computazionale $O(n^{2,81})$.\\
+Il classico algoritmo di prodotto matriciale(\textbf{IKJ Algorithm}), ha una complessità computazionale
+$O(n^3)$, dunque, per le dimensioni assegnate, richiederebbe un tempo di esecuzione
+elevato.\\
+Per questo motivo si è scelto di ridurre notevolmente le dimensioni delle matrici
+ed utilizzare l'algoritmo di \textbf{Strassen}, avente complessità computazionale $O(n^{2,81})$.\\
 
 \subsection{Strassen Algorithm}
 L'algoritmo di Strassen calcola il prodotto di matrici quadrate assumendo che siano
-del tipo $2^n x 2^n$. \\ In particolare: $ C=A*B$ con $A,B,C \in R^{2^n x 2^n}$.\\
+del tipo $2^n \times 2^n$. \\ In particolare: $C=A \cdot B$ con $A,B,C \in R^{2^n \times 2^n}$.\\
 Dividendo le matrici A,B e C in blocchi si ottiene:
 \\
 \[
@@ -51,7 +51,7 @@ C =
   C_{2,1} & C_{2,2}
 \end{bmatrix}
 \]\\
-con $A, B, C \in R^{2^{n-1} x 2^{n-1}}$.\\
+con $A, B, C \in R^{2^{n-1} \times 2^{n-1}}$.\\
 \\
 La matrice risultato si ottiene come:\\
 $$C_{1,1} = A_{1,1}B_{1,1}+A_{1,2}B_{2,1}$$
@@ -59,9 +59,10 @@ $$C_{1,2} = A_{1,1}B_{1,2}+A_{1,2}B_{2,2}$$
 $$C_{2,1} = A_{2,1}B_{1,1}+A_{2,2}B_{2,1}$$
 $$C_{2,2} = A_{2,1}B_{1,2}+A_{2,2}B_{2,2}$$
 \\
-Utilizzando tale tecnica il numeri di prodotti da effettuare sono 8 , esiste
-una tecnica che consente di effettuare un prodotto in meno.\\
-Per utilizzare tale tecnica si definiscono le seguenti matrici:\\
+Utilizzando tale tecnica, il numero di prodotti matriciali da svolgere è 8.\\
+Al fine di ridurre il numero di moltiplicazioni necessarie a generare le matrici
+$C_{x,y}$, è possibile definire le seguenti
+matrici:\\
 $$M_1 = (A_{1,1}+A_{2,2})(B_{1,1}+B_{2,2})$$
 $$M_2 = (A_{2,1}+A_{2,12})B_{1,1}$$
 $$M_3 = A_{1,1}(B_{1,2}-B_{2,2})$$
@@ -75,32 +76,35 @@ $$C_{1,2} = M_3 + M_5$$
 $$C_{2,1} = M_2 + M_4$$
 $$C_{2,2} = M_1 - M_2 + M_3 + M_6$$
 
+\clearpage
 \section{Analisi}
 
 Gli algoritmi sono stati testati su matrici quadrate di dimensione 1024, 2048 e 4096.\\
-Come analisi preliminare sono stati effettuate 15 osservazione per ogni dimensione,
-per rendere le esecuzioni indipendenti gli algoritmi sono stati eseguiti tramite uno
+Come analisi preliminare sono state effettuate 15 osservazioni indipendenti, al variare di N.\\
+Per rendere le esecuzioni indipendenti, gli algoritmi sono stati eseguiti tramite uno
 script batch.\\
-L'algoritmo è stato testato in Java anche disattivando il JIT(Just In Time)
-compiler il quale ottimizza l'esecuzione dell'algoritmo.\\
+L'algoritmo in Java è stato testato anche disattivando il \textbf{JIT}(Just In Time)
+compiler, il quale ottimizza l'esecuzione dell'algoritmo, e in C++ abilitando anche
+l'ottimizzazione \textbf{O2} (per codice più veloce e snello).\\
 
 \subsection{Numero di esperimenti}
 
 Per determinare la dimensioni dei campioni si è fatto utilizzo della seguente formula:
-$$n= {{100*z*s} \over{r*\overline{x}}}$$
+$$N= {\biggl({{\frac{100*z*s}{r*\overline{x}}}\biggr)}^2}$$
 Dove:
 \begin{itemize}
   \item \textbf{\textit{z}}: $(1-{\alpha / 2})$-quantile della distribuzione normale
-  per ottenere un intervallo di confidenza $100(1-\alpha)$;
+  per ottenere un intervallo di confidenza $100\cdot(1-\alpha)$;
   \item \textbf{\textit{s}}: deviazione standard del campione;
   \item \textbf{\textit{r}}: accuratezza percentuale;
-  \item \textbf{\textit{$\overline{x}$}}: media del campione.
+  \item \textbf{{$\overline{\textit{x}}$}}: media del campione.
 \end{itemize}
 
-Nel caso in analisi $\alpha = 0.05$ ed $ r = 5\% $.
+Nel caso in analisi, l'intervallo di confidenza desiderato è del 95\%, quindi
+$\alpha = 0.05$ ed $ r = 5 $.
 
-Nelle seguenti figure sono riportati i tempi raccolti negli esperimenti effettuati
-e le relative statiche utilizzate per il calcolo di \textbf{n}.
+Nelle seguenti figure sono riportati i tempi raccolti e le relative statistiche
+utilizzate per la valutazione del parametro \textbf{N}.
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_1024}
   \caption{Esperimenti matrici 1024x1024}
@@ -121,14 +125,14 @@ e le relative statiche utilizzate per il calcolo di \textbf{n}.
 
 \clearpage
 
-Considerando le tabelle riportate nell figure precedenti,
-per la scelta del parametro \textbf{n} si considera il caso peggiore,
-quindi il numero di esperimenti da effettuare è 8.\\
+A valle dei 15 esperimenti svolti al variare della dimensione delle matrici,
+considerando il caso peggiore, il numero di esperimenti necessario,
+risulta essere 8.\\
 
 \subsection{Esperimenti}
 
-Nelle figure sono riportate le tabelle contenenti i risultati per il confronto
-dell'algoritmo di Strassen tra C++ e Java al crescere della dimensione. \\
+Nelle figure seguenti sono riportati i tempi di esecuzione degli 8 esperimenti
+sull'algoritmo di Strassen, svolto nei differenti linguaggi.\\
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_8_1024}
@@ -150,78 +154,95 @@ dell'algoritmo di Strassen tra C++ e Java al crescere della dimensione. \\
 
 \clearpage
 
-Nelle seguenti figure sono riportati i grafici ottenuti dalla tabelle degli esperimenti.\\
+In seguito sono riportati i grafici del confronto dei tempi di Java e C++, sia
+nelle loro versioni ottimizzate dal compilatore sia in quelle non ottimizzate.\\
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_1024_2}
-  \caption{Confronto tempi Java C++ O2 1024x1024}
+  \caption{Confronto tempi \textbf{Java} vs \textbf{C++ O2} 1024x1024}
   \label{grafico_tempi_1024_2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_1024_1}
-  \caption{Confronto tempi Java con JIT disabilitato C++ 1024x1024}
+  \caption{Confronto tempi \textbf{Java NoJIT} vs \textbf{C++} 1024x1024}
   \label{grafico_tempi_1024_1}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_2048_2}
-  \caption{Confronto tempi Java C++ O2 2048x2048}
+  \caption{Confronto tempi \textbf{Java} vs \textbf{C++ O2} 2048x2048}
   \label{grafico_tempi_2048_2}
 \end{figure}
 
+\clearpage
+
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_2048_1}
-  \caption{Confronto tempi Java con JIT disabilitato C++ 2048x2048}
+  \caption{Confronto tempi \textbf{Java NoJIT} vs \textbf{C++} 2048x2048}
   \label{grafico_tempi_2048_1}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_4096_2}
-  \caption{Confronto tempi Java C++ O2 4096x4096}
+  \caption{Confronto tempi \textbf{Java} vs \textbf{C++ O2} 4096x4096}
   \label{grafico_tempi_4096_2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_4096_1}
-  \caption{Confronto tempi Java con JIT disabilitato C++ 4096x4096}
+  \caption{Confronto tempi \textbf{Java NoJIT} vs \textbf{C++} 4096x4096}
   \label{grafico_tempi_4096_1}
 \end{figure}
 
-Come è possibile osservare per tutte le dimensioni considerate Java con JIT e C++ O2 son più veloci di C++ e
-Java con JIT disattivato.\\
+Si noti che, per tutte le dimensioni considerate, Java con JIT e C++ O2 sono
+molto più performanti delle corrispondenti versioni non ottimizzate.\\
 
 \subsection{Significatività dei risultati}
 
 Per verificare la significatività statistica delle 8 osservazioni fatte è fondamentale
-dimostrare che le distribuzioni non siano statisticamente equivalenti.\\
-La statistica inferenziale mette a disposizione diversi test(parametrici e non),
-i quali possono essere applicati in modo opportuno solo conoscendo il tipo di
-distribuzione che si analizza.\\
-Per individuare il tipo di distribuzione si fa utilizzo di alcuni parametri:
+dimostrare che le distribuzioni non siano statisticamente equivalenti, ovvero che
+appartengano a popolazioni differenti.\\
+A tal fine, la statistica inferenziale mette a disposizione diversi test(parametrici e non),
+i quali possono essere applicati in modo opportuno solo conoscendo la natura
+della distribuzione analizzata.\\
+In particolare, è di interesse definire la normalità o meno dei dati che si hanno
+a disposizione.\\
+Per studiare la normalità della distribuzione si possono utilizzare i seguenti
+parametri:
 
 \begin{itemize}
   \item \textbf{Indice di Asimmetria}: cerca di fornire una misura sulla mancanza
-  di simmetria in una distribuzione, il valore 0 è una condizione necessaria ma
-  non sufficiente per la simmetria;
+  di simmetria in una distribuzione, il valore 0 è una condizione necessaria, ma
+  non sufficiente, per la simmetria;
   \item \textbf{Curtosi}: fornisce una misura sull'appiattimento della curva,
   il valore dell'indice corrispondente ad una distribuzione normale è 0;
   \item \textbf{Coefficiente di Variazione}: permette di determinare la dispersione
   dei valori intorno alla media indipendentemente dall'unità di misura.
 \end{itemize}
-Si può utlizzare un test che verifica la normalità di una distribuzione che è il
-test di Shapiro-Wilk o test della bontà di adattamento, tale test restituisce
-il valore W che è compreso nell’intervallo [0, 1] dove valori di W vicini allo 0 indicano
-una distribuzione skewed, mentre valori vicini a 1 indicano una distribuzione normale.
-Un'altra tecnica per la verifica della normalità dei dati è di tipo visuale, osservando
-il plot \textbf{Quantile-Quantile} se esso è approssimabile con una retta la distribuzione
-è approsimabile con una normale, tale metodo è molto robusto agli errori.
+
+\'E possibile utilizzare, come test di verifica della normalità di una distribuzione,
+il test di \textbf{Shapiro-Wilk} o test della bontà di adattamento.\\
+Tale test restituisce il valore W, compreso nell’intervallo [0, 1], che per
+valori vicini allo 0 indica una distribuzione \textbf{skewed}, mentre per valori
+vicini ad 1 indica una distribuzione normale.\\
+Un'ulteriore tecnica per la verifica della normalità dei dati prevede di
+osservare il plot \textbf{Quantile-Quantile}, che presenta sull'asse delle ascisse
+i valori tipici dei quantili di una normale, mentre sull'asse delle ordinate i
+valori dei quantili della distribuzione osservata.\\
+Questa tecnica visiva è molto robusta all'errore, e per questo motivo, molto usata.\\
+L'interpretazione del plot Q-Q è abbastanza semplice: se i punti risultanti sono
+difficilmente approssimabili con una retta, allora si può affermare, con buon
+margine statistico, che è rifiutata l'ipotesi nulla che quella osservata sia una
+distribuzione normale.\\
+Viceversa, è possibile continuare a studiare con ulteriori parametri e test, la
+normalità della distribuzione.\\
 
 \clearpage
 
 \subsubsection{Distribuzioni C++ O2}
-Nella seguente figura sono riportate le desctribuzioni al crescere di N per C++
-con l'ottimizzazione O2 attiva.
+Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
+linguaggio C++ con ottimizzazione O2 attiva.
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_cppO2}
@@ -229,16 +250,17 @@ con l'ottimizzazione O2 attiva.
   \label{distribuzione_cppO2}
 \end{figure}
 Dalla \figurename~\ref{distribuzione_cppO2} si nota
-che le distribuzioni per dimensione 1024 e 2048 non sono normali poichè è rifiutata
-l'ipotesi nulla del test Shapiro-Wilk, mentre per la distribuzione a 4096 non è rigettata
-l'ipotesi nulla quindi non possiamo affermare che non è normale ma possiamo avvalerci
-di ulteriori parametri.\\
+che le distribuzioni per dimensioni 1024 e 2048 non sono normali poiché è rifiutata
+l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione a 4096,
+in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare che
+quella osservata non sia una normale.\\
 Osservando il plot Q-Q si osserva che la distribuzione non è approssimabile con una
 retta e considerando anche gli indici di asimmetria e curtosi possiamo osservare che
 la distribuzione è non normale.
 \clearpage
 \subsubsection{Distribuzioni C++ }
-Nella seguente figura sono riportate le desctribuzioni al crescere di N per C++.
+Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
+linguaggio C++.
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_cpp}
@@ -247,17 +269,18 @@ Nella seguente figura sono riportate le desctribuzioni al crescere di N per C++.
 \end{figure}
 
 Dalla \figurename~\ref{distribuzione_cpp} si nota
-che le distribuzioni per dimensione 1024 non è normale poichè è rifiutata
-l'ipotesi nulla del test Shapiro-Wilk, mentre per la distribuzione a 2048 e 4096 non è rigettata
-l'ipotesi nulla quindi non possiamo affermare che non sono normali ma possiamo avvalerci
-di ulteriori parametri.\\
+che la distribuzione per dimensione 1024 non è normale poiché è rifiutata
+l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni 2048 e
+4096, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
+che quella osservata non sia una normale.\\
 Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048 non è approssimabile con una
 retta e considerando anche gli indici di asimmetria e curtosi possiamo osservare che
 la distribuzione è non normale, mentre per la distribuzione 4096 dal plot Q-Q è approssimabile con una retta
 e gli indici di asimmetria e curtosi ci indicano che è approssimabile con una normale.\\
 \clearpage
 \subsubsection{Distribuzioni Java}
-Nella seguente figura sono riportate le desctribuzioni al crescere di N per Java.\\
+Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
+linguaggio Java.
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_java}
@@ -266,16 +289,18 @@ Nella seguente figura sono riportate le desctribuzioni al crescere di N per Java
 \end{figure}
 
 Dalla \figurename~\ref{distribuzione_java} si nota
-che le distribuzioni per dimensione 4096 non è normale poichè è rifiutata
-l'ipotesi nulla del test Shapiro-Wilk, mentre per le distribuzioni a 1024 e 2048 non è rigettata
-l'ipotesi nulla quindi non possiamo affermare che non sono normali ma possiamo avvalerci
-di ulteriori parametri.\\
-Osservando il plot Q-Q si osserva che entrambe la distribuzione con N pari a 1024
-si può approssimare con una retta e considerando anche gli indici di asimmetria e curtosi possiamo osservare che
-le distribuzioni può essere considerata normale, mentre per N pari a 2048 non è verificata la normalità.\\
+che la distribuzione per dimensione 4096 non è normale, essendo rifiutata
+l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni 1024 e
+2048, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
+che quella osservata non sia una normale.\\
+Osservando il plot Q-Q si osserva che entrambe le distribuzioni con N pari a 1024
+e 2048 sono approssimabili con una retta, e considerando anche l'indice di asimmetria
+e di curtosi, è possibile affermare le due distribuzioni siano normali.\\
+
 \clearpage
 \subsubsection{Distribuzioni Java No JIT}
-Nella seguente figura sono riportate le desctribuzioni al crescere di N per Java.\\
+Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
+linguaggio Java con JIT Compiler disattivato.
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_javaNoJIT}
@@ -284,37 +309,52 @@ Nella seguente figura sono riportate le desctribuzioni al crescere di N per Java
 \end{figure}
 
 Dalla \figurename~\ref{distribuzione_javaNoJIT} si nota
-che le distribuzioni per dimensione con n pari a 1024 e 4096 non sono normali poichè è rifiutata
-l'ipotesi nulla del test Shapiro-Wilk, mentre per la distribuzione a 2048 non è rigettata
-l'ipotesi nulla quindi non possiamo affermare che non sono normali ma possiamo avvalerci
-di ulteriori parametri.\\
-Osservando il plot Q-Q si osserva che entrambe la distribuzione con N pari a 2048
-si potrebbe approssimare con una retta ma considerando  gli indici di asimmetria e curtosi possiamo osservare che
-le distribuzioni non può essere considerata normale poichè sono molto maggiori di 0.
+che le distribuzioni per dimensione pari a 1024 e 4096 non sono normali, essendo
+rifiutata l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione
+2048, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
+che quella osservata non sia una normale.\\
+Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048 è
+approssimabile con una retta, ma considerando gli indici di asimmetria e di
+curtosi(molto maggiori di 0), è possibile affermare che la distribuzione
+non è normale.\\
+
 \clearpage
 \subsubsection{Intervallo di confidenza}
 Un’ultima osservazione da dover fare riguarda gli intervalli di confidenza ottenuti in
 analisi preliminare.\\
-Se si confrontano le mediane delle distribuzioni dei campioni
+A causa della non normalità della maggioranza delle distribuzioni, si è deciso di
+utilizzare la mediana come indice di tendenza centrale. \\
+Confrontando le mediane delle distribuzioni dei campioni
 con gli intervalli di confidenza ottenuti in analisi preliminare si nota che non
-tutte le distribuzioni rispettano le ipotesi fatte. Questo significa che l’ipotesi
-di normalità fatta in analisi preliminare per alcune delle distribuzioni potrebbe venir meno.\\
+tutte le distribuzioni rispettano le ipotesi fatte.\\ Questo significa che l’ipotesi
+di normalità sostenuta nella fase preliminare, per alcune delle distribuzioni,
+potrebbe venir meno.\\
 Di seguito è riportata una tabella che riassume gli intervalli di confidenza
-ottenuti in analisi preliminare e le medie ottenute dai campioni raccolti successivamente.
+ottenuti in analisi preliminare e le mediane ottenute dai campioni raccolti
+successivamente.
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{CI_mediana}
   \caption{Intervalli di confidenza}
   \label{CI_mediana}
 \end{figure}
+
+Come si può osservare, nessuna mediana calcolata sugli 8 esperimenti finali
+rientra nell'intervallo di confidenza calcolato sugli esperimenti effettuati
+in fase preliminare.\\
+Questo risultato ha condotto le successive fasi di validazione all'utilizzo di
+alcuni test non parametrici, anziché altri.
+
 \clearpage
 \subsection{Validazione campioni}
-Per le considerazioni fatte si deciso di caratterizzare il workload con la Mediana,
-poichè solo 2 distribuzioni possono essere considerate normali.\\
-Per verificare la significatività dei campioni non è più possibile applicare il test T-Test,
-ma bisogna affidarsi a test non parametrici come il test di Wilcoxon/Kruskal-Wallis.\\
-Il test di Kruskal-Wallis serve a verificare se più campioni indipendenti appartengono alla
-stessa popolazione.\\
+Come detto in precedenza, si è deciso di utilizzare la mediana come indice di
+tendenza centrale.\\
+Per verificare la significatività dei campioni non è possibile applicare il
+\textbf{T-Test}(valido nel caso in cui i campioni appartengono ad una Normale),
+ma bisogna affidarsi a test non parametrici come il test di
+\textbf{Wilcoxon/Kruskal-Wallis}.\\
+Il test di Kruskal-Wallis, in particolare, serve a verificare se 2 o più campioni
+indipendenti appartengono alla stessa popolazione.\\
 Di seguito vengono mostrati i risultati ottenuti da JMP.\\
 
 \begin{figure}[!htbp]
@@ -323,11 +363,15 @@ Di seguito vengono mostrati i risultati ottenuti da JMP.\\
   \label{Wilcoxon_Kruscal-Wallis_1024}
 \end{figure}
 
+\clearpage
+
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{Wilcoxon_Kruscal-Wallis_2048}
   \caption{Test di Wilcoxon/Kruscal-Wallis con matrici quadrate di dimensione 2048}
   \label{Wilcoxon_Kruscal-Wallis_2048}
 \end{figure}
+
+\clearpage
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{Wilcoxon_Kruscal-Wallis_4096}
@@ -335,18 +379,44 @@ Di seguito vengono mostrati i risultati ottenuti da JMP.\\
   \label{Wilcoxon_Kruscal-Wallis_4096}
 \end{figure}
 
-Dal test effettuato si può concludere affermando che i campioni probabilmente
-provengano da popolazioni differenti.
+Tutti i test hanno portato alla stessa conclusione: l'ipotesi nulla è
+rifiutata ($pvalue < 0.05$), di conseguenza i differenti gruppi non appartengono
+alla stessa popolazione.\\
 
 \clearpage
 
 \section{Conclusioni}
-Concludendo se si fa utilizzo di ottimizzazioni, per C++ O2 e in Java il JIT,
-il linguaggio di programmazione C++ risulta essere il più veloce, ma anche se non si fa
-utilizzo di particolari ottimizzazioni il linguaggio C++ risulta essere migliore.\\
-La supremazia del C++ discende dal fatto che è un linguaggio che è compilato e poi
+Se si utilizzano ottimizzazioni configurabili dal compiler, in particolare O2
+per C++ e il JIT in Java, il linguaggio di programmazione C++ risulta essere il
+più veloce.\\
+Tuttavia, disattivando ogni ottimizzazione dei compiler, il linguaggio C++
+risulta essere comunque migliore di Java.\\
+La supremazia del C++ discende dal fatto che è un linguaggio compilato ed
 eseguito direttamente sulla macchina fisica, mentre il linguaggio Java è compilato
-per ottenere un bytecode e poi interpretato dalla JVM eseguita sulla macchina fisica.
-\section{Codice}
+per ottenere un bytecode e poi interpretato ed eseguito sulla JVM, a sua volta
+eseguita sulla macchina fisica.
 
+\subsection{C++}
+\subsubsection{Main}
 \lstinputlisting[language=C++, caption={Codice C++}]{main.cpp}
+
+\subsection{Java}
+\subsubsection{MatrixMultiplicationù Class}
+\lstinputlisting[language=Java, caption={Codice Java}]{MatrixMultiplication.java}
+\subsubsection{Main}
+\lstinputlisting[language=Java, caption={Codice Java}]{testMatrix.java}
+
+\clearpage
+
+\section{Script Batch}
+Script per l'automazione degli esperimenti, al variare della
+dimensione N, per tutti e quattro i casi(C++, Java, C++ O2, Java NoJIT).\\
+\lstinputlisting[language=command.com, caption={Script Batch}]{script.bat}
+
+\clearpage
+Script per l'esecuzione nel particolare linguaggio scelto, per un numero
+designato di volte, dell'algoritmo di Prodotto Matriciale.\\
+\subsubsection{C++}
+\lstinputlisting[language=command.com, caption={Script Batch}]{script_strassen_cpp.bat}
+\subsubsection{Java}
+\lstinputlisting[language=command.com, caption={Script Batch}]{script_strassen_java.bat}
