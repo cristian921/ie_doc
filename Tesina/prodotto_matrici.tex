@@ -169,19 +169,21 @@ nelle loro versioni ottimizzate dal compilatore sia in quelle non ottimizzate.\\
   \label{grafico_tempi_1024_1}
 \end{figure}
 
+\clearpage
+
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_2048_2}
   \caption{Confronto tempi \textbf{Java} vs \textbf{C++ O2} 2048x2048}
   \label{grafico_tempi_2048_2}
 \end{figure}
 
-\clearpage
-
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_2048_1}
   \caption{Confronto tempi \textbf{Java NoJIT} vs \textbf{C++} 2048x2048}
   \label{grafico_tempi_2048_1}
 \end{figure}
+
+\clearpage
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_4096_2}
@@ -197,7 +199,7 @@ nelle loro versioni ottimizzate dal compilatore sia in quelle non ottimizzate.\\
 
 Si noti che, per tutte le dimensioni considerate, Java con JIT e C++ O2 sono
 molto più performanti delle corrispondenti versioni non ottimizzate.\\
-
+\clearpage
 \subsection{Significatività dei risultati}
 
 Per verificare la significatività statistica delle 8 osservazioni fatte è fondamentale
@@ -250,13 +252,15 @@ linguaggio C++ con ottimizzazione O2 attiva.
   \label{distribuzione_cppO2}
 \end{figure}
 Dalla \figurename~\ref{distribuzione_cppO2} si nota
-che le distribuzioni per dimensioni 1024 e 2048 non sono normali poiché è rifiutata
-l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione a 4096,
+che le distribuzioni per dimensioni 1024 non è normale poiché è rifiutata
+l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni a 1024 e 4096,
 in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare che
 quella osservata non sia una normale.\\
-Osservando il plot Q-Q si osserva che la distribuzione non è approssimabile con una
-retta e considerando anche gli indici di asimmetria e curtosi possiamo osservare che
-la distribuzione è non normale.
+Osservando il plot Q-Q si osserva che la distribuzione a 1024 non è approssimabile con una
+retta e considerando anche gli indici di asimmetria e curtosi possiamo affermare che
+la distribuzione è non normale, mentre per la distribuzione a 4096 dal plot Q-Q la potrebbe
+essere considerata normale ma osservando la curtosi possiamo concludere che essa può
+non essere approssimata con una normale.
 \clearpage
 \subsubsection{Distribuzioni C++ }
 Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
@@ -269,14 +273,13 @@ linguaggio C++.
 \end{figure}
 
 Dalla \figurename~\ref{distribuzione_cpp} si nota
-che la distribuzione per dimensione 1024 non è normale poiché è rifiutata
-l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni 2048 e
-4096, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
+che la distribuzione per dimensioni 1024 e 4096 non sono normale poiché è rifiutata
+l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione 2048,
+in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
 che quella osservata non sia una normale.\\
-Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048 non è approssimabile con una
+Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048 è approssimabile con una
 retta e considerando anche gli indici di asimmetria e curtosi possiamo osservare che
-la distribuzione è non normale, mentre per la distribuzione 4096 dal plot Q-Q è approssimabile con una retta
-e gli indici di asimmetria e curtosi ci indicano che è approssimabile con una normale.\\
+la distribuzione può essere considerata normale.\\
 \clearpage
 \subsubsection{Distribuzioni Java}
 Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
@@ -289,13 +292,16 @@ linguaggio Java.
 \end{figure}
 
 Dalla \figurename~\ref{distribuzione_java} si nota
-che la distribuzione per dimensione 4096 non è normale, essendo rifiutata
-l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni 1024 e
-2048, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
+che la distribuzione per dimensione 1024 non è normale, essendo rifiutata
+l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni 2048 e
+4096, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
 che quella osservata non sia una normale.\\
-Osservando il plot Q-Q si osserva che entrambe le distribuzioni con N pari a 1024
-e 2048 sono approssimabili con una retta, e considerando anche l'indice di asimmetria
-e di curtosi, è possibile affermare le due distribuzioni siano normali.\\
+Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048
+è approssimabile con una retta, e considerando anche l'indice di asimmetria
+e di curtosi, è possibile affermare le due distribuzioni siano normali, mantre
+per la distribuzione con N pari a 4096 possiamo affermare che può essere considerata
+non normale i quanto nè il plot Q-Q nè curtosi e asimmetria verificano
+l'ipotesi di normalità.\\
 
 \clearpage
 \subsubsection{Distribuzioni Java No JIT}
@@ -309,14 +315,13 @@ linguaggio Java con JIT Compiler disattivato.
 \end{figure}
 
 Dalla \figurename~\ref{distribuzione_javaNoJIT} si nota
-che le distribuzioni per dimensione pari a 1024 e 4096 non sono normali, essendo
+che le distribuzioni per dimensione pari a 1024 e 2048 non sono normali, essendo
 rifiutata l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione
-2048, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
+4096, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
 che quella osservata non sia una normale.\\
-Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048 è
-approssimabile con una retta, ma considerando gli indici di asimmetria e di
-curtosi(molto maggiori di 0), è possibile affermare che la distribuzione
-non è normale.\\
+Osservando il plot Q-Q si osserva che la distribuzione con N pari a 4096 è
+approssimabile con una retta e considerando gli indici di asimmetria e di
+curtosi è possibile affermare che la distribuzione è normale.\\
 
 \clearpage
 \subsubsection{Intervallo di confidenza}
@@ -339,11 +344,9 @@ successivamente.
   \label{CI_mediana}
 \end{figure}
 
-Come si può osservare, nessuna mediana calcolata sugli 8 esperimenti finali
-rientra nell'intervallo di confidenza calcolato sugli esperimenti effettuati
+Come si può osservare, che non tutte le medie calcolata sugli 8 esperimenti finali
+rientrano nell'intervallo di confidenza calcolato sugli esperimenti effettuati
 in fase preliminare.\\
-Questo risultato ha condotto le successive fasi di validazione all'utilizzo di
-alcuni test non parametrici, anziché altri.
 
 \clearpage
 \subsection{Validazione campioni}
