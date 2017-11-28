@@ -13,7 +13,7 @@ Monitorare il workload osservato, successivamente caratterizzarlo ed effettuare
 un'analisi di performance.\\
 
 \section{Piattaforma}
-Il client su cui è stato eseguito \textbf{JMeeter}(un generatore di workload), è
+Il client su cui è stato eseguito \textbf{JMeter}(un generatore di workload), è
 un notebook MSI con le seguenti caratteristiche:
 
 \begin{itemize}
@@ -27,17 +27,17 @@ Il Web Server apache è stato installato su un notebook Asus con le seguenti
 caratteristiche:
 
 \begin{itemize}
-  \item \textbf{Processore}: Intel(R) Core(TM) i7-7700HQ @ 2.80GHz
+  \item \textbf{Processore}: Intel(R) Core(TM) Pentium
   \item \textbf{Memoria Ram}: 4GB DDR3-1600MHz
   \item \textbf{Tipo sistema}: Ubuntu 16.4 LTS, processore basato su x64
-  \item \textbf{Storage}: SSD Samsung EVO Pro SATA 3
+  \item \textbf{Storage}: SSD Samsung 850 EVO SATA 3
 \end{itemize}
 
-Infine sono state utilizzate due tipi di connessione Client-Server, una connessione
-diretta tramite cavo di rete LAN ed una in rete locale.\\
+Infine la connessione Client-Server è stata effettuata in modo diretto tramite un
+cavo ethernet.\\
 
 \section{Performance Analysis}
-Per caratterizzgit are il Workload sono state simulate richieste HTTP random al server,
+Per caratterizzare il Workload sono state simulate richieste HTTP random al server,
 teli richieste sono state effettuate su 16 pagine html suddivise in dimensioni:
 
 \begin{itemize}
@@ -46,6 +46,12 @@ teli richieste sono state effettuate su 16 pagine html suddivise in dimensioni:
   \item \textbf{\textit{Grandi}}: dell'ordine delle migliaia di KB;
 \end{itemize}
 
+Per la simulazione dei client è stato utilizzato il tool \textbf{JMeter}
+
+\begin{figure}[!htbp]
+  \includegraphics[width=1\linewidth,keepaspectratio]{logo_jmeter}
+\end{figure}
+
 \section{Analisi alto livello}
 
-Il carico da sottoporre al server è stato generato tramite il tool JMeeter.\\
+Il carico da sottoporre al server è stato generato tramite il tool JMeter.\\
