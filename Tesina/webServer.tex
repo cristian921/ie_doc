@@ -8,9 +8,14 @@
 \chapter{Web Server}
 
 \section{Traccia}
+Emulare un Web Server Apache ed un set di utenti che richiedono delle risorse.
+Monitorare il workload osservato, successivamente caratterizzarlo ed effettuare
+un'analisi di performance.\\
 
-\section{System Under Test}
-La macchina target utilizzata per l'esecuzione degli algoritmi è:
+\section{Piattaforma}
+Il client su cui è stato eseguito \textbf{JMeeter}(un generatore di workload), è
+un notebook MSI con le seguenti caratteristiche:
+
 \begin{itemize}
   \item \textbf{Processore}: Intel(R) Core(TM) i7-7700HQ @ 2.80GHz
   \item \textbf{Memoria Ram}: 16GB DDR4-2400MHz
@@ -18,5 +23,29 @@ La macchina target utilizzata per l'esecuzione degli algoritmi è:
   \item \textbf{Storage}: SSD Kingston M.2.SATA 480GB
 \end{itemize}
 
-\section{Soluzione}
-\section{Conclusioni}
+Il Web Server apache è stato installato su un notebook Asus con le seguenti
+caratteristiche:
+
+\begin{itemize}
+  \item \textbf{Processore}: Intel(R) Core(TM) i7-7700HQ @ 2.80GHz
+  \item \textbf{Memoria Ram}: 4GB DDR3-1600MHz
+  \item \textbf{Tipo sistema}: Ubuntu 16.4 LTS, processore basato su x64
+  \item \textbf{Storage}: SSD Samsung EVO Pro SATA 3
+\end{itemize}
+
+Infine sono state utilizzate due tipi di connessione Client-Server, una connessione
+diretta tramite cavo di rete LAN ed una in rete locale.\\
+
+\section{Performance Analysis}
+Per caratterizzgit are il Workload sono state simulate richieste HTTP random al server,
+teli richieste sono state effettuate su 16 pagine html suddivise in dimensioni:
+
+\begin{itemize}
+  \item \textbf{\textit{Picccole}}: dell'ordine delle decine di KB;
+  \item \textbf{\textit{Medie}}: dell'ordine delle centinaia di KB;
+  \item \textbf{\textit{Grandi}}: dell'ordine delle migliaia di KB;
+\end{itemize}
+
+\section{Analisi alto livello}
+
+Il carico da sottoporre al server è stato generato tramite il tool JMeeter.\\
