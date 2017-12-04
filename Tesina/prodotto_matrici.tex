@@ -80,7 +80,7 @@ $$C_{2,2} = M_1 - M_2 + M_3 + M_6$$
 \section{Analisi}
 
 Gli algoritmi sono stati testati su matrici quadrate di dimensione 1024, 2048 e 4096.\\
-Come analisi preliminare sono state effettuate 15 osservazioni indipendenti, al variare di N.\\
+Come analisi preliminare sono state effettuate 5 osservazioni indipendenti, al variare di N.\\
 Per rendere le esecuzioni indipendenti, gli algoritmi sono stati eseguiti tramite uno
 script batch.\\
 L'algoritmo in Java è stato testato anche disattivando il \textbf{JIT}(Just In Time)
@@ -125,7 +125,7 @@ utilizzate per la valutazione del parametro \textbf{N}.
 
 \clearpage
 
-A valle dei 15 esperimenti svolti al variare della dimensione delle matrici,
+A valle dei 5 esperimenti svolti al variare della dimensione delle matrici,
 considerando il caso peggiore, il numero di esperimenti necessario,
 risulta essere 8.\\
 
@@ -252,15 +252,15 @@ linguaggio C++ con ottimizzazione O2 attiva.
   \label{distribuzione_cppO2}
 \end{figure}
 Dalla \figurename~\ref{distribuzione_cppO2} si nota
-che le distribuzioni per dimensioni 1024 non è normale poiché è rifiutata
+che la distribuzione per dimensione 2048 non è normale poiché è rifiutata
 l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni a 1024 e 4096,
 in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare che
 quella osservata non sia una normale.\\
 Osservando il plot Q-Q si osserva che la distribuzione a 1024 non è approssimabile con una
-retta e considerando anche gli indici di asimmetria e curtosi possiamo affermare che
-la distribuzione è non normale, mentre per la distribuzione a 4096 dal plot Q-Q la potrebbe
-essere considerata normale ma osservando la curtosi possiamo concludere che essa può
-non essere approssimata con una normale.
+retta e considerando anche gli indici di asimmetria e curtosi è possibile affermare che
+la distribuzione è non normale, mentre per la distribuzione a 4096, anche se dal plot
+Q-Q si potrebbe dire normale, osservando l'indice di curtosi è possibile rifiutare
+la normalità.
 \clearpage
 \subsubsection{Distribuzioni C++ }
 Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
@@ -273,13 +273,13 @@ linguaggio C++.
 \end{figure}
 
 Dalla \figurename~\ref{distribuzione_cpp} si nota
-che la distribuzione per dimensioni 1024 e 4096 non sono normale poiché è rifiutata
+che le distribuzioni per dimensioni 1024 e 4096 non sono normali poiché è rifiutata
 l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione 2048,
 in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
 che quella osservata non sia una normale.\\
 Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048 è approssimabile con una
-retta e considerando anche gli indici di asimmetria e curtosi possiamo osservare che
-la distribuzione può essere considerata normale.\\
+retta e considerando anche gli indici di asimmetria e curtosi è possibile osservare che
+la distribuzione sia normale.\\
 \clearpage
 \subsubsection{Distribuzioni Java}
 Nella seguente figura sono riportate le distribuzioni, al crescere di N, del
@@ -298,10 +298,8 @@ l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni 2048 e
 che quella osservata non sia una normale.\\
 Osservando il plot Q-Q si osserva che la distribuzione con N pari a 2048
 è approssimabile con una retta, e considerando anche l'indice di asimmetria
-e di curtosi, è possibile affermare le due distribuzioni siano normali, mantre
-per la distribuzione con N pari a 4096 possiamo affermare che può essere considerata
-non normale i quanto nè il plot Q-Q nè curtosi e asimmetria verificano
-l'ipotesi di normalità.\\
+e di curtosi è possibile osservare che la distribuzione sia normale, mentre
+per la distribuzione con N pari a 4096 è possibile rigettare l'ipotesi di normalità.\\
 
 \clearpage
 \subsubsection{Distribuzioni Java No JIT}
@@ -310,7 +308,7 @@ linguaggio Java con JIT Compiler disattivato.
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_javaNoJIT}
-  \caption{Distribuzioni osservazioni in Java}
+  \caption{Distribuzioni osservazioni in Java NoJIT}
   \label{distribuzione_javaNoJIT}
 \end{figure}
 
@@ -339,6 +337,7 @@ ottenuti in analisi preliminare e le mediane ottenute dai campioni raccolti
 successivamente.
 
 \begin{figure}[!htbp]
+  \centering
   \includegraphics[width=1\linewidth,keepaspectratio]{CI_mediana}
   \caption{Intervalli di confidenza}
   \label{CI_mediana}
@@ -361,6 +360,7 @@ indipendenti appartengono alla stessa popolazione.\\
 Di seguito vengono mostrati i risultati ottenuti da JMP.\\
 
 \begin{figure}[!htbp]
+  \centering
   \includegraphics[width=1\linewidth,keepaspectratio]{Wilcoxon_Kruscal-Wallis_1024}
   \caption{Test di Wilcoxon/Kruscal-Wallis con matrici quadrate di dimensione 1024}
   \label{Wilcoxon_Kruscal-Wallis_1024}
