@@ -242,3 +242,144 @@ e l'Elapsed Time, in \figurename~\ref{correlazione_elapsed_latency}.\\
 In questo caso, il test di Kendall suggerisce che l'ipotesi di indipendenza è
 rigettata, quindi esiste una forte dipendenza tra i parametri \textit{Latency} e
 \textit{Elapsed Time}.
+
+
+\section{Capacity Test}
+Questa sezione è dedicata allo studio della capacità di carico del sistema.\\
+Il capacity test è attuato sulla base del workload caratterizzato in precedenza,
+in funzione della tipologia di richieste effettuate al server(pagine di
+piccola, media e grande dimensione).\\
+I parametri di interesse nel capacity test sono le \textit{Richieste al minuto(Req/min)},
+il \textit{Throughput} e l'\textit{Elapsed Time}.\\
+Il test procede incrementando le Req/min ed osservando i 2 parametri di risposta
+del sistema.\\
+Plottando i risultati ottenuti è possibile individuare due punti di funzionamento
+del sistema, noti come:
+\begin{itemize}
+  \item \textbf{Knee Capacity} - punto di funzionamento in cui il sistema ha un
+  buon throughput e dei tempi di risposta bassi;
+  \item \textbf{Usable Capacity} - punto di funzionamento limite in cui il sistema
+  ha un ottimo throughput, ma oltre il quale c'è un degrado notevole nelle prestazioni.
+\end{itemize}
+
+Per il test effettuato con il tool JMeter, è stato scelto di di simulare 50 Threads
+attivi.\\
+
+\subsection{Test pagine HTML piccole}
+In questo caso sono state utilizzate esclusivamente le richieste HTTP per le pagine
+\textit{small\_text} e \textit{small\_image}.\\
+In \figurename~\ref{small_page_summary_report} sono presenti gli esiti del
+Summary Report di JMeter.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_small}
+  \caption{Test pagine HTML piccole}
+  \label{small_page_summary_report}
+\end{figure}
+
+Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
+di Throughput ed Elapsed Time, e definiti i punti di \textit{Knee Capacity} e
+\textit{Usable Capacity}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{usable_knee_small}
+  \caption{Capacity: Knee (15000 Req/min) / Usable (60000 Req/min)}
+\end{figure}
+
+\subsection{Test pagine HTML medie}
+In questo caso sono state utilizzate esclusivamente le richieste HTTP per le pagine
+\textit{medium\_text} e \textit{medium\_image}.\\
+In \figurename~\ref{medium_page_summary_report} sono presenti gli esiti del
+Summary Report di JMeter.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_medium}
+  \caption{Test pagine HTML medie}
+  \label{medium_page_summary_report}
+\end{figure}
+
+Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
+di Throughput ed Elapsed Time, e definiti i punti di \textit{Knee Capacity} e
+\textit{Usable Capacity}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{usable_knee_medium}
+  \caption{Capacity: Knee (2000 Req/min) / Usable (30000 Req/min)}
+\end{figure}
+
+\clearpage
+
+\subsection{Test pagine HTML grandi}
+In questo caso sono state utilizzate esclusivamente le richieste HTTP per le pagine
+\textit{big\_text} e \textit{big\_image}.\\
+In \figurename~\ref{big_page_summary_report} sono presenti gli esiti del
+Summary Report di JMeter.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_big}
+  \caption{Test pagine HTML grandi}
+  \label{big_page_summary_report}
+\end{figure}
+
+Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
+di Throughput ed Elapsed Time, e definiti i punti di \textit{Knee Capacity} e
+\textit{Usable Capacity}.\\
+
+\clearpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{usable_knee_big}
+  \caption{Capacity: Knee (1500 Req/min) / Usable (3000 Req/min)}
+\end{figure}
+
+\subsection{Test Random}
+Finora sono state studiate le capacità di carico del sistema in presenza delle
+tre differenti tipologie di pagine HTML disponibili.\\
+Dai test effettuati è possibile ricavare il caso medio e il caso peggiore per
+ognuno dei punti di funzionamento considerati:
+\begin{itemize}
+  \item Caso Medio:
+  \begin{itemize}
+    \item \textbf{Knee Capacity} - 6167
+    \item \textbf{Usable Capacity} - 31000
+  \end{itemize}
+  \item Caso Peggiore:
+  \begin{itemize}
+    \item \textbf{Knee Capacity} - 1500
+    \item \textbf{Usable Capacity} - 3000
+  \end{itemize}
+\end{itemize}
+
+Come era possibile aspettarsi, il caso peggiore corrisponde esattamente all'uso
+delle pagine HTML grandi.\\
+
+Per verificare il reale comportamento del sistema, è stato effettuato un ulteriore
+capacity test per definire i punti di funzionamento nel caso di un Random Controller
+che genera, in maniera uniforme, richieste HTTP relative a tutte le tipologie di
+pagine.\\
+
+In \figurename~\ref{random_page_summary_report} sono presenti gli esiti del
+Summary Report di JMeter.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_random}
+  \caption{Test pagine random}
+  \label{random_page_summary_report}
+\end{figure}
+
+Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
+di Throughput ed Elapsed Time, e definiti i punti di \textit{Knee Capacity} e
+\textit{Usable Capacity}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{usable_knee_random}
+  \caption{Capacity: Knee (2000 Req/min) / Usable (8000 Req/min)}
+\end{figure}
