@@ -838,3 +838,166 @@ di Throughput ed Elapsed Time, e definiti i punti di \textit{Knee Capacity} e
   \includegraphics[width=\linewidth, keepaspectratio]{usable_knee_random}
   \caption{Capacity: Knee (2000 Req/min) / Usable (8000 Req/min)}
 \end{figure}
+
+\clearpage
+
+\section{Design of Experiments}
+Scopo ultimo del DOE è riuscire ad ottenere un design tale da
+massimizzare le informazioni ottenute, minimizzando il numero di esperimenti
+necessari.\\
+Una corretta analisi degli esperimenti aiuta anche a separare gli effetti dei
+vari fattori che potrebbero influenzare le prestazioni, determinando se un fattore
+è \textit{significativo} oppure se le differenze osservate dipendono semplicemente
+da variazioni casuali dovute ad errori di misura e/o parametri non controllabili.\\
+Inoltre, il design of experiments è fondamentale anche per ridurre il numero di
+esperimenti, quindi il costo, necessari al testing del sistema.\\
+Per fare ciò è stata utilizzata la funzionalità \textit{Piano Fattoriale Completo},
+resa disponibile dal tool JMP e configurata come in figura \ref{piano_fattoriale_completo}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.9\linewidth, keepaspectratio]{doe_setup}
+  \caption{Piano Fattoriale Completo}
+  \label{piano_fattoriale_completo}
+\end{figure}
+
+\clearpage
+
+Nel piano fattoriale completo sono stati utilizzati come risposta di interesse,
+l'\textit{Average Response Time}(tempo medio di risposta), come fattori il
+\textit{Page Size}(categorico a 3 livelli) ed il \textit{Request Rate}(categorico
+ a 4 livelli).\\
+Il request rate è stato calcolato in funzione della dimensione della pagina,
+ed è in particolare definito su 4 livelli:
+\begin{itemize}
+  \item \textbf{Low} - 20\% della usable capacity
+  \item \textbf{Low-Mid} - 40\% della usable capacity
+  \item \textbf{High-Mid} - 60\% della usable capacity
+  \item \textbf{High} - 80\% della usable capacity
+\end{itemize}
+
+In figura \ref{fattori} sono riportate le capacità usate per ogni dimensione di
+pagina e per ogni categoria di carico.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth, keepaspectratio]{fattori}
+  \caption{Req/min al variare del carico e della tipologia di pagina}
+  \label{fattori}
+\end{figure}
+
+\clearpage
+
+\subsection{Modello}
+In seguito ai 120 esperimenti effettuati è possibile stimare il modello ottenuto.\\
+Fare ciò in JMP è molto semplice grazie alla funzionalità \textit{Stima Modello},
+riportata in figura \ref{stima_modello}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.6\linewidth, keepaspectratio]{stima_modello}
+  \caption{Stima del modello ottenuto}
+  \label{stima_modello}
+\end{figure}
+
+Osservando il \textbf{coefficiente di determinazione}($R^{2}$) è possibile
+immediatamente affermare che il modello effettua un ottimo fitting dei dati.\\
+Infatti il modello spiega circa il 99.8\% della devianza totale.\\
+Nell'analisi della varianza riportata in figura \ref{stima_modello} è possibile anche
+osservare che il modello ottenuto è significativo con un livello di confidenza
+del 95\%, essendo il test di Fisher rigettato con un $p-value<0.001$.\\
+
+\subsection{Importanza e Significatività Statistica dei fattori}
+Importanza e Significatività sono 2 concetti utili e distinti per l'analisi dei
+fattori ed entrambi appartengono alla categoria di tecniche
+\textbf{ANOVA}(ANalysis Of VAriance).\\
+Un fattore è tanto più \textit{importante} quanto ha un rapporto $\frac{SSA}{SST}$
+elevato.\\
+Un fattore importante non necessariamente è significativo, infatti nella significatività
+entrano in gioco anche i \textbf{gradi di libertà}.\\
+La significatività di un fattore può anche essere vista come la robustezza del
+modello rispetto all'errore e può essere studiata utilizzando un test sulla
+varianza.\\
+
+\subsubsection{Importanza}
+In figura \ref{importanza_fattori} sono riportati i valori di importanza dei due
+fattori in studio.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.9\linewidth, keepaspectratio]{importanza_fattori}
+  \caption{Importanza dei Fattori}
+  \label{importanza_fattori}
+\end{figure}
+
+Come si evince dalla tabella, il fattore più importante è il \textbf{Page Size},
+essendo quello che incide maggiormente sull'elapsed time.\\
+Inoltre l'errore risulta essere molto basso, a verifica di quanto affermato dal
+coefficiente di determinazione.\\
+
+\clearpage
+
+\subsubsection{Significatività Statistica}
+L'analisi della significatività statistica dei fattori basata su ANOVA richiede
+che due forti assunzioni siano soddisfatte: \textbf{Normalità} ed
+\textbf{Omoschedasticità}.\\
+Nel caso in cui una delle due, o entrambe le assunzioni, non siano soddisfatte, è
+possibile fare ausilio di ulteriori tecniche e test non parametrici per analizzare
+la significatività dei fattori.\\
+
+\subsubsection*{Normalità}
+La normalità è studiata sui residui relativi al modello, ottenibili semplicemente
+in JMP dalla scheda di \textit{Stima del Modello}.\\
+In figura \ref{normalita} è riportata la distribuzione dei residui ed il test
+di \textit{Shapiro-Wilk} per la normalità su un campione di $N<2000$ esperimenti.\\
+Il test suggerisce un $p-value<0.001$, quindi l'ipotesi di normalità è rigettata
+con il 95\% di confidenza.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{normalita}
+  \caption{Normalità dei residui del modello stimato}
+  \label{normalita}
+\end{figure}
+
+\clearpage
+
+\subsubsection*{Omoschedasticità}
+L'omoschedasticità è studiata sui residui del modello un fattore per volta,
+essendo essa la proprietà di costanza della varianza, al variare dei livelli di
+ogni singolo fattore.\\
+Per fare ciò in JMP, non è studiata la distribuzione dei residui,
+ma è effettuata una \textit{Stima Y rispetto X}, per ciascun fattore.\\
+In figura \ref{omoschedasticita} è possibile osservare che il test di \textbf{Levene},
+scelto per analizzare l'omoschedasticità dei residui rispetto ai singoli fattori,
+dà risultato negativo, rigettando l'ipotesi nulla in entrambi i casi.\\
+\'E stato scelto in particolare il test di Levene e non altri per la sua
+robustezza a situazioni di non normalità dei dati.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{omoschedasticita}
+  \caption{Omoschedasticità dei residui rispetto ai fattori}
+  \label{omoschedasticita}
+\end{figure}
+
+\clearpage
+
+Avendo stabilito che il modello stimato non soddisfa le assunzioni di normalità e
+omoschedasticità, non è possibile utilizzare l'ANOVA classico con il Fisher-Test
+per studiare la significatività dei fattori, bensì il \textit{Kruskal-Wallis Test}.\\
+
+In figura \ref{kruskal_wallis_significativita} si osservano gli esiti del test
+di significatività effettuato su entrambi i fattori.\\
+Come da attesa, il fattore \textit{Page Size} è molto significativo,
+essendo l'ipotesi nulla pienamente rigettata.\\
+Il fattore \textit{Request Rate}, viceversa, è meno significativo
+del Page Size, non potendo essere rigettata l'ipotesi nulla con il 95\% di
+confidenza, ma solo con il 90\% circa.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth, keepaspectratio]{kruskal_wallis_significativita}
+  \caption{Kruskal-Wallis Test per la significatività dei fattori}
+  \label{kruskal_wallis_significativita}
+\end{figure}
