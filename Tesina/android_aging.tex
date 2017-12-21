@@ -11,7 +11,7 @@
 Verificare se \textbf{Android} è soggetto ad \textbf{\textit{aging}}.\\
 
 \section{System Under Test}
-Il disposito utilizzato è un \textbf{Huawei P9 Lite}, con le seguenti caratteristiche:
+Il dispositivo utilizzato è un \textbf{Huawei P9 Lite}, con le seguenti caratteristiche:
 
 \begin{itemize}
   \item \textbf{Chipset: }Kirin 650 (4 x 2,0GHz + 4 x 1,7GHZ) 64 bit
@@ -19,28 +19,28 @@ Il disposito utilizzato è un \textbf{Huawei P9 Lite}, con le seguenti caratteri
   \item \textbf{Sistema Operativo: }Android 7.0
 \end{itemize}
 
-\section{Experimental plan}
+\section{Experimental Plan}
 
 Per verificare il fenomeno dell'\textbf{Aging} sarà analizzato il \textbf{Lunch Time(LT)},
-il quale misura il tempo tra il click sull'icona dell'applicazione e l'avvio della stessa,
-in quanto il fenomeno dell'invecchiamento, dal punto di vista dell'utente, è visto come la
-non reattività del dispositivo.\\
-Gli indicatori di aging di sistema sono invece parametri che riguardano la memeoria,
-\textit{Garbage Collection} e \textit{Task-Level}.\\
+misura del tempo tra il click sull'icona dell'applicazione e l'avvio della stessa,
+in quanto il fenomeno dell'aging, dal punto di vista dell'utente, è percepito
+come una bassa reattività del dispositivo.\\
+Gli indicatori di aging del sistema sono invece parametri che riguardano la \textit{memoria},
+la \textit{Garbage Collection} ed il \textit{Task-Level}.\\
 
 \section{Experimental Setup}
 
-Gli esperimenti sono stati eseguiti su di un \textit{Huawei P9 Lite}, descritto
-precedentemente, utilizzando il tools \textit{\textbf{ADB(Android Device Bridge)}}.\\
-La generazione del workload è stata effettuate tramite il tools
-\textit{\textbf{Monkey WL generator}}, mentre la raccolta dei dati è stata
-effettuata tramite le utility \textit{\textbf{dumpsys}} e \textit{\textbf{logcat}}.
+Gli esperimenti sono stati eseguiti su uno smartphone \textit{Huawei P9 Lite}, descritto
+in precedenza, utilizzando il tool \textit{\textbf{ADB(Android Debug Bridge)}}.\\
+La generazione del workload è stata effettuata tramite il tool
+\textit{\textbf{Monkey WL generator}}, mentre la raccolta dei dati tramite le
+utility \textit{\textbf{dumpsys}} e \textit{\textbf{logcat}}.\\
 In figura \ref{setup} è riportato lo schema di connessione con il quale sono stati
-eseguiti gli esprimenti.\\
-La connessione tra pc ed smartphone è stata effettuate tramite WiFi, quindi è
-stato generato il workload tramite \textit{\textbf{Monkey WL generator}} e inviato
-tramite WiFi al dispositivo mobile,  successivamente i dati sono stati raccolti
-utilizzando  \textit{\textbf{dumpsys}} e \textit{\textbf{logcat}}.
+eseguiti gli esperimenti.\\
+La connessione tra PC e smartphone è stata realizzata tramite WiFi, quindi è
+stato generato il workload tramite \textit{\textbf{Monkey WL generator}}, inviato
+tramite WiFi al dispositivo mobile ed infine i dati sono stati raccolti
+utilizzando \textit{\textbf{dumpsys}} e \textit{\textbf{logcat}}.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -49,23 +49,28 @@ utilizzando  \textit{\textbf{dumpsys}} e \textit{\textbf{logcat}}.
   \label{setup}
 \end{figure}
 
-Sono stati eseguiti due test il primo a workload fisso mentre in secondo a workload
-variabile.\\
-Il primo esperimento è un test che punta a stressare il dispositivo effettuando
-un'operazione ogni 100 ms, la durata di tale test è di 6 ore.
-Il secondo esperimento è un test che punta ad osservare il comportamento del dispositivo
-in utilizzo normale, come se fosse un classico utente ad utilizzarlo, quindi effettua
-delle operazioni ad intervallo di tempo variabile(500 ms, 1500 ms e 2500 ms), quindi la durata di tale test è di
-12 ore.\\
-In particolare il workload genera i seguenti movimenti
+In totale sono stati eseguiti due test:
 \begin{itemize}
-  \item Touch, Motion and Trackballs (33\%);
-  \item (minor and major) Navigation (33\%);
-  \item AppSwitch (34\%).
+  \item \textbf{Workload Fisso};
+  \item \textbf{Workload Variabile}.
 \end{itemize}
-Le applicazioni lanciate negli esperimenti sono riportate nella tabella in figura
-\ref{applicazioni}, ottenute lanciando il comando \textit{adb shell pm list
-packages}.\\
+
+Il primo esperimento è un test di durata di 6 ore, cui obiettivo è stressare il
+dispositivo effettuando un'operazione ogni 100ms.\\
+Il secondo esperimento è un test che punta ad osservare il comportamento del dispositivo
+in un utilizzo normale, con il tipico carico di un utente medio, effettuando
+delle operazioni ad intervallo di tempo variabile(500ms, 1500ms e 2500ms).\\
+Questo secondo test a workload variabile, sovraccaricando meno il sistema, ha una
+durata complessiva di 12 ore.\\
+In generale, in entrambi i test, il workload genera i seguenti movimenti
+\begin{itemize}
+  \item \textbf{Touch, Motion and Trackballs (33\%)};
+  \item \textbf{(minor and major) Navigation (33\%)};
+  \item \textbf{AppSwitch (34\%)}.
+\end{itemize}
+Le applicazioni utilizzate per gli esperimenti, riportate nella tabella in figura
+\ref{applicazioni}, sono state ottenute lanciando il comando
+\textit{adb shell pm list packages}.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -74,7 +79,7 @@ packages}.\\
   \label{applicazioni}
 \end{figure}
 
-L'esecuzione degli esperimente è stata effettua lanciando lo script bash
+L'esecuzione degli esperimenti è stata effettuata lanciando lo script bash
 \textit{\textbf{runtest.sh}} il quale richiama i seguenti script:
   \begin{itemize}
     \item \textit{\textbf{logcat\_art.sh}}: raccoglie i dati relativi al \textit{Garbage Collector};
@@ -83,18 +88,19 @@ L'esecuzione degli esperimente è stata effettua lanciando lo script bash
     \item \textit{\textbf{loagcat\_displayed.sh}}: raccoglie i dati relativi al LT;
     \item \textit{\textbf{kill\_after\_time.sh}}: permette di definire il tempo di
     sperimentazione ed esegue il reboot in modalità recovery del dispositivo;
-    \item \textit{\textbf{LaunchTimeMeasurement.sh}}: esegue lo stess test del dispositivo;
+    \item \textit{\textbf{LaunchTimeMeasurement.sh}}: esegue lo stress test del dispositivo;
     \item \textit{\textbf{WorkloadFixed.sh o WorkloadVariable.sh}}: il primo definisce le applicazioni del
-    workload fisso, il secondo definisce l'esecuzione del workload variabile richiamando
-    ulteriori 3 script nel quale sono definite le applicazioni da lanciare.
+    workload fisso, il secondo definisce l'esecuzione del workload variabile, richiamando
+    a sua volta ulteriori 3 script, nei quali sono definite le applicazioni da lanciare.
   \end{itemize}
 
-\section{Data Analisys}
+\section{Data Analysis}
 
 L'esecuzione dello script \textbf{\textit{runtest.sh}} genera diversi file di log
-tra cui \textit{\textbf{Displyed.txt}} e \textit{\textbf{meminfo.txt}} i quali
-contengono rispettivamente i dati relativi ai tempi di lancio delle activity e
+tra cui \textit{\textbf{Displyed.txt}} e \textit{\textbf{meminfo.txt}}, i quali
+contengono rispettivamente i dati relativi ai tempi di lancio delle activity ed
 i dati relativi all'utilizzo della memoria.\\
+\SONOARRIVATOQUI
 L'analisi relativa ai tempi di lancio è effettuata tramite lo script \textbf{\textit{generate\_Time\_data.sh}},
 il quale estrae una serie temporale per ogni activity, sulle quali effettua
 tramite un script R il \textbf{\textit{Mann Kendall test}} con intervallo
@@ -257,13 +263,13 @@ Saranno analizzate due tecniche:
 
 \subsection{Stepwise regression Workload Fixed}
 
-Di seguito è riportato il risultato ottenuto in \texbf{\textit{JMP}} per
-la \texit{Stepwise regression}.\\
+Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
+la \textit{Stepwise regression}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{stepwise_1}
-  \caption{Spewise regression}
+  \caption{Stepwise regression}
   \label{stepwise_1}
 \end{figure}
 \clearpage
@@ -285,8 +291,8 @@ ha un effetto maggiore sul modello.\\
 
 \subsection{PCA-Based regression Workload Fixed}
 
-Per effettura una \textit{PCA-Based regression} bisogna applicare la PCA.\\
-Di seguito sono riportati i risultati ottenuti in \textfb{\textit{JMP}}.\\
+Per effettuare una \textit{PCA-Based regression} bisogna applicare la PCA.\\
+Di seguito sono riportati i risultati ottenuti in \textbf{\textit{JMP}}.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -307,8 +313,8 @@ principali.\\
 
 \clearpage
 
-Di seguito è riportato il risultato ottenuto in \texbf{\textit{JMP}} per
-la \texit{PCA-Based regression}.\\
+Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
+la \textit{PCA-Based regression}.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -338,8 +344,8 @@ hanno un effetto significativo sul modello.\\
 
 \subsection{Stepwise regression Workload Variable}
 
-Di seguito è riportato il risultato ottenuto in \texbf{\textit{JMP}} per
-la \texit{Stepwise regression}.\\
+Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
+la \textit{Stepwise regression}.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -366,7 +372,7 @@ significativo sul modello tranne \textit{ZRAMinSWAP}.
 \subsection{PCA-Based regression Workload Fixed}
 
 Per effettura una \textit{PCA-Based regression} bisogna applicare la PCA.\\
-Di seguito sono riportati i risultati ottenuti in \textfb{\textit{JMP}}.\\
+Di seguito sono riportati i risultati ottenuti in \textbf{\textit{JMP}}.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -387,8 +393,8 @@ principali.\\
 
 \clearpage
 
-Di seguito è riportato il risultato ottenuto in \texbf{\textit{JMP}} per
-la \texit{PCA-Based regression}.\\
+Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
+la \textit{PCA-Based regression}.\\
 
 \begin{figure}[!htbp]
   \centering
