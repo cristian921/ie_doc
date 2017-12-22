@@ -39,12 +39,17 @@
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{rotating}
+%Impostazione per usare figure in minipage
+\usepackage{float}
 \definecolor{darkblue}{named}{blue}
 \definecolor{darkred}{named}{red}
 \definecolor{grau}{named}{gray}
 %Per i margini
 \usepackage{chngpage}
 \sloppy
+%Per usare captionof (fuori ambienti float)
+\usepackage{caption}
+\captionsetup{skip=4pt, minmargin=3cm, maxmargin=3cm}
 
 \graphicspath{{Immagini/}}
 
