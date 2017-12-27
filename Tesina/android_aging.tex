@@ -100,16 +100,15 @@ L'esecuzione dello script \textbf{\textit{runtest.sh}} genera diversi file di lo
 tra cui \textit{\textbf{Displyed.txt}} e \textit{\textbf{meminfo.txt}}, i quali
 contengono rispettivamente i dati relativi ai tempi di lancio delle activity ed
 i dati relativi all'utilizzo della memoria.\\
-\SONOARRIVATOQUI
 L'analisi relativa ai tempi di lancio è effettuata tramite lo script \textbf{\textit{generate\_Time\_data.sh}},
-il quale estrae una serie temporale per ogni activity, sulle quali effettua
-tramite un script R il \textbf{\textit{Mann Kendall test}} con intervallo
+il quale estrae una serie temporale per ogni activity, sulla quale effettua,
+tramite un script R, il \textbf{\textit{Mann Kendall test}} con intervallo
 di confidenza al 90\%.\\
 Il \textbf{\textit{Mann Kendall test}} è un test che mira a verificare l'esistenza
-di un trend, infatti l'ipotesi nulla di tele test è l'esistenza di un trend quindi
-valori bassi del p-valuee rifiutano $H_0$.\\
+di un trend nei dati.\\
+Valori bassi del p-value rifiutano $H_0$, ovvero l'esistenza del trend.\\
 Inoltre lo script genera i plot per ogni activity.\\
-L'analisi relativa alla memoria è effettuata tramite gli script:
+L'analisi relativa alla memoria è effettuata tramite i seguenti script:
 \begin{itemize}
   \item \textit{\textbf{generate\_Meminfo\_data.sh}}:
   \item \textit{\textbf{generate\_Global\_Meminfo\_data.sh}}: genera le statistiche
@@ -120,12 +119,15 @@ L'analisi relativa alla memoria è effettuata tramite gli script:
 
 \clearpage
 
-\subsection{Launch Time Analisys(Worklaod Fixed)}
-Dopo aver analizzato il valori di \textit{slope}(pendenza della retta) e
-\textit{p-valuee}(relativo al Mann Kendall test), come osservabile in figura \ref{analisi_trend_lt_activity_1},
-si osserva che solo alcune activity presentano un trend positivo, ma comunque la crescita del LT non è
-significativa poichè il valore slope è basso.\\
-Quanto detto è verificabile osservando i plot ottenuti eseguendo lo script  \textit{\textbf{generate\_Meminfo\_data.sh}}.
+\subsection{Launch Time Analysis(Worklaod Fixed)}
+Dopo aver analizzato i valori di \textit{slope}(pendenza della retta) e
+\textit{p-value}(relativo al Mann Kendall test), si osserva, in figura \ref{analisi_trend_lt_activity_1},
+che alcune activity presentano un trend positivo, anche se la crescita
+del loro LT non è significativa poiché il valore slope non è sufficientemente
+alto.\\
+Quanto affermato è validato dai i plot ottenuti eseguendo lo script
+\textit{\textbf{generate\_Meminfo\_data.sh}}.
+
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{analisi_trend_lt_activity_1}
@@ -135,12 +137,14 @@ Quanto detto è verificabile osservando i plot ottenuti eseguendo lo script  \te
 
 \clearpage
 
-\subsection{Launch Time Analisys(Worklaod Variable)}
-Dopo aver analizzato il valori di \textit{slope}(pendenza della retta) e
-\textit{p-valuee}(relativo al Mann Kendall test), come osservabile in figura \ref{analisi_trend_lt_activity_2},
-si osserva che solo alcune activity presentano un trend positivo, ma comunque la crescita del LT non è
-significativa poichè il valore slope è basso.\\
-Quanto detto è verificabile osservando i plot ottenuti eseguendo lo script  \textit{\textbf{generate\_Meminfo\_data.sh}}.
+\subsection{Launch Time Analysis(Worklaod Variable)}
+Dopo aver analizzato i valori di \textit{slope}(pendenza della retta) e
+\textit{p-value}(relativo al Mann Kendall test), si osserva, in figura \ref{analisi_trend_lt_activity_2},
+che alcune activity presentano un trend positivo, anche se la crescita
+del loro LT non è significativa poiché il valore slope non è sufficientemente
+alto.\\
+Quanto affermato è validato dai i plot ottenuti eseguendo lo script
+\textit{\textbf{generate\_Meminfo\_data.sh}}.
 
 \begin{figure}[!htbp]
   \centering
@@ -151,25 +155,26 @@ Quanto detto è verificabile osservando i plot ottenuti eseguendo lo script  \te
 
 \clearpage
 
-\subsection{Memory Analisys(Worklaod Fixed)}
+\subsection{Memory Analysis(Worklaod Fixed)}
 
-Nell'analisi a basso livello verrà considerato il parametro PSS dei processi \textit{system},
-\textit{systemui}, \textit{mediaserver} e \textit{surfaceflinger}, dei quali
-sarà verificata l'esistenza di un trend.\\
+Nell'analisi a basso livello verrà considerato il parametro PSS(Proportional Set Size)
+dei processi \textit{system}, \textit{systemui}, \textit{mediaserver} e
+\textit{surfaceflinger}, per i quali sarà verificata l'esistenza di un trend.\\
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=.4\linewidth, keepaspectratio]{pvalue_memoria_1}
+  \includegraphics[width=.3\linewidth, keepaspectratio]{pvalue_memoria_1}
   \caption{System}
   \label{pvalue_memoria_1}
 \end{figure}
 
-Nella tabella in figura \ref{pvalue_memoria_1} sono riportati i p-valuee risultanti
-dal \textit{Mann Kendall test}, dai quali si osserva che essendo rigettata l'ipotesi
-nulla (non esiste un trend) possiamo conclude che in tutte le serie temporali
-esiste un trend.\\
-In particolare, osservando le seguenti immagini, si verifica che effettivamente
-tutte presentano un trend, ma \textit{mediaserver} presenta un trend negativo.\\
+Nella tabella in figura \ref{pvalue_memoria_1} sono riportati i p-value associati
+al \textit{Mann Kendall test}.\\
+Quest'ultimo suggerisce che può essere rigettata l'ipotesi nulla, dimostrando
+che in tutte le serie temporali esiste un trend.\\
+In particolare, osservando le immagini in figura \ref{minipage_trends}, si verifica che effettivamente
+tutti i processi presentano un trend, in particolare \textit{mediaserver},
+il quale presenta un trend negativo.\\
 Il trend più significativo è verificato nei processi \textit{system} e \textit{systemui}.
 
 \begin{minipage}{\linewidth}
@@ -195,9 +200,11 @@ Il trend più significativo è verificato nei processi \textit{system} e \textit
     \end{figure}
   \end{minipage}
 \end{minipage}
+\captionof{figure}{Trends in system, systemui, mediaserver, surfaceflinger}
+\label{minipage_trends}
 
 \clearpage
-\subsection{Memory Analisys(Worklaod Variable)}
+\subsection{Memory Analysis(Worklaod Variable)}
 
 Nell'analisi a basso livello verrà considerato il parametro PSS dei processi \textit{system},
 \textit{systemui}, \textit{mediaserver} e \textit{surfaceflinger}, dei quali
@@ -205,17 +212,18 @@ sarà verificata l'esistenza di un trend.\\
 
 \begin{figure}[!htbp]
   \centering
-  \includegraphics[width=.4\linewidth, keepaspectratio]{pvalue_memoria_1}
+  \includegraphics[width=.3\linewidth, keepaspectratio]{pvalue_memoria_1}
   \caption{System}
   \label{pvalue_memoria_1}
 \end{figure}
 
-Nella tabella in figura \ref{pvalue_memoria_1} sono riportati i p-valuee risultanti
-dal \textit{Mann Kendall test}, dai quali si osserva che essendo rigettata l'ipotesi
-nulla (non esiste un trend) possiamo conclude che in tutte le serie temporali
-esiste un trend.\\
-In particolare, osservando le seguenti immagini, si verifica che effettivamente
-tutte presentano un trend, ma \textit{mediaserver} presenta un trend negativo.\\
+Nella tabella in figura \ref{pvalue_memoria_1} sono riportati i p-value associati
+al \textit{Mann Kendall test}.\\
+Quest'ultimo suggerisce che può essere rigettata l'ipotesi nulla, dimostrando
+che in tutte le serie temporali esiste un trend.\\
+In particolare, osservando le immagini in figura \ref{minipage_trends2}, si verifica che effettivamente
+tutti i processi presentano un trend, in particolare \textit{mediaserver},
+il quale presenta un trend negativo.\\
 Il trend più significativo è verificato nei processi \textit{system} e \textit{systemui}.
 
 \begin{minipage}{\linewidth}
@@ -241,70 +249,74 @@ Il trend più significativo è verificato nei processi \textit{system} e \textit
     \end{figure}
   \end{minipage}
 \end{minipage}
+\captionof{figure}{Trends in system, systemui, mediaserver, surfaceflinger}
+\label{minipage_trends2}
+
 \clearpage
 
-\section{Relazione causa-effette}
+\section{Relazione causa-effetto}
 
 Per studiare le relazioni causa-effetto tra i KPI della Memoria e il crescere
-del PSS del processo \textit{system} si fa uso della regressione multi-lineare.\\
+del PSS del processo \textit{system}, si utilizza la regressione multi-lineare.\\
 Saranno analizzate due tecniche:
 
 \begin{itemize}
-  \item \textbf{Stepwise regession}: crea un modello di regressione aggiungendo
-  un predittore per volta(forward) oppure iniziando con tutti tutti i predittori
+  \item \textbf{Stepwise Regression}: crea un modello di regressione aggiungendo
+  un predittore per volta(forward), oppure iniziando con tutti i predittori
   ed eliminandone uno per volta (backward), esiste anche un approccio misto.\\
-  Non eliminata la dipendenza lineare, ma conserva i predittori originali;
-  \item \textbf{PCA-Based regression}: simile alla precedente ma viene effettuata
-  una PCA sui parametri delle ascisse.\\
+  Non elimina la dipendenza lineare, ma conserva i predittori originali;
+  \item \textbf{PCA-Based regression}: simile alla precedente, effettua
+  una PCA preliminare sui predittori.\\
   Elimina la dipendenza lineare, ma non conserva i predittori originali.
 \end{itemize}
 
 \clearpage
 
-\subsection{Stepwise regression Workload Fixed}
+\subsection{Stepwise Regression Workload Fixed}
 
 Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
-la \textit{Stepwise regression}.\\
+la \textit{Stepwise Regression}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{stepwise_1}
-  \caption{Stepwise regression}
+  \caption{Stepwise Regression}
   \label{stepwise_1}
 \end{figure}
 \clearpage
-Analizzando la figura \ref{stepwise_analisi_1} si osserva che si ha un R-quadro
-abbastanza basso quindi la retta di regressione non fitta bene i dati, ma l'analisi
-della varianza(ANOVA) restituisce un p-value basso quindi il modello è significativo.\\
-Riguardo i parametri si ha che l'intercetta e \textit{Used\_buffer} sono i parametri più significativi
-del modello.\\
-Mentre nel test degli effetti si osserva che il parametro \textit{Used\_buffer}
-ha un effetto maggiore sul modello.\\
+Analizzando la figura \ref{stepwise_analisi_1}, si osserva che si ha un R-quadro
+abbastanza basso, il che significa che la retta di regressione non fitta troppo
+bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
+quindi il modello risulta essere significativo.\\
+Per quanto riguarda i parametri, si ha che l'intercetta e \textit{Used\_buffer}
+sono i parametri più significativi del modello.\\
+Questo stesso risultato è visibile anche nel test degli effetti, dove si osserva
+che il parametro \textit{Used\_buffer} risulta avere un grande impatto sul modello.\\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{stepwise_analisi_1}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi Stepwise Regression}
   \label{stepwise_analisi_1}
 \end{figure}
 
 \clearpage
 
-\subsection{PCA-Based regression Workload Fixed}
+\subsection{PCA-Based Regression Workload Fixed}
 
-Per effettuare una \textit{PCA-Based regression} bisogna applicare la PCA.\\
+Per effettuare una \textit{PCA-Based Regression} bisogna applicare la PCA.\\
 Di seguito sono riportati i risultati ottenuti in \textbf{\textit{JMP}}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.85\linewidth, keepaspectratio]{pca_1}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based Regression}
   \label{pca_1}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{autovalori_1}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based Regression}
   \label{autovalori_1}
 \end{figure}
 
@@ -314,77 +326,79 @@ principali.\\
 \clearpage
 
 Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
-la \textit{PCA-Based regression}.\\
+la \textit{PCA-Based Regression}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{pca_based_1}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based Regression}
   \label{pca_based_1}
 \end{figure}
 
 \clearpage
 
-Analizzando la figura \ref{stepwise_analisi_1} si osserva che si ha un R-quadro
-abbastanza basso quindi la retta di regressione non fitta bene i dati, ma l'analisi
-della varianza(ANOVA) restituisce un p-value basso quindi il modello è significativo.\\
-Riguardo i parametri si ha tutti sono i parametri significativi
-del modello.\\
-Mentre nel test degli effetti si osserva che tutti i parametri \textit{Used\_buffer}
-hanno un effetto significativo sul modello.\\
+Analizzando la figura \ref{pca_based_analisi_1}, si osserva che si ha un R-quadro
+abbastanza basso, il che significa che la retta di regressione non fitta troppo
+bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
+quindi il modello risulta essere significativo.\\
+In questo caso tutti i parametri sono significativi del modello.\\
+Questo stesso risultato è visibile anche nel test degli effetti, dove si osserva
+che tutti i parametri risultano avere un grande impatto sul modello.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{pca_based_analisi_1}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based regression}
   \label{pca_based_analisi_1}
 \end{figure}
 
 \clearpage
 
-\subsection{Stepwise regression Workload Variable}
+\subsection{Stepwise Regression Workload Variable}
 
 Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
-la \textit{Stepwise regression}.\\
+la \textit{Stepwise Regression}, nel caso di workload variabile.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{stepwise_2}
-  \caption{Spewise regression}
+  \caption{Stepwise Regression}
   \label{stepwise_2}
 \end{figure}
 \clearpage
-Analizzando la figura \ref{stepwise_analisi_2} si osserva che si ha un R-quadro
-abbastanza basso quindi la retta di regressione non fitta bene i dati, ma l'analisi
-della varianza(ANOVA) restituisce un p-value basso quindi il modello è significativo.\\
-I parametri sono tutti significativi a meno dell'intercetta e \textit{ZRAMinSWAP}.
-Mentre nel test degli effetti si osserva che tutti i parametri hanno un effetto
-significativo sul modello tranne \textit{ZRAMinSWAP}.
+Analizzando la figura \ref{stepwise_analisi_2}, si osserva che si ha un R-quadro
+abbastanza basso, il che significa che la retta di regressione non fitta troppo
+bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
+quindi il modello risulta essere significativo.\\
+Per quanto riguarda i parametri, si ha che tutti i parametri risultano essere
+significativi, a meno di intercetta e \textit{ZRAMinSWAP}.\\
+Questo stesso risultato è visibile anche nel test degli effetti, dove si osserva
+che tutti i parametri risultano avere un grande impatto sul modello, eccezion
+fatta per \textit{ZRAMinSWAP}.\\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{stepwise_analisi_2}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi Stepwise Regression}
   \label{stepwise_analisi_2}
 \end{figure}
 
 \clearpage
 
-\subsection{PCA-Based regression Workload Fixed}
+\subsection{PCA-Based Regression Workload Fixed}
 
-Per effettura una \textit{PCA-Based regression} bisogna applicare la PCA.\\
-Di seguito sono riportati i risultati ottenuti in \textbf{\textit{JMP}}.\\
+Per effettuare la \textit{PCA-Based Regression} bisogna applicare la PCA.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.85\linewidth, keepaspectratio]{pca_1}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based Regression}
   \label{pca_2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{autovalori_1}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based Regression}
   \label{autovalori_2}
 \end{figure}
 
@@ -394,28 +408,28 @@ principali.\\
 \clearpage
 
 Di seguito è riportato il risultato ottenuto in \textbf{\textit{JMP}} per
-la \textit{PCA-Based regression}.\\
+la \textit{PCA-Based Regression}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{pca_based_2}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based Regression}
   \label{pca_based_2}
 \end{figure}
 
 \clearpage
 
-Analizzando la figura \ref{stepwise_analisi_2} si osserva che si ha un R-quadro
-abbastanza basso quindi la retta di regressione non fitta bene i dati, ma l'analisi
-della varianza(ANOVA) restituisce un p-value basso quindi il modello è significativo.\\
-Riguardo i parametri si ha che tutti sono i parametri significativi
-del modello.\\
-Mentre nel test degli effetti si osserva che tutti i parametri \textit{Used\_buffer}
-hanno un effetto significativo sul modello.\\
+Analizzando la figura \ref{pca_based_analisi_2}, si osserva che si ha un R-quadro
+abbastanza basso, il che significa che la retta di regressione non fitta troppo
+bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
+quindi il modello risulta essere significativo.\\
+In questo caso tutti i parametri sono significativi del modello.\\
+Questo stesso risultato è visibile anche nel test degli effetti, dove si osserva
+che tutti i parametri risultano avere un grande impatto sul modello.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{pca_based_analisi_2}
-  \caption{Analisi Stepwise regression}
+  \caption{Analisi PCA-Based Regression}
   \label{pca_based_analisi_2}
 \end{figure}
