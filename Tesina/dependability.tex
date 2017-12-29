@@ -1,0 +1,265 @@
+% !TEX root = ./main.tex
+% !TEX encoding = UTF-8 Unicode
+% !TEX program = pdflatex
+% !TeX spellcheck = it_IT
+
+\graphicspath{{Immagini/},{Immagini/dependability/}}
+
+\chapter{Esercizi Dependability}
+\section{Esercizio 1}
+\subsection{Traccia}
+\textit{Find the R(t) and MMTF for the system whose reliability diagram is given
+below. In calculating. MTTF, assume all components are identical and fail
+randomly with failure rate $\lambda$.}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{esercizio1}
+  % \caption{}
+  % \label{}
+\end{figure}
+
+\clearpage
+\subsection{Soluzione}
+In presenza di un \textit{Non-Series-Parallel-Systems} è possibile esplorare due
+differenti approcci risolutivi:
+\begin{itemize}
+  \item \textbf{Teorema dell'\textit{Upper Bound}}: utilizzando la seguente formula è
+  possibile stimare un upper bound della reliability del sistema.\\
+  $$R_{sys} \leq 1-\prod_{i} f(i)$$
+  In pratica, la tecnica prevede di considerare il parallelo tra tutti i possibili
+  \textbf{success path} e calcolarne la reliability.\\
+  Il risultato ottenuto è un upper bound della reliability effettiva del sistema.\\
+
+  \item \textbf{Tecnica dell'espansione attorno ad un singolo nodo}: scegliendo
+  un nodo del block diagram, è possibile studiare due casistiche:
+  \begin{itemize}
+    \item \textbf{Nodo Funzionante} - il nodo è sostituito con un circuito chiuso;
+    \item \textbf{Nodo Fallente} - il nodo è sostituito con un circuito aperto.
+  \end{itemize}
+  In questo modo si studiano due sottosistemi effettivamente serie/parallelo,
+  oppure, in caso contrario, si itera nuovamente il procedimento.\\
+  Dopo aver calcolato la reliability dei due sottosistemi indipendentemente,
+  applicando la \textit{Formula di Bayes}, si ottiene la reliability del sistema
+  totale.\\
+  $$R_{sys} = R_m \cdot P(system\ works \mid m\ works) + (1-R_m)\cdot P(system\ works \mid m\ fails)$$
+\end{itemize}
+
+\clearpage
+
+\subsubsection{Caso 1 - Upper Bound}
+In figura \ref{upperbound} è riportato il block diagram dei success path.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.55\linewidth]{upperbound}
+  \caption{Success Path}
+  \label{upperbound}
+\end{figure}
+
+Calcolando la reliability del parallelo:
+$$R_{sys} = 1-(1-R_1R_2) \cdot (1-R_1R_3) \cdot (1-R_4R_2) \cdot (1-R_4R_3) \cdot (1-R_4R_5)$$
+Supponendo che ogni nodo ha stessa reliability: $$R_i = R$$
+Si ottiene: $$R_{sys} = 1-(1-R^2)^5$$
+
+\clearpage
+
+\subsubsection{Caso 2 - Espansione del Nodo 4}
+La Reliability del sistema, supponendo di espandere il nodo 4, sarà calcolata
+utilizzando la seguente formula:
+$$R_{sys} = R_4 \cdot P(system\ works \mid 4\ works) + (1-R_4)\cdot P(system\ works \mid 4\ fails)$$
+ovvero:
+$$R_{sys} = R_4 \cdot R_{4\ WORKS} + (1-R_4)\cdot R_{4\ FAILS}$$
+dove $R_{4\ WORKS}$ e $R_{4\ FAILS}$ sono le reliability dei due sottosistemi,
+definiti e studiati di seguito.\\
+\subsubsection*{Nodo 4 Funzionante (works!)}
+Nel caso in cui il nodo 4 funzioni, è possibile osservare che si creano
+due differenti percorsi, nel sistema, per giungere al parallelo tra i nodi 2 e 3.\\
+Un primo percorso attraverso il nodo 1, ed un secondo percorso diretto.\\
+La presenza di un percorso diretto rende il calcolo della reliability del
+sottosistema totalmente trasparente alla presenza del nodo 1.\\
+Quindi, come mostrato in figura \ref{nodo1_eliminato}, il nodo 1 può non essere
+considerato.\\
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth]{nodo1_eliminato}
+  \caption{Eliminazione Nodo 1 a causa del percorso diretto}
+  \label{nodo1_eliminato}
+\end{figure}
+
+\clearpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth]{nodo4_funzionante}
+  \caption{Sottosistema Risultante - Nodo 4 Funzionante}
+  \label{nodo4_funzionante}
+\end{figure}
+
+Calcolo di $R_{4\ WORKS}$:
+$$R_{4\ WORKS} = 1-(1-R_5)\cdot(1-R_{23})$$
+dove:
+$$R_{23} = 1-(1-R_2)\cdot(1-R_3)$$
+
+Supponendo che tutti i nodo abbiano stessa reliability \textbf{R}, si ottiene:
+$$R_{23} = 1-(1-R)^2$$
+$$R_{4\ WORKS} = 1-(1-R)\cdot(1-R_{23})$$
+
+\clearpage
+
+\subsubsection*{Nodo 4 Fallente (not works!)}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth]{nodo4_eliminato}
+  \caption{Eliminazione Nodo 4}
+  \label{nodo4_eliminato}
+\end{figure}
+
+L'eliminazione del nodo 4 crea una spaccatura nel sistema, rendendo il nodo 5
+irraggiungibile.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.6\linewidth]{nodo4_fallente}
+  \caption{Sottosistema Risultante - Nodo 4 Fallente}
+  \label{nodo4_fallente}
+\end{figure}
+
+Calcolo di $R_{4\ FAILS}$:
+$$R_{4\ FAILS} = R_1 \cdot R_{23} = R_1 \cdot (1-(1-R_2)\cdot(1-R_3))$$
+
+Supponendo che tutti i nodo abbiano stessa reliability \textbf{R}, si ottiene:
+$$R_{4\ FAILS} = R \cdot (1-(1-R)^2)$$
+
+\clearpage
+
+\subsubsection{Calcolo $R_{sys}$ del sistema}
+Dopo aver calcolato separatamente $R_{4\ WORKS}$ e $R_{4\ FAILS}$, è possibile
+proseguire con il calcolo della reliability totale del sistema, supponendo che
+tutti i nodo abbiano stessa reliability \textbf{R}:
+$$R_{sys} = R \cdot R_{4\ WORKS} + (1-R)\cdot R_{4\ FAILS} =$$
+$$= R(1-(1-R)(1-1+(1-R)^2)) + R(1-R)(1-(1-R)^2) =$$
+$$= 5R^2-6R^3+2R^4$$
+
+Per quanto riguarda il \textbf{MTTF}, in seguito sono riportati
+i calcoli dell'integrale:
+$$R(t) = e^{-\lambda t}$$
+$$\int_0^{+\infty} R_{sys}(t)\ dx =
+\int_0^{+\infty} (5e^{-2\lambda t}-6e^{-3\lambda t}+2e^{-4\lambda t}) \ dx =
+\frac{5}{2\lambda} - \frac{2}{\lambda} + \frac{1}{2\lambda} =
+\frac{1}{\lambda}$$
+
+\clearpage
+
+\section{Esercizio 2}
+\subsection{Traccia}
+\textit{We want to compare two different schemes of increasing reliability of a
+system using redundancy. Suppose that the system needs s identical components
+in series for proper operation. Further suppose that we are given (m x s)
+components. Out of the two schemes shown in the figure below, which one will
+provide a higher reliability? Given that the reliability of an individual
+component is r, derive the expressions for the reliabilities of two configurations.
+For m = 5 and s = 2, compare the two expressions.}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{esercizio2}
+  % \caption{}
+  % \label{}
+\end{figure}
+
+\clearpage
+\subsection{Soluzione}
+
+\clearpage
+\section{Esercizio 3}
+\subsection{Traccia}
+\textit{The architecture of a network of computers in a banking system is shown
+below. The architecture is called a skip-ring network and is designed to allow
+processors to communicate even after node failures have occurred. For example,
+if node 1 fails, node 8 can bypass the failed node by routing data over the
+alternative link connecting nodes 8 and 2. Assuming the links are perfect and
+the nodes each have a reliability of Rm, derive and expression for the reliability
+of the network. If Rm obeys the exponential failure law and the failure rate of
+each node is 0.005 failures per hour, determine the reliability of the system
+at the end of a 48-hour period.}
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth]{esercizio3}
+  % \caption{}
+  % \label{}
+\end{figure}
+
+\clearpage
+\subsection{Soluzione}
+
+\clearpage
+\section{Esercizio 4}
+\subsection{Traccia}
+\textit{An application requires that at least three processors from a multiprocessor
+system be available with more than 99\% probability. The cost of a processor with
+80\% reliability is \$1000, and each 10\% increase in reliability will cost \$800.
+Determine the number of processors (n) and the reliability (p) of each processor
+(assume that all processors have the same reliability) that minimize the total
+system cost.}
+
+\clearpage
+\subsection{Soluzione}
+
+\clearpage
+\section{Esercizio 5}
+\subsection{Traccia}
+\textit{The system shown in the figure below is a processing system for a helicopter. The system
+has dual-redundant processors and dual-redundant interface units. Two buses are used in
+the system, and each bus is also dual-redundant. The interesting part of the system is the
+navigation equipment. The aircraft can be completely navigated using the Inertial
+Navigation System (INS). If the INS fails, the aircraft can be navigated using the
+combination of the Doppler and the altitude heading and reference system (AHRS). The
+system contains three AHRS units, of which only one is needed. This is an example of
+functional redundancy where the data from the AHRS and the Doppler can be used to
+replace the INS, if the INS fails. Because of the other sensors and instrumentation, both
+buses are required for the system to function properly regardless of which navigation mode
+is being employed.}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth]{esercizio5}
+  % \caption{}
+  % \label{}
+\end{figure}
+
+\begin{enumerate}
+  \item Draw the reliability block diagram of the system;
+  \item Draw the Fault Tree of the system and analyze the minimal cutsets;
+  \item Calculate the reliability for a one-hour flight using the MTTF figures given in the table
+  below. Assume that the exponential failure low applies and that the fault coverage is perfect.
+
+  \begin{center}
+  \begin{tabular}{|c|c|}
+  	\hline
+  	\textbf{Equipment} & \textbf{MTTF(hr)} \\
+  	\hline
+  	Processing Unit  & 3000 \\
+  	\hline
+  	Remote Terminal  & 2500 \\
+  	\hline
+  	AHRS & 1000 \\
+  	\hline
+  	INS & 1000 \\
+  	\hline
+  	Doppler & 500 \\
+  	\hline
+  	Bus & 8000 \\
+  	\hline
+  \end{tabular}
+  \end{center}
+
+  \item Repeat (c), but this time, incorporate a coverage factor for the fault
+  detection and reconfiguration of the processing units. Using the same failure
+  data, determine the approximate fault coverage value that is required to obtain
+  a reliability (at the end of one hour) of 0.99999.
+\end{enumerate}
+
+\clearpage
+\subsection{Soluzione}
