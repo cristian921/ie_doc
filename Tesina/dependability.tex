@@ -172,7 +172,76 @@ For m = 5 and s = 2, compare the two expressions.}
 \clearpage
 \subsection{Soluzione}
 
+\subsubsection{Schema A}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth]{parallelo_serie}
+  \caption{Paralleli di Serie}
+  \label{parallelo_serie}
+\end{figure}
+
+Nel primo schema riportato in figura \ref{parallelo_serie} si osserva una
+struttura composta da 5 paralleli, ciascuno di 2 nodi posti in serie.\\
+La reliability totale del sistema, in questo caso, si calcola facilmente:
+$$R_{sys\ A} = 1-(1-R_1R_2)\cdot(1-R_3R_4)\cdot(1-R_5R_6)\cdot(1-R_7R_8)\cdot(1-R_9R_{10})$$
+supponendo identiche le reliability di ciascun nodo:
+\begin{align}
+  R_{sys\ A} = 1-(1-R^2)^5
+ \label{eq1}
+\end{align}
+Ricordando che da specifica erano $s=2$ e $m=5$, è possibile generalizzare la
+formula come segue:
+$$R_{sys\ A} = 1-(1-R^s)^m$$
+
 \clearpage
+
+\subsubsection{Schema B}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=.7\linewidth]{serie_parallelo}
+  \caption{Serie di Paralleli}
+  \label{serie_parallelo}
+\end{figure}
+
+Nel secondo schema riportato in figura \ref{serie_parallelo} si osserva una
+struttura composta da 5 serie, ciascuna di 2 nodi posti in parallelo.\\
+La reliability totale del sistema, in questo caso, si calcola facilmente:
+$$R_{sys\ B} = [1-(1-R_1)(1-R_3)(1-R_5)(1-R_7)(1-R_9)]\cdot[1-(1-R_2)(1-R_4)(1-R_6)(1-R_8)(1-R_{10})]$$
+supponendo identiche le reliability di ciascun nodo:
+\begin{align}
+  R_{sys\ B} = [1-(1-R)^5]^2
+ \label{eq2}
+\end{align}
+Ricordando che da specifica erano $s=2$ e $m=5$, è possibile generalizzare la
+formula come segue:
+$$R_{sys\ B} = [1-(1-R)^m]^s$$
+
+\clearpage
+
+\subsubsection{Confronto $R_{sys}$ dei due schemi}
+Per confrontare le reliability nei due casi, conviene espandere le espressioni
+calcolate in  \eqref{eq1} e \eqref{eq2}.
+$$R_{sys\ A} = 1-(1-R^2)^5 = 5R^2-10R^4+10R^6-5R^8+R^{10}$$
+$$R_{sys\ B} = [1-(1-R)^5]^2 = 25R^2-100R^3+200R^4-250R^5+210R^6-120R^7+45R^8-10R^9+R^{10}$$
+\vspace{0.3cm}
+
+Supponendo $R_{sys\ B} > R_{sys\ A}$ e semplificando la disequazione, si ottiene:
+$$R^3<R^2 \ \ \ \ per \ 0<R<1$$
+Quest'assunzione è sempre vera, essendo la reliability una probabilità.\\
+Quindi è possibile concludere che la reliability del sistema B è sempre
+maggiore a quella del sistema A, come mostrato anche dal plot in figura \ref{confronto_reliability}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{confronto_reliability}
+  \caption{Plot Reliability Sistema A Vs Sistema B}
+  \label{confronto_reliability}
+\end{figure}
+
+\clearpage
+
 \section{Esercizio 3}
 \subsection{Traccia}
 \textit{The architecture of a network of computers in a banking system is shown
