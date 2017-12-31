@@ -275,8 +275,52 @@ system cost.}
 
 \clearpage
 \subsection{Soluzione}
+Il sistema proposto nella traccia è un tipico \textbf{M-out-of-N System}.\\
+In questo caso particolare, il numero minimo di processori richiesto è 3, quindi
+il modello diventa un 3-out-of-N System.\\
+La reliability di tale sistema si calcola semplicemente applicando la seguente
+formula:
+$$R_{sys} = \sum_{i=0}^{N-3} \binom{N}{i} R_m^{N-i}(1-R_m)^i$$
+\vspace{0.4cm}
+
+Il costo del singolo processore dipende dalla reliability che si desidera ottenere.\\
+Un processore con 80\% di reliability costa \$1000, ogni incremento del 10\% di
+reliability ha un costo di \$800 sul totale.\\
+\'E stato scelto di analizzare due differenti casi:
+\begin{itemize}
+  \item Processore con Reliability 80\% - Costo \$1000
+  \item Processore con Reliability 90\% - Costo \$1800
+\end{itemize}
 
 \clearpage
+
+In funzione di queste due soluzioni, sono state realizzate delle tabelle che
+mostrano la reliability ottenuta al prezzo $C_i$, al variare del numero di processori
+e della loro tipologia.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{costo_processori_rel80}
+  \caption{Sistema nel caso di utilizzo di Processori con 80\% reliability}
+  \label{costo_processori_rel80}
+\end{figure}
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{costo_processori_rel90}
+  \caption{Sistema nel caso di utilizzo di Processori con 90\% reliability}
+  \label{costo_processori_rel90}
+\end{figure}
+
+Osservando i risultati tabellati, la combinazione con reliability al 99\% con
+costo minore risulta essere:
+\begin{itemize}
+  \item \textbf{N=7} processori da 80\% di reliability, costo \$7000;
+  \item \textbf{N=5} processori da 90\% di reliability, costo \$9000.
+\end{itemize}
+
+\clearpage
+
 \section{Esercizio 5}
 \subsection{Traccia}
 \textit{The system shown in the figure below is a processing system for a helicopter. The system
