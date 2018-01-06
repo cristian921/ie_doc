@@ -462,7 +462,22 @@ componenti che porta il sistema al fallimento.
   \label{ft}
 \end{figure}
 
-Il fault tree può essere ricavato a partire da un RDB.
+Il fault tree può essere ricavato a partire da un RBD, in pratica si trasforma
+la serie di due componenti in una \textit{or} tra gli eventi di fallimento degli stessi,
+mentre il parallelo si trasforma in una \textit{and}.\\
+
+Possiamo scrivere in forma analitica il fault tree riportato in \figurename~\ref{ft}:
+$$ F = (PU_1 \cdot PU_2) + (RT_1 \cdot RT_2) + (BUS_{A1} \cdot BUS_{A2}) + (BUS_{B1} \cdot BUS_{B2})+$$
+$$+ (INS \cdot (Doppler+AHRS_1 \cdot AHRS_2 \cdot AHRS_3))$$
+
+Può essere riscritta come:
+$$ F = (PU_1 \cdot PU_2) + (RT_1 \cdot RT_2) + (BUS_{A1} \cdot BUS_{A2}) + (BUS_{B1} \cdot BUS_{B2})+$$
+$$+ (INS \cdot Doppler) + (INS \cdot AHRS_1 \cdot AHRS_2 \cdot AHRS_3)$$
+
+Così da ottenere una somma di "mintermini", quindi i minimal cut-set sono i singoli
+mintermini, poichè il sistema fallisce se uno di essi fallisce.\\
+
+\clearpage
 
 \subsection{Quesito c: Reliability for one-hour flight}
 
