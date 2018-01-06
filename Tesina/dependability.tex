@@ -263,6 +263,61 @@ at the end of a 48-hour period.}
 \clearpage
 \subsection{Soluzione}
 
+La rete presentata è in grado di funzionare con un massimo di 4 fallimenti.\\
+Può essere ricondotta ad un modello \textbf{M-out-of-N Systems}, con M uguale 4
+ed N uguale 8.\\
+Dunque la reliability è data dalla seguente espressione:
+$$ R = \sum_{i=0}^{4}{\binom{8}{i}R_m^{8-i}(1-R_m)^i}$$
+
+Osservando che:
+\begin{itemize}
+  \item \textbf{\textit{i=0}}: il sistema non fallisce;
+  \item \textbf{\textit{i=1}}: il sistema non fallisce poichè la condizione necessaria
+  è che falliscano due nodi consecutivi;
+  \item \textbf{\textit{i=2}}: il sistema fallisce solo in 8 casi, quindi
+  nella formula va utilizzato il coefficiente binomiale meno le 8 combinazioni che
+  portano il sistema al fallimento;
+  \item \textbf{\textit{i=3}}: il sistema fallisce in 40 casi, ovvero 8 combinazioni
+  consecutive e tutte le combinazioni a 2( ovvero 8) più un nodo non adiacente( i
+  possibili nodi non adiacenti sono 4 poichè due sono già considerati e 2 sono adiacenti);
+  \item \textbf{\textit{i=4}}: il sistema non fallisce solo in due casi ovvero (1, 3, 5,7) e (2, 4, 6, 8);
+  \item \textbf{\textit{i=5, i=6, i=7}}: il sistema fallisce sempre, poichè essendo più della
+  metà dei nodi a fallire due saranno sempre consecutivi;
+  \item \textbf{\textit{i=8}}: il sistema fallisce poichè tutti i nodi falliscono.
+\end{itemize}
+
+\begin{tabular}{c||c|c|}
+
+\textbf{Nodi falliti}& \textbf{P(nodi falliti)} & \textbf{P(fallimento sistema $\mid$ n nodi falliti)}\\
+\hline
+\hline
+0 & $r^8$ & 0 \\
+\hline
+1 & $8(1-r)r^7$ & 0 \\
+\hline
+2 & $28(1-r)^2r^6$ & $8/28$ \\
+\hline
+3 & $56(1-r)^3r^5$ & $40/56$ \\
+\hline
+4 & $70(1-r)^4r^4$ & $68/70$ \\
+\hline
+5 & $56(1-r)^5r^3$ & $1$ \\
+\hline
+6 & $28(1-r)^6r^2$ & $1$ \\
+\hline
+7 & $8(1-r)^7r$ & $1$ \\
+\hline
+8 & $(1-r)^8$ & $1$ \\
+\hline
+\end{tabular}
+
+\clearpage
+
+Considerando $R_m=e^{-\lambda t}=e^{-0,005\cdot 48}=0,786627861$ si ottiene:
+
+$$R=R_m^8+8R_m^7(1-R_m)+(28-8)R_m^6(1-R_m)^2+(56-40)R_m^5(1-R_m)^3+(70-68)R_m^4(1-R_m)^4$$
+$$R=0,728880175$$
+
 \clearpage
 \section{Esercizio 4}
 \subsection{Traccia}
@@ -339,7 +394,7 @@ is being employed.}
   \centering
   \includegraphics[width=.7\linewidth]{esercizio5}
   % \caption{}
-  % \label{}
+  \label{esericizo5}
 \end{figure}
 
 \begin{enumerate}
@@ -376,3 +431,112 @@ is being employed.}
 
 \clearpage
 \subsection{Soluzione}
+
+\subsection{Quesito a: Reliable Block Diagram}
+
+Il \textbf{Reliable Block Diagram(RBD)} è uno strumento che permette di studiare
+la reliability di un sistema in modo semplice sfruttando lo schema a blocchi.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{rdb}
+  \caption{Reliable Block Diagram(RBD)}
+  \label{rdb}
+\end{figure}
+
+I compoenti \textit{CPU}, \textit{Remote Terminal}, \textit{Bus(A e B)} sono
+dual-redundant, quindi sono duplicati e messi in parallelo, mentre \textit{INS} e
+in parallelo con la serie tra \textit{Doppler} e il parallelo dei tre \textit{AHRS},
+in infine i cinque sottosistemi sono in serie.
+
+\subsection{Quesisto b: Fault Tree and minimal cut-set}
+
+Il \textbf{Fault Tree} è uno strumento che permette di capire a causa di quale
+componenti il sistema fallisce, da esso si può ricavare il minimo numero di
+componenti che porta il sistema al fallimento.
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth]{ft}
+  \caption{Fault Tree}
+  \label{ft}
+\end{figure}
+
+Il fault tree può essere ricavato a partire da un RDB.
+
+\subsection{Quesito c: Reliability for one-hour flight}
+
+Supponendo che la distribuzione dei fallimenti sia esponenziale, si ha che la
+Reliability dell'i-esimo componente è:
+$$R_i(t) = e^{-\lambda_i t}$$
+
+Per il calcolo di $\lambda_i$, conoscendo la \textbf{\textit{MTTF}}, si utilizza
+la relazione:
+$$ MTTF = \int_{0}^{+\infty} e^{-\lambda t}\, dt = \frac{1}{\lambda}  \Longrightarrow \lambda = \frac{1}{MTTF} $$
+
+In \figurename~\ref{reliability_es5} sono riportate le reliability per un'ora di
+volo per ogni componente.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{reliability_es5}
+  \caption{Reliability di ogni componente in un'ora di volo}
+  \label{reliability_es5}
+\end{figure}
+
+Considerando la \figurename~\ref{rdb} si applicano le formule per il calcolo
+della reliability per componenti in serie e parallelo.\\
+In particolare:
+\begin{itemize}
+  \item \textbf{Reliability di una serie} $\rightarrow R_{serie} = \prod_{i=1}^{N}{R_i(t)}$;
+  \item \textbf{Reliability di una serie} $\rightarrow R_{parallelo} = 1 - \prod_{i=1}^{N}{(1- R_i(t))}$.
+\end{itemize}
+
+Dunque la reliability del sistema è calcolata come:
+$$ R_{sys} = R_{subSys_1} \cdot R_{subSys_2} \cdot R_{subSys_3} \cdot R_{subSys_4} \cdot R_{subSys_5}$$
+dove:
+$$R_{subSys_1} = 1 - (1 - R_{ProcessingUnit})^2$$
+$$R_{subSys_2} = 1 - (1 - R_{RemoteTerminal})^2$$
+$$R_{subSys_3} = 1 - (1 - R_{BusA})^2$$
+$$R_{subSys_4} = 1 - (1 - R_{BusB})^2$$
+$$R_{subSys_5} = 1 - (1 - R_{INS}) \cdot (1 - R_{subSys_51})$$
+$$R_{subSys_51} = R_{Doppler} \cdot (1 - (1 - R_{AHRS})^3)$$
+
+\clearpage
+
+In \figurename~\ref{calcolo_rel} sono riportati i risultati parziali e la
+reliability del sistema.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.6\linewidth]{calcolo_rel}
+  \caption{Calcolo Reliability in un'ora di volo}
+  \label{calcolo_rel}
+\end{figure}
+
+Quindi dopo un'ora di volo la reliability dell'intero sistema è 99,99977007\%.\\
+
+\clearpage
+
+\subsection{Quesito c: Reliability one-hour flight with coverage}
+
+Per calcolare il fattore di coverage per la fault detection e la riconfigurazione
+della Processing Unit al fine di ottenere una reliability di 5 nine sarà ripetuto
+il procedimento del quesito precedente introducendo un fattore di coverage(c).\\
+Dunque:
+$$R_{subSys_1} = 1 -[ (1 - R_{ProcessingUnit}) \cdot (1-c\cdot R_{ProcessingUnit})]$$
+$$R_{subSys_2} = 1 - (1 - R_{RemoteTerminal})^2$$
+$$R_{subSys_3} = 1 - (1 - R_{BusA})^2$$
+$$R_{subSys_4} = 1 - (1 - R_{BusB})^2$$
+$$R_{subSys_5} = 1 - (1 - R_{INS}) \cdot (1 - R_{subSys_51})$$
+$$R_{subSys_51} = R_{Doppler} \cdot (1 - (1 - R_{AHRS})^3)$$
+Per calcolare $c$ si ha:
+$$R_{subSys_1} = R_{ProcessingUnit}+c\cdot(1-R_{ProcessingUnit} )\cdot R_{ProcessingUnit}$$
+$$R_{Sys-ProcessingUnit} =  R_{subSys_2} \cdot R_{subSys_3} \cdot R_{subSys_4} \cdot R_{subSys_5}$$
+$$R_{Sys}=[R_{ProcessingUnit}+c\cdot(1-R_{ProcessingUnit})\cdot R_{ProcessingUnit}]\cdot R_{Sys-ProcessingUnit}$$
+Volendo ottenere la reliability del sistema di 5 nine si impone $R_{Sys}=0,99999$.\\
+Dunque si ottiene:
+$$[R_{ProcessingUnit}+c\cdot(1-R_{ProcessingUnit})\cdot R_{ProcessingUnit}]\cdot R_{Sys-ProcessingUnit}=0,99999$$
+Quindi:
+$$ c = \frac{0,99999-R_{ProcessingUnit}\cdot R_{Sys-ProcessingUnit}}{(1-R_{ProcessingUnit})\cdot R_{ProcessingUnit} \cdot R_{Sys-ProcessingUnit}}$$
+Sostituendo con i valori calcolati nel quesito precedente $c=0,97688$.\\
