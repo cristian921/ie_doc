@@ -376,7 +376,7 @@ seguenti:
 
 \clearpage
 
-I modelli di reliability, invece, sono riportati in figura \ref{modello_reliability}.\\
+Le reliability empiriche, invece, sono riportati in figura \ref{modello_reliability_e}.\\
 
 \begin{minipage}{\linewidth}
   \centering
@@ -412,8 +412,108 @@ I modelli di reliability, invece, sono riportati in figura \ref{modello_reliabil
     \end{figure}
   \end{minipage}
 \end{minipage}
-\captionof{figure}{Modello di Reliability}
-\label{modello_reliability}
+\captionof{figure}{Reliability empirica}
+\label{modello_reliability_e}
+
+\clearpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_dev}
+  \caption{Curve Fitting modello iperesponenziale categoria di errore DEV}
+  \label{rel_model_dev}
+\end{figure}
+
+Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_dev}
+  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore DEV}
+  \label{ks_dev}
+\end{figure}
+
+L'ipotesi è rigettata con 85,28\% , con confidenza del 95\%.\\
+
+\clearpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_io}
+  \caption{Curve Fitting modello iperesponenziale categoria di errore IO}
+  \label{rel_model_io}
+\end{figure}
+
+Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_io}
+  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore IO}
+  \label{ks_io}
+\end{figure}
+
+L'ipotesi non è rigettata al 73,69\%, con confidenza del 95\%.\\
+
+\clearpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_mem}
+  \caption{Curve Fitting modello iperesponenziale categoria di errore MEM}
+  \label{rel_model_mem}
+\end{figure}
+
+Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_mem}
+  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore MEM}
+  \label{ks_mem}
+\end{figure}
+
+L'ipotesi non è rigettata al 95,61\% , con confidenza del 95\%.\\
+
+\clearpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_net}
+  \caption{Curve Fitting modello iperesponenziale categoria di errore NET}
+  \label{rel_model_net}
+\end{figure}
+
+Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_net}
+  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore NET}
+  \label{ks_net}
+\end{figure}
+
+L'ipotesi non è rigettata al 81,64\%, con confidenza del 95\%.\\
+
+\clearpage
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_pro}
+  \caption{Curve Fitting modello iperesponenziale categoria di errore PRO}
+  \label{rel_model_pro}
+\end{figure}
+
+Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_pro}
+  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore PRO}
+  \label{ks_pro}
+\end{figure}
+
+L'ipotesi non è rigettata al 99,96\%, con confidenza del 95\%.\\
 
 \clearpage
 
@@ -740,3 +840,31 @@ i modelli di reliability}
   \end{minipage}
 \end{minipage}
 \captionof{figure}{Modelli di Reliability}
+
+\clearpage
+
+\subsection{Domanda 3}.
+
+\textit{What are the most entries-prone racks/nodes?}\\
+
+\subsubsection*{Soluzione}
+
+ Per ottenere la lista dei nodi, categorie e rack è stato utilizzato lo Script
+ \textit{logStatistics.sh}, con l'aggiunta del seguente codice per visualizzare
+ i rack.\\
+
+\begin{lstlisting}[language=bash]
+echo "== Breakup by RACK =="
+cat $1 | awk '{print substr($2,1,3)}' | sort | uniq -c | sort -nr | head -n 5 | awk '{print $2, $1}'
+echo " * only the 5 most occurring racks are reported"
+echo ""
+\end{lstlisting}
+
+L'output ottenuto è riportato in \figurename~\ref{u6}.\\
+
+\begin{figure}[!htbp]
+  \centering
+  \includegraphics[width=\linewidth,keepaspectratio]{u6}
+  %\caption{}
+  \label{u6}
+\end{figure}
