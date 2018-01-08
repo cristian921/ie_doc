@@ -417,10 +417,12 @@ Le reliability empiriche, invece, sono riportati in figura \ref{modello_reliabil
 
 \clearpage
 
+\subsubsection*{Reliability Model - DEV}
+
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_dev}
-  \caption{Curve Fitting modello iperesponenziale categoria di errore DEV}
+  \caption{Curve Fitting modello Weibull categoria di errore DEV}
   \label{rel_model_dev}
 \end{figure}
 
@@ -429,7 +431,7 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_dev}
-  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore DEV}
+  \caption{Kolmogorov-Smirnov Test Weibull categoria di errore DEV}
   \label{ks_dev}
 \end{figure}
 
@@ -437,10 +439,12 @@ L'ipotesi è rigettata con 85,28\% , con confidenza del 95\%.\\
 
 \clearpage
 
+\subsubsection*{Reliability Model - IO}
+
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_io}
-  \caption{Curve Fitting modello iperesponenziale categoria di errore IO}
+  \caption{Curve Fitting modello Weibull categoria di errore IO}
   \label{rel_model_io}
 \end{figure}
 
@@ -449,13 +453,14 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_io}
-  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore IO}
+  \caption{Kolmogorov-Smirnov Test Weibull categoria di errore IO}
   \label{ks_io}
 \end{figure}
 
 L'ipotesi non è rigettata al 73,69\%, con confidenza del 95\%.\\
 
 \clearpage
+\subsubsection*{Reliability Model - MEM}
 
 \begin{figure}[!htbp]
   \centering
@@ -476,11 +481,12 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
 L'ipotesi non è rigettata al 95,61\% , con confidenza del 95\%.\\
 
 \clearpage
+\subsubsection*{Reliability Model - NET}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_net}
-  \caption{Curve Fitting modello iperesponenziale categoria di errore NET}
+  \caption{Curve Fitting modello Weibull categoria di errore NET}
   \label{rel_model_net}
 \end{figure}
 
@@ -489,18 +495,19 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_net}
-  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore NET}
+  \caption{Kolmogorov-Smirnov Test Weibull categoria di errore NET}
   \label{ks_net}
 \end{figure}
 
 L'ipotesi non è rigettata al 81,64\%, con confidenza del 95\%.\\
 
 \clearpage
+\subsubsection*{Reliability Model - PRO}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_pro}
-  \caption{Curve Fitting modello iperesponenziale categoria di errore PRO}
+  \caption{Curve Fitting modello Weibull categoria di errore PRO}
   \label{rel_model_pro}
 \end{figure}
 
@@ -509,7 +516,7 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_pro}
-  \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore PRO}
+  \caption{Kolmogorov-Smirnov Test Weibull categoria di errore PRO}
   \label{ks_pro}
 \end{figure}
 
@@ -843,13 +850,12 @@ i modelli di reliability}
 
 \clearpage
 
-\subsection{Domanda 3}.
-
+\subsection{Domanda 3}
 \textit{What are the most entries-prone racks/nodes?}\\
 
 \subsubsection*{Soluzione}
 
- Per ottenere la lista dei nodi, categorie e rack è stato utilizzato lo Script
+ Per ottenere la lista dei nodi, delle categorie e dei rack è stato utilizzato lo Script
  \textit{logStatistics.sh}, con l'aggiunta del seguente codice per visualizzare
  i rack.\\
 
@@ -860,11 +866,11 @@ echo " * only the 5 most occurring racks are reported"
 echo ""
 \end{lstlisting}
 
-L'output ottenuto è riportato in \figurename~\ref{u6}.\\
+L'output ottenuto è riportato in figura \ref{u6}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth,keepaspectratio]{u6}
-  %\caption{}
+  \caption{Report Script logStatistics.sh}
   \label{u6}
 \end{figure}
