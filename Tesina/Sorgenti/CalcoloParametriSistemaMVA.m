@@ -1,7 +1,7 @@
 clear,clc,close all
-format 
+format
 %Script per applicare MVA ad una rete chiusa con K=3 e M=2
-K = 100
+K = 3
 M = 2
 l = [3, 1]
 m = [5, 2]

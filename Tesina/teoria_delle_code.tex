@@ -24,7 +24,7 @@ increasing the number of tasks? Plot the results.\\}
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{traccia}
   \caption{}
-  \label{}
+  \label{traccia}
 \end{figure}
 
 \clearpage
@@ -33,21 +33,22 @@ increasing the number of tasks? Plot the results.\\}
 Il sistema è composto da due sottosistemi($M=2$) e tre utenti($K=3$).\\
 Il tasso di servizio del sistema uno ($\mu_1$) è 5 mentre quello del sistema due
 ($\mu_2$) è 2.\\
-Il numero di possibili stati è pari al numero di modi di distribuire $K$ job in
-$M$ sottosistemi.\\
-$$ \binom{k+M-1}{M-1}=\binom{4}{1}=\frac{4!}{(4-1)!1!}=4$$
-L'evoluzione della rete può essere descritta tramite un grafo della catena di Markov,
-rappresentando i quattro stati con il numero di utenti presenti in ciascun sottosistema.\\
+Il numero di possibili stati è pari al numero di possibili combinazioni di $K$ job
+su $M$ sottosistemi.\\
+$$ \binom{K+M-1}{M-1}=\binom{4}{1}=\frac{4!}{(4-1)!\ \cdot \ 1!}=4$$
+L'evoluzione della rete può essere descritta tramite una catena degli stati di Markov,
+rappresentando i quattro stati in funzione del numero di utenti presenti in
+ciascun sottosistema.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{coda_elaborato_mkc}
-  \caption{Grafo associato alla catena di Markov}
+  \caption{Catena degli Stati di Markov}
   \label{}
 \end{figure}
 
-Applicando l'equazione di conservazione del flusso su tutti i sottosistemi si
-ottiene:
+Applicando l'equazione di conservazione del flusso su tutti i sottosistemi, in
+\figurename~\ref{traccia} si ottiene:
 $$
 \begin{cases}\lambda_2 = q\lambda_1 \\
 \lambda_1 = (1-q)\lambda_1 + \lambda_2 \\
@@ -55,13 +56,14 @@ $$
 $$
 
 
-Risolvendo il sistema si ottiene:
+il sistema ha soluzione identica:
 
 $$ \lambda_1 = \lambda_1 $$
 
-L'unica informazione che è possibile ricavare è:
+Essendoci dipendenza lineare tra le due equazioni, l'unica informazione utile che
+è possibile ricavare è:
 $$ \lambda_2 = q \lambda_1 \ \ \Longrightarrow \ \ q=\frac{\lambda_2}{\lambda_1}$$
-Essendo $q = \frac{1}{3} $ una possibile soluzione è:
+Essendo $q = \frac{1}{3} $, una delle possibili infinite soluzioni è:
 $$
 \begin{cases}
 \widehat{\lambda}_2 = 1 \\
@@ -128,14 +130,14 @@ $$ E[N_1] = 3 \cdot p_{3,0} + 2 \cdot p_{2,1} + 1 \cdot p_{1,2} + 0 \cdot p_{0,3
 $$ E[N_1] = 0 \cdot p_{3,0} + 1 \cdot p_{2,1} + 2 \cdot p_{1,2} + 3 \cdot p_{0,3}=1,2742$$
 \vspace{1cm}
 \subsubsection{Matlab}
-Di seguito è riportata la funzione implementata in \textit{Matlab} della
-soluzione proposta da \textbf{Gordon} e \textbf{Newell}.\\
+Di seguito è riportata l'implementazione, in \textit{Matlab}, del metodo presentato
+da \textbf{Gordon} e \textbf{Newell}.\\
 \lstinputlisting[language=Matlab, caption={Funzione Gordon-Newell Matlab}, label={fun1}]{GordonNewell.m}
 
 Per l'esecuzione della funzione mostrata nel listato \ref{fun1}, è stato implementato
 il seguente script Matlab, il quale esegue la funzione \textit{GordonNewell}
 per il calcolo delle probabilità di essere in ciascuno dei quattro stati del sistema
-e successivamente calcola \textit{Numero medio di job} dei due sottosistemi.\\
+e successivamente calcola il \textit{Numero medio di job} dei due sottosistemi.\\
 
 \clearpage
 
@@ -245,14 +247,15 @@ di $\overline{N}_1$,  $\overline{N}_2$, $\overline{T}_1$,  $\overline{T}_2$,  $\
 \clearpage
 
 \subsubsection{Matlab}
-Di seguito è riportata la funzione implementata in \textit{Matlab} dell'algoritmo
+Di seguito è riportata l'implementazione, in \textit{Matlab}, dell'algoritmo
 della \textbf{Mean Value Analisys}.\\
 \lstinputlisting[language=Matlab, caption={Funzione Mean Value Analsys Matlab}, label={fun}]{mva.m}
 
 Per l'esecuzione della funzione mostrata nel listato \ref{fun}, è stato implementato
- il seguente script Matlab, il quale esegue la funzione \textit{mva} con $K=3$ e
- ne mostra l'output ed infine esegue la \textbf{\textit{Mean Value Analysis}} con
- $K=50$ e mostra i grafici relativi a \textit{Tempo medio di Risposta}, \textit{Numero medio di job} e $\lambda$
+ il seguente script Matlab, il quale esegue la funzione \textit{mva} con $K=3$,
+ mostrandone l'output, ed infine esegue la \textbf{\textit{Mean Value Analysis}} con
+ $K=50$, mostrando i grafici relativi al \textit{Tempo medio di Risposta},
+ al \textit{Numero medio di job} ed al tasso degli arrivi $\lambda$
  dei due sottosistemi.\\
 
 \lstinputlisting[language=Matlab, caption={Script per il calcolo di Tempo medio di riposta, Numero medio di job e $\lambda$}, label={script2}]{CalcoloParametriSistemaMVA.m}
@@ -296,14 +299,15 @@ L =
   \label{graph1}
 \end{figure}
 
-Dal grafico in \figurename~\ref{graph1} si osserva che da $K=17$ il tempo di risposta medio
-della CPU diviene maggiore di quello dell'I/O, ciò può essere attribuito al
-raggiungimento del tesso di risposta massimo della CPU la quale essendo in serie
-con l'I/O  funge da collo di bottiglia, quindi se si volessero migliorare le prestazione
-del sistema bisognerebbe utilizzare una CPU con un tasso di risposta maggiore.\\
-Di fatti il sottosistema uno ha fattore di utilizzo maggiore del sottosistema due
+Dal grafico in \figurename~\ref{graph1} si osserva che a partire da $K=17$ il
+tempo di risposta medio della CPU diviene maggiore di quello dell'I/O, ciò può
+essere attribuito al raggiungimento del tasso di risposta massimo della CPU,
+la quale, essendo in serie con l'I/O, funge da collo di bottiglia.\\
+Quindi, volendo migliorare le prestazioni del sistema, bisognerebbe utilizzare
+una CPU con un tasso di risposta maggiore.\\
+Infatti il sottosistema 1 ha un fattore di utilizzo maggiore del sottosistema 2,
 quindi incrementando di un'unità il tasso di servizio della CPU le prestazioni
-risultano migliori in quanto i due sistemi avranno lo stesso tasso di utilizzo.\\
+risulterebbero migliori.\\
 
 \begin{figure}[!htbp]
   \centering
