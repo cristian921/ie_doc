@@ -48,6 +48,9 @@
 %Per i margini
 \usepackage{chngpage}
 \sloppy
+%Per usare captionof (fuori ambienti float)
+\usepackage{caption}
+\captionsetup{skip=4pt, minmargin=3cm, maxmargin=3cm}
 
 \graphicspath{{Immagini/}}
 
@@ -153,5 +156,6 @@
 	\input{prodotto_matrici.tex}
 	\input{pca_clustering.tex}
 	\input{webServer.tex}
-	
+	\input{android_aging.tex}
+
 \end{document}
