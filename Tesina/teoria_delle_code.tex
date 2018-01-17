@@ -44,11 +44,11 @@ ciascun sottosistema.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{coda_elaborato_mkc}
   \caption{Catena degli Stati di Markov}
-  \label{code_}
+  \label{}
 \end{figure}
 
 Applicando l'equazione di conservazione del flusso su tutti i sottosistemi, in
-\figurename~\ref{code_code_traccia} si ottiene:
+\figurename~\ref{code_traccia} si ottiene:
 $$
 \begin{cases}\lambda_2 = q\lambda_1 \\
 \lambda_1 = (1-q)\lambda_1 + \lambda_2 \\
@@ -134,7 +134,7 @@ Di seguito è riportata l'implementazione, in \textit{Matlab}, del metodo presen
 da \textbf{Gordon} e \textbf{Newell}.\\
 \lstinputlisting[language=Matlab, caption={Funzione Gordon-Newell Matlab}, label={fun1}]{GordonNewell.m}
 
-Per l'esecuzione della funzione mostrata nel listato \ref{code_code_fun1}, è stato implementato
+Per l'esecuzione della funzione mostrata nel listato \ref{code_fun1}, è stato implementato
 il seguente script Matlab, il quale esegue la funzione \textit{GordonNewell}
 per il calcolo delle probabilità di essere in ciascuno dei quattro stati del sistema
 e successivamente calcola il \textit{Numero medio di job} dei due sottosistemi.\\
