@@ -32,14 +32,14 @@ In prima istanza, è stata effettuata un'analisi sul coefficiente di variazione(
 il quale esprime la dispersione dei valori dei singoli parametri attorno alla loro media.\\
 Quando il coefficiente di variazione è nullo, il parametro
 corrispondente non è statisticamente significativo e quindi è possibile eliminarlo.\\
-Nella \figurename~\ref{cv} si evince l'assenza di colonne con coefficiente di variazione nullo,
+Nella \figurename~\ref{pca_cv} si evince l'assenza di colonne con coefficiente di variazione nullo,
 quindi tutti i parametri dovranno essere utilizzati nelle successive fasi di analisi.
 
 \begin{figure}[!htbp]
   \centering
 	\includegraphics[width=.7\linewidth,keepaspectratio]{cov.png}
   \caption{Coefficiente di Variazione(CV)}
-  \label{cv}
+  \label{pca_cv}
 \end{figure}
 \clearpage
 
@@ -52,22 +52,22 @@ L'utilizzo della PCA è fondamentale anche per la successiva fase di clustering,
 quanto quest'ultimo necessita che sia rispettata la proprietà di incorrelazione
 dei parametri.\\
 Per effettuare la PCA si è fatto utilizzo del tool statistico \textit{\textbf{JMP}}, nella
-\figurename~\ref{pca} è riportato l'output.\\
+\figurename~\ref{pca_pca} è riportato l'output.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{pca.png}
   \caption{Risultato PCA}
-  \label{pca}
+  \label{pca_pca}
 \end{figure}
 
 \clearpage
 
-Nella \figurename~\ref{autovalori} sono riportati gli autovalori ottenuti dalla PCA.\\
+Nella \figurename~\ref{pca_autovalori} sono riportati gli autovalori ottenuti dalla PCA.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{autovalori.png}
   \caption{Autovalori PCA}
-  \label{autovalori}
+  \label{pca_autovalori}
 \end{figure}
 
 \clearpage
@@ -75,11 +75,11 @@ Nella \figurename~\ref{autovalori} sono riportati gli autovalori ottenuti dalla 
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{grafico_scree.png}
   \caption{Grafico Scree}
-  \label{grafico_scree}
+  \label{pca_grafico_scree}
 \end{figure}
 
 \'E possibile scegliere il numero di componenti principali da utilizzare considerando
-il ginocchio della curva ottenuta nella \figurename~\ref{grafico_scree}, rappresentante
+il ginocchio della curva ottenuta nella \figurename~\ref{pca_grafico_scree}, rappresentante
 sull'asse x il numero di componenti principali e sull'asse y
 gli autovalori.\\
 In questo caso, scegliendo di considerare 6 componenti principali, si è sicuri di conservare una quota di varianza sufficientemente
@@ -88,10 +88,10 @@ significativa(\textit{95,703\%}).\\
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{autovettori.png}
   \caption{Autovettori}
-  \label{autovettori}
+  \label{pca_autovettori}
 \end{figure}
 
-Nella \figurename~\ref{autovettori} sono sfumati in rosso i parametri che
+Nella \figurename~\ref{pca_autovettori} sono sfumati in rosso i parametri che
 hanno contribuito maggiormente, in segno positivo o negativo, alla creazione
 delle componenti principali scelte.\\
 Valori vicini allo 0 indicano che quei parametri pesano relativamente poco nel
@@ -118,25 +118,25 @@ in particolare è stata utilizzata la metrica di \textbf{Ward} per l'aggregazion
 dei cluster.\\
 Il criterio di Ward è diretto alla minimizzazione della varianza all’interno dei gruppi,
 pertanto si presta bene ad essere utilizzato con variabili quantitative.\\
-In \figurename~\ref{dendrogramma} è riportato il dendrogramma risultante.\\
+In \figurename~\ref{pca_dendrogramma} è riportato il dendrogramma risultante.\\
 
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{dendrogramma.png}
   \caption{Dendrogramma}
-  \label{dendrogramma}
+  \label{pca_dendrogramma}
 \end{figure}
 \clearpage
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{curva_dendrogramma.png}
   \caption{Curva di Clustering}
-  \label{curva_dendrogramma}
+  \label{pca_curva_dendrogramma}
 \end{figure}
 
-Facendo riferimento alla \figurename~\ref{curva_dendrogramma}, è possibile scegliere
+Facendo riferimento alla \figurename~\ref{pca_curva_dendrogramma}, è possibile scegliere
 il numero di cluster posizionandosi nel ginocchio della curva, rappresentante le
 distanze tra cluster.\\
 In maniera analoga si può scegliere il numero di cluster utilizzando il criterio
-di clusterizzazione cubica(\textbf{CCC}), riportato in \figurename~\ref{ccc},
+di clusterizzazione cubica(\textbf{CCC}), riportato in \figurename~\ref{pca_ccc},
 scegliendo il numero di cluster in funzione della regola del massimo salto.\\
 
 \begin{figure}[htbp]
@@ -145,7 +145,7 @@ scegliendo il numero di cluster in funzione della regola del massimo salto.\\
 \qquad\qquad
 \includegraphics[width=50mm]{ccc.png}
 \caption{Gerarchia Clustering e Criterio di Clusterizzazione Cubica}
-\label{ccc}
+\label{pca_ccc}
 \end{figure}
 
 \clearpage
@@ -164,7 +164,7 @@ centroide di ogni cluster.\\
 \begin{figure}[!htbp]
 	\includegraphics[width=\linewidth,keepaspectratio]{centroidi(9).png}
   \caption{Workload sintetico ottenuto con 9 cluster}
-  \label{centroidi9}
+  \label{pca_centroidi9}
 \end{figure}
 
 \clearpage
@@ -347,10 +347,10 @@ Per sottoporre il Workload Sintetico al sistema da testare è necessario identif
 quali sono i parametri del Workload Reale che contribuiscono maggiormente
 alla formazione delle componenti principali utilizzate.\\
 Tale operazione si effettua considerando la matrice degli autovettori, riportata
-in \figurename~\ref{autovettori}, e scegliendo solo i quattro parametri con maggior
+in \figurename~\ref{pca_autovettori}, e scegliendo solo i quattro parametri con maggior
 peso, due negativi e due positivi, per ogni PC.\\
 Successivamente, in accordo con il segno del valori rispetto ad ogni componente
-principale, presenti in \figurename~\ref{centroidi9}, si caratterizzano i
+principale, presenti in \figurename~\ref{pca_centroidi9}, si caratterizzano i
 differenti cluster o con i due parametri positivi scelti o con i due negativi.\\
 In tabella è riportato il risultato ottenuto.
 \begin{figure}
