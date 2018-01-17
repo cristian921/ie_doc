@@ -48,13 +48,13 @@ differenti approcci risolutivi:
 \clearpage
 
 \subsubsection{Caso 1 - Upper Bound}
-In figura \ref{upperbound} è riportato il block diagram dei success path.
+In figura \ref{dep_upperbound} è riportato il block diagram dei success path.
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.55\linewidth]{upperbound}
   \caption{Success Path}
-  \label{upperbound}
+  \label{dep_upperbound}
 \end{figure}
 
 Calcolando la reliability del parallelo:
@@ -78,13 +78,13 @@ due differenti percorsi, nel sistema, per giungere al parallelo tra i nodi 2 e 3
 Un primo percorso attraverso il nodo 1, ed un secondo percorso diretto.\\
 La presenza di un percorso diretto rende il calcolo della reliability del
 sottosistema totalmente trasparente alla presenza del nodo 1.\\
-Quindi, come mostrato in figura \ref{nodo1_eliminato}, il nodo 1 può non essere
+Quindi, come mostrato in figura \ref{dep_nodo1_eliminato}, il nodo 1 può non essere
 considerato.\\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.7\linewidth]{nodo1_eliminato}
   \caption{Eliminazione Nodo 1 a causa del percorso diretto}
-  \label{nodo1_eliminato}
+  \label{dep_nodo1_eliminato}
 \end{figure}
 
 \clearpage
@@ -93,7 +93,7 @@ considerato.\\
   \centering
   \includegraphics[width=.7\linewidth]{nodo4_funzionante}
   \caption{Sottosistema Risultante - Nodo 4 Funzionante}
-  \label{nodo4_funzionante}
+  \label{dep_nodo4_funzionante}
 \end{figure}
 
 Calcolo di $R_{4\ WORKS}$:
@@ -113,7 +113,7 @@ $$R_{4\ WORKS} = 1-(1-R)\cdot(1-R_{23})$$
   \centering
   \includegraphics[width=.7\linewidth]{nodo4_eliminato}
   \caption{Eliminazione Nodo 4}
-  \label{nodo4_eliminato}
+  \label{dep_nodo4_eliminato}
 \end{figure}
 
 L'eliminazione del nodo 4 crea una spaccatura nel sistema, rendendo il nodo 5
@@ -123,7 +123,7 @@ irraggiungibile.\\
   \centering
   \includegraphics[width=.6\linewidth]{nodo4_fallente}
   \caption{Sottosistema Risultante - Nodo 4 Fallente}
-  \label{nodo4_fallente}
+  \label{dep_nodo4_fallente}
 \end{figure}
 
 Calcolo di $R_{4\ FAILS}$:
@@ -178,10 +178,10 @@ For m = 5 and s = 2, compare the two expressions.}
   \centering
   \includegraphics[width=.7\linewidth]{parallelo_serie}
   \caption{Paralleli di Serie}
-  \label{parallelo_serie}
+  \label{dep_parallelo_serie}
 \end{figure}
 
-Nel primo schema riportato in figura \ref{parallelo_serie} si osserva una
+Nel primo schema riportato in figura \ref{dep_parallelo_serie} si osserva una
 struttura composta da 5 paralleli, ciascuno di 2 nodi posti in serie.\\
 La reliability totale del sistema, in questo caso, si calcola facilmente:
 $$R_{sys\ A} = 1-(1-R_1R_2)\cdot(1-R_3R_4)\cdot(1-R_5R_6)\cdot(1-R_7R_8)\cdot(1-R_9R_{10})$$
@@ -202,10 +202,10 @@ $$R_{sys\ A} = 1-(1-R^s)^m$$
   \centering
   \includegraphics[width=.7\linewidth]{serie_parallelo}
   \caption{Serie di Paralleli}
-  \label{serie_parallelo}
+  \label{dep_serie_parallelo}
 \end{figure}
 
-Nel secondo schema riportato in figura \ref{serie_parallelo} si osserva una
+Nel secondo schema riportato in figura \ref{dep_serie_parallelo} si osserva una
 struttura composta da 5 serie, ciascuna di 2 nodi posti in parallelo.\\
 La reliability totale del sistema, in questo caso, si calcola facilmente:
 $$R_{sys\ B} = [1-(1-R_1)(1-R_3)(1-R_5)(1-R_7)(1-R_9)]\cdot[1-(1-R_2)(1-R_4)(1-R_6)(1-R_8)(1-R_{10})]$$
@@ -231,13 +231,13 @@ Supponendo $R_{sys\ B} > R_{sys\ A}$ e semplificando la disequazione, si ottiene
 $$R^3<R^2 \ \ \ \ per \ 0<R<1$$
 Quest'assunzione è sempre vera, essendo la reliability una probabilità.\\
 Quindi è possibile concludere che la reliability del sistema B è sempre
-maggiore a quella del sistema A, come mostrato anche dal plot in figura \ref{confronto_reliability}.\\
+maggiore a quella del sistema A, come mostrato anche dal plot in figura \ref{dep_confronto_reliability}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth]{confronto_reliability}
   \caption{Plot Reliability Sistema A Vs Sistema B}
-  \label{confronto_reliability}
+  \label{dep_confronto_reliability}
 \end{figure}
 
 \clearpage
@@ -356,14 +356,14 @@ e della loro tipologia.\\
   \centering
   \includegraphics[width=\linewidth]{costo_processori_rel80}
   \caption{Sistema nel caso di utilizzo di Processori con 80\% reliability}
-  \label{costo_processori_rel80}
+  \label{dep_costo_processori_rel80}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth]{costo_processori_rel90}
   \caption{Sistema nel caso di utilizzo di Processori con 90\% reliability}
-  \label{costo_processori_rel90}
+  \label{dep_costo_processori_rel90}
 \end{figure}
 
 Osservando i risultati tabellati, la combinazione con reliability al 99\% con
@@ -393,7 +393,7 @@ is being employed.}
   \centering
   \includegraphics[width=.7\linewidth]{esercizio5}
   % \caption{}
-  \label{esericizo5}
+  \label{dep_esericizo5}
 \end{figure}
 
 \begin{enumerate}
@@ -440,7 +440,7 @@ la reliability di un sistema in modo semplice, sfruttandone lo schema a blocchi.
   \centering
   \includegraphics[width=\linewidth]{rdb}
   \caption{Reliable Block Diagram(RBD)}
-  \label{rdb}
+  \label{dep_rdb}
 \end{figure}
 
 I componenti \textit{CPU}, \textit{Remote Terminal}, \textit{Bus(A e B)} sono
@@ -458,13 +458,13 @@ componenti che porta il sistema al fallimento.
   \centering
   \includegraphics[width=\linewidth]{ft}
   \caption{Fault Tree}
-  \label{ft}
+  \label{dep_ft}
 \end{figure}
 
 Il fault tree può essere ricavato a partire da un RBD, trasformando
 la serie di due componenti in una \textit{OR} ed il parallelo in una \textit{AND}.\\
 
-\'E possibile scrivere in forma analitica il fault tree riportato in \figurename~\ref{ft}:
+\'E possibile scrivere in forma analitica il fault tree riportato in \figurename~\ref{dep_ft}:
 $$ F = (PU_1 \cdot PU_2) + (RT_1 \cdot RT_2) + (BUS_{A1} \cdot BUS_{A2}) + (BUS_{B1} \cdot BUS_{B2})+$$
 $$+ (INS \cdot (Doppler+AHRS_1 \cdot AHRS_2 \cdot AHRS_3))$$
 
@@ -484,17 +484,17 @@ Per il calcolo di $\lambda_i$, conoscendo la \textbf{\textit{MTTF}}, si utilizza
 la relazione:
 $$ MTTF = \int_{0}^{+\infty} e^{-\lambda t}\, dt = \frac{1}{\lambda} \ \ \Longrightarrow \ \ \lambda = \frac{1}{MTTF} $$
 
-In \figurename~\ref{reliability_es5} sono riportate le reliability per un'ora di
+In \figurename~\ref{dep_reliability_es5} sono riportate le reliability per un'ora di
 volo per ogni componente.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{reliability_es5}
   \caption{Reliability di ogni componente in un'ora di volo}
-  \label{reliability_es5}
+  \label{dep_reliability_es5}
 \end{figure}
 
-Considerando la \figurename~\ref{rdb} si applicano le formule per il calcolo
+Considerando la \figurename~\ref{dep_rdb} si applicano le formule per il calcolo
 della reliability per componenti in serie e parallelo.\\
 In particolare:
 \begin{itemize}
@@ -514,14 +514,14 @@ $$R_{subSys_{51}} = R_{Doppler} \cdot (1 - (1 - R_{AHRS})^3)$$
 
 \clearpage
 
-In \figurename~\ref{calcolo_rel} sono riportati i risultati parziali e la
+In \figurename~\ref{dep_calcolo_rel} sono riportati i risultati parziali e la
 reliability del sistema.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.6\linewidth]{calcolo_rel}
   \caption{Calcolo Reliability in un'ora di volo}
-  \label{calcolo_rel}
+  \label{dep_calcolo_rel}
 \end{figure}
 
 Quindi dopo un'ora di volo la reliability dell'intero sistema è 99,99977007\%.\\
