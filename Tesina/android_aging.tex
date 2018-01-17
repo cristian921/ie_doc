@@ -35,7 +35,7 @@ in precedenza, utilizzando il tool \textit{\textbf{ADB(Android Debug Bridge)}}.\
 La generazione del workload è stata effettuata tramite il tool
 \textit{\textbf{Monkey WL generator}}, mentre la raccolta dei dati tramite le
 utility \textit{\textbf{dumpsys}} e \textit{\textbf{logcat}}.\\
-In figura \ref{setup} è riportato lo schema di connessione con il quale sono stati
+In figura \ref{and_setup} è riportato lo schema di connessione con il quale sono stati
 eseguiti gli esperimenti.\\
 La connessione tra PC e smartphone è stata realizzata tramite WiFi, quindi è
 stato generato il workload tramite \textit{\textbf{Monkey WL generator}}, inviato
@@ -46,7 +46,7 @@ utilizzando \textit{\textbf{dumpsys}} e \textit{\textbf{logcat}}.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{setup}
   \caption{Setup esperimenti}
-  \label{setup}
+  \label{and_setup}
 \end{figure}
 
 In totale sono stati eseguiti due test:
@@ -69,14 +69,14 @@ In generale, in entrambi i test, il workload genera i seguenti movimenti
   \item \textbf{AppSwitch (34\%)}.
 \end{itemize}
 Le applicazioni utilizzate per gli esperimenti, riportate nella tabella in figura
-\ref{applicazioni}, sono state ottenute lanciando il comando
+\ref{and_applicazioni}, sono state ottenute lanciando il comando
 \textit{adb shell pm list packages}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{applicazioni}
   \caption{Applicazioni Workload}
-  \label{applicazioni}
+  \label{and_applicazioni}
 \end{figure}
 
 L'esecuzione degli esperimenti è stata effettuata lanciando lo script bash
@@ -121,7 +121,7 @@ L'analisi relativa alla memoria è effettuata tramite i seguenti script:
 
 \subsection{Launch Time Analysis(Worklaod Fixed)}
 Dopo aver analizzato i valori di \textit{slope}(pendenza della retta) e
-\textit{p-value}(relativo al Mann Kendall test), si osserva, in figura \ref{analisi_trend_lt_activity_1},
+\textit{p-value}(relativo al Mann Kendall test), si osserva, in figura \ref{and_analisi_trend_lt_activity_1},
 che alcune activity presentano un trend positivo, anche se la crescita
 del loro LT non è significativa poiché il valore slope non è sufficientemente
 alto.\\
@@ -132,14 +132,14 @@ Quanto affermato è validato dai i plot ottenuti eseguendo lo script
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{analisi_trend_lt_activity_1}
   \caption{Trend Activity Workload Fixed}
-  \label{analisi_trend_lt_activity_1}
+  \label{and_analisi_trend_lt_activity_1}
 \end{figure}
 
 \clearpage
 
 \subsection{Launch Time Analysis(Worklaod Variable)}
 Dopo aver analizzato i valori di \textit{slope}(pendenza della retta) e
-\textit{p-value}(relativo al Mann Kendall test), si osserva, in figura \ref{analisi_trend_lt_activity_2},
+\textit{p-value}(relativo al Mann Kendall test), si osserva, in figura \ref{and_analisi_trend_lt_activity_2},
 che alcune activity presentano un trend positivo, anche se la crescita
 del loro LT non è significativa poiché il valore slope non è sufficientemente
 alto.\\
@@ -150,7 +150,7 @@ Quanto affermato è validato dai i plot ottenuti eseguendo lo script
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{analisi_trend_lt_activity_2}
   \caption{Trend Activity Workload Fixed}
-  \label{analisi_trend_lt_activity_2}
+  \label{and_analisi_trend_lt_activity_2}
 \end{figure}
 
 \clearpage
@@ -165,14 +165,14 @@ dei processi \textit{system}, \textit{systemui}, \textit{mediaserver} e
   \centering
   \includegraphics[width=.3\linewidth, keepaspectratio]{pvalue_memoria_1}
   \caption{System}
-  \label{pvalue_memoria_1}
+  \label{and_pvalue_memoria_1}
 \end{figure}
 
-Nella tabella in figura \ref{pvalue_memoria_1} sono riportati i p-value associati
+Nella tabella in figura \ref{and_pvalue_memoria_1} sono riportati i p-value associati
 al \textit{Mann Kendall test}.\\
 Quest'ultimo suggerisce che può essere rigettata l'ipotesi nulla, dimostrando
 che in tutte le serie temporali esiste un trend.\\
-In particolare, osservando le immagini in figura \ref{minipage_trends}, si verifica che effettivamente
+In particolare, osservando le immagini in figura \ref{and_minipage_trends}, si verifica che effettivamente
 tutti i processi presentano un trend, in particolare \textit{mediaserver},
 il quale presenta un trend negativo.\\
 Il trend più significativo è verificato nei processi \textit{system} e \textit{systemui}.
@@ -201,7 +201,7 @@ Il trend più significativo è verificato nei processi \textit{system} e \textit
   \end{minipage}
 \end{minipage}
 \captionof{figure}{Trends in system, systemui, mediaserver, surfaceflinger}
-\label{minipage_trends}
+\label{and_minipage_trends}
 
 \clearpage
 \subsection{Memory Analysis(Worklaod Variable)}
@@ -214,14 +214,14 @@ sarà verificata l'esistenza di un trend.\\
   \centering
   \includegraphics[width=.3\linewidth, keepaspectratio]{pvalue_memoria_1}
   \caption{System}
-  \label{pvalue_memoria_1}
+  \label{and_pvalue_memoria_1}
 \end{figure}
 
-Nella tabella in figura \ref{pvalue_memoria_1} sono riportati i p-value associati
+Nella tabella in figura \ref{and_pvalue_memoria_1} sono riportati i p-value associati
 al \textit{Mann Kendall test}.\\
 Quest'ultimo suggerisce che può essere rigettata l'ipotesi nulla, dimostrando
 che in tutte le serie temporali esiste un trend.\\
-In particolare, osservando le immagini in figura \ref{minipage_trends2}, si verifica che effettivamente
+In particolare, osservando le immagini in figura \ref{and_minipage_trends2}, si verifica che effettivamente
 tutti i processi presentano un trend, in particolare \textit{mediaserver},
 il quale presenta un trend negativo.\\
 Il trend più significativo è verificato nei processi \textit{system} e \textit{systemui}.
@@ -250,7 +250,7 @@ Il trend più significativo è verificato nei processi \textit{system} e \textit
   \end{minipage}
 \end{minipage}
 \captionof{figure}{Trends in system, systemui, mediaserver, surfaceflinger}
-\label{minipage_trends2}
+\label{and_minipage_trends2}
 
 \clearpage
 
@@ -281,10 +281,10 @@ la \textit{Stepwise Regression}.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{stepwise_1}
   \caption{Stepwise Regression}
-  \label{stepwise_1}
+  \label{and_stepwise_1}
 \end{figure}
 \clearpage
-Analizzando la figura \ref{stepwise_analisi_1}, si osserva che si ha un R-quadro
+Analizzando la figura \ref{and_stepwise_analisi_1}, si osserva che si ha un R-quadro
 abbastanza basso, il che significa che la retta di regressione non fitta troppo
 bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
 quindi il modello risulta essere significativo.\\
@@ -296,7 +296,7 @@ che il parametro \textit{Used\_buffer} risulta avere un grande impatto sul model
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{stepwise_analisi_1}
   \caption{Analisi Stepwise Regression}
-  \label{stepwise_analisi_1}
+  \label{and_stepwise_analisi_1}
 \end{figure}
 
 \clearpage
@@ -310,14 +310,14 @@ Di seguito sono riportati i risultati ottenuti in \textbf{\textit{JMP}}.\\
   \centering
   \includegraphics[width=0.85\linewidth, keepaspectratio]{pca_1}
   \caption{Analisi PCA-Based Regression}
-  \label{pca_1}
+  \label{and_pca_1}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{autovalori_1}
   \caption{Analisi PCA-Based Regression}
-  \label{autovalori_1}
+  \label{and_autovalori_1}
 \end{figure}
 
 A valle dell'analisi effettuata in JMP si è scelto di considerare 5 componenti
@@ -332,12 +332,12 @@ la \textit{PCA-Based Regression}.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{pca_based_1}
   \caption{Analisi PCA-Based Regression}
-  \label{pca_based_1}
+  \label{and_pca_based_1}
 \end{figure}
 
 \clearpage
 
-Analizzando la figura \ref{pca_based_analisi_1}, si osserva che si ha un R-quadro
+Analizzando la figura \ref{and_pca_based_analisi_1}, si osserva che si ha un R-quadro
 abbastanza basso, il che significa che la retta di regressione non fitta troppo
 bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
 quindi il modello risulta essere significativo.\\
@@ -349,7 +349,7 @@ che tutti i parametri risultano avere un grande impatto sul modello.\\
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{pca_based_analisi_1}
   \caption{Analisi PCA-Based regression}
-  \label{pca_based_analisi_1}
+  \label{and_pca_based_analisi_1}
 \end{figure}
 
 \clearpage
@@ -363,10 +363,10 @@ la \textit{Stepwise Regression}, nel caso di workload variabile.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{stepwise_2}
   \caption{Stepwise Regression}
-  \label{stepwise_2}
+  \label{and_stepwise_2}
 \end{figure}
 \clearpage
-Analizzando la figura \ref{stepwise_analisi_2}, si osserva che si ha un R-quadro
+Analizzando la figura \ref{and_stepwise_analisi_2}, si osserva che si ha un R-quadro
 abbastanza basso, il che significa che la retta di regressione non fitta troppo
 bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
 quindi il modello risulta essere significativo.\\
@@ -379,7 +379,7 @@ fatta per \textit{ZRAMinSWAP}.\\
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{stepwise_analisi_2}
   \caption{Analisi Stepwise Regression}
-  \label{stepwise_analisi_2}
+  \label{and_stepwise_analisi_2}
 \end{figure}
 
 \clearpage
@@ -392,14 +392,14 @@ Per effettuare la \textit{PCA-Based Regression} bisogna applicare la PCA.\\
   \centering
   \includegraphics[width=0.85\linewidth, keepaspectratio]{pca_1}
   \caption{Analisi PCA-Based Regression}
-  \label{pca_2}
+  \label{and_pca_2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{autovalori_1}
   \caption{Analisi PCA-Based Regression}
-  \label{autovalori_2}
+  \label{and_autovalori_2}
 \end{figure}
 
 A valle dell'analisi effettuata in JMP si è scelto di considerare 7 componenti
@@ -414,12 +414,12 @@ la \textit{PCA-Based Regression}.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{pca_based_2}
   \caption{Analisi PCA-Based Regression}
-  \label{pca_based_2}
+  \label{and_pca_based_2}
 \end{figure}
 
 \clearpage
 
-Analizzando la figura \ref{pca_based_analisi_2}, si osserva che si ha un R-quadro
+Analizzando la figura \ref{and_pca_based_analisi_2}, si osserva che si ha un R-quadro
 abbastanza basso, il che significa che la retta di regressione non fitta troppo
 bene i dati, mentre l'analisi della varianza(ANOVA) restituisce un p-value basso,
 quindi il modello risulta essere significativo.\\
@@ -431,5 +431,5 @@ che tutti i parametri risultano avere un grande impatto sul modello.\\
   \centering
   \includegraphics[width=0.7\linewidth, keepaspectratio]{pca_based_analisi_2}
   \caption{Analisi PCA-Based Regression}
-  \label{pca_based_analisi_2}
+  \label{and_pca_based_analisi_2}
 \end{figure}
