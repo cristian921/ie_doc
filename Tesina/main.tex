@@ -1,4 +1,5 @@
 \documentclass[oneside]{scrbook} %KOMA-Script book
+% \documentclass[12pt,a4paper,twoside,openany]{book}
 \usepackage[italian]{babel}
 %Per i commenti
 \usepackage{comment}
@@ -39,6 +40,8 @@
 \usepackage{multicol}
 \usepackage{multirow}
 \usepackage{rotating}
+%Impostazione per usare figure in minipage
+\usepackage{float}
 \definecolor{darkblue}{named}{blue}
 \definecolor{darkred}{named}{red}
 \definecolor{grau}{named}{gray}
@@ -146,8 +149,9 @@
 
 	\newpage
 	\mainmatter
-	
+
 	\input{prodotto_matrici.tex}
 	\input{pca_clustering.tex}
-
+	\input{webServer.tex}
+	
 \end{document}
