@@ -243,7 +243,7 @@ Dopo aver ottenuto i valori di devianza del workload sottoposto a PCA e, success
 a Clustering, considerando 5 e 9 cluster, è possibile calcolarne la significatività.\\
 La devianza conservata utilizzando la tecnica di clustering si calcola con la
 seguente formula:
-$$1-{devianza_{inter\_cluster}+devianza_{intra\_cluster}\over {devianza_{pca}}}$$
+$$1-{devianza_{cluster}\over {devianza_{pca}}}$$
 
 Nelle seguenti Tabelle sono riportate le percentuali di devianza persa e conservata,
  nei due casi analizzati.\\
@@ -258,11 +258,11 @@ Nelle seguenti Tabelle sono riportate le percentuali di devianza persa e conserv
   \hline
   \textbf{Devianza PCA}	& 7727,93249 \\
   \hline
-  \textbf{Devianza Clustering(intra-cluster+inter-cluster)}	& 2825,2166 \\
+  \textbf{Devianza Clustering}	& 2825,2166 \\
   \hline
-  \textbf{Percentuale devianza persa con il clustering}	& 37,75\% \\
+  \textbf{Percentuale devianza persa con il clustering}	& 36,55\% \\
   \hline
-  \textbf{Percentuale devianza conservata con il clustering}	& 63,44\% \\
+  \textbf{Percentuale devianza conservata con il clustering}	& 63,45\% \\
   \hline
   \textbf{Significatività PCA} &	95,70\% \\
   \hline
@@ -281,11 +281,11 @@ Nelle seguenti Tabelle sono riportate le percentuali di devianza persa e conserv
     \hline
     \textbf{Devianza PCA}	& 7727,93249 \\
     \hline
-    \textbf{Devianza Clustering(intra-cluster)}	& 1388,2840 \\
+    \textbf{Devianza Clustering(intra-cluster)}	& 1386,2840 \\
     \hline
-    \textbf{Percentuale devianza persa con il clustering}	& 21,52\% \\
+    \textbf{Percentuale devianza persa con il clustering}	& 17,94\% \\
     \hline
-    \textbf{Percentuale devianza conservata con il clustering}	& 82,03\% \\
+    \textbf{Percentuale devianza conservata con il clustering}	& 82,06\% \\
     \hline
     \textbf{Significatività PCA} &	95,70\% \\
     \hline
@@ -312,7 +312,7 @@ PCA e Clustering.\\
    \hline
    \textbf{PCA} &	95,70\%	& 4,30\% \\
    \hline
-   \textbf{Clustering} &	60,71\%	& 39,28\% \\
+   \textbf{Clustering} &	60,82\%	& 39,18\% \\
   \end{tabular}
   % \caption{Significatività Workload con 5 cluster}
 \end{figure}
@@ -330,7 +330,7 @@ PCA e Clustering.\\
    \hline
    \textbf{PCA} &	95,70\%	& 4,30\% \\
    \hline
-   \textbf{Clustering} &	78,50\%	& 21,50\% \\
+   \textbf{Clustering} &	78,53\%	& 21,47\% \\
   \end{tabular}
   % \caption{Significatività Workload con 9 cluster}
 \end{figure}
