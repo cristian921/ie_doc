@@ -108,19 +108,19 @@ utilizzate per la valutazione del parametro \textbf{N}.
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_1024}
   \caption{Esperimenti matrici 1024x1024}
-  \label{tempi_1024}
+  \label{prodottomatrici_tempi_1024}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_2048}
   \caption{Esperimenti matrici 2048x2048}
-  \label{tempi_2048}
+  \label{prodottomatrici_tempi_2048}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_4096}
   \caption{Esperimenti matrici 4096x4096}
-  \label{tempi_4096}
+  \label{prodottomatrici_tempi_4096}
 \end{figure}
 
 \clearpage
@@ -137,19 +137,19 @@ sull'algoritmo di Strassen, svolto nei differenti linguaggi.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_8_1024}
   \caption{Esperimenti matrici 1024x1024}
-  \label{tempi_8_1024}
+  \label{prodottomatrici_tempi_8_1024}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_8_2048}
   \caption{Esperimenti matrici 2048x2048}
-  \label{tempi_8_2048}
+  \label{prodottomatrici_tempi_8_2048}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{tempi_8_4096}
   \caption{Esperimenti matrici 4096x4096}
-  \label{tempi_8_4096}
+  \label{prodottomatrici_tempi_8_4096}
 \end{figure}
 
 \clearpage
@@ -160,13 +160,13 @@ nelle loro versioni ottimizzate dal compilatore sia in quelle non ottimizzate.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_1024_2}
   \caption{Confronto tempi \textbf{Java} vs \textbf{C++ O2} 1024x1024}
-  \label{grafico_tempi_1024_2}
+  \label{prodottomatrici_grafico_tempi_1024_2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_1024_1}
   \caption{Confronto tempi \textbf{Java NoJIT} vs \textbf{C++} 1024x1024}
-  \label{grafico_tempi_1024_1}
+  \label{prodottomatrici_grafico_tempi_1024_1}
 \end{figure}
 
 \clearpage
@@ -174,13 +174,13 @@ nelle loro versioni ottimizzate dal compilatore sia in quelle non ottimizzate.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_2048_2}
   \caption{Confronto tempi \textbf{Java} vs \textbf{C++ O2} 2048x2048}
-  \label{grafico_tempi_2048_2}
+  \label{prodottomatrici_grafico_tempi_2048_2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_2048_1}
   \caption{Confronto tempi \textbf{Java NoJIT} vs \textbf{C++} 2048x2048}
-  \label{grafico_tempi_2048_1}
+  \label{prodottomatrici_grafico_tempi_2048_1}
 \end{figure}
 
 \clearpage
@@ -188,13 +188,13 @@ nelle loro versioni ottimizzate dal compilatore sia in quelle non ottimizzate.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_4096_2}
   \caption{Confronto tempi \textbf{Java} vs \textbf{C++ O2} 4096x4096}
-  \label{grafico_tempi_4096_2}
+  \label{prodottomatrici_grafico_tempi_4096_2}
 \end{figure}
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{grafico_tempi_4096_1}
   \caption{Confronto tempi \textbf{Java NoJIT} vs \textbf{C++} 4096x4096}
-  \label{grafico_tempi_4096_1}
+  \label{prodottomatrici_grafico_tempi_4096_1}
 \end{figure}
 
 Si noti che, per tutte le dimensioni considerate, Java con JIT e C++ O2 sono
@@ -249,9 +249,9 @@ linguaggio C++ con ottimizzazione O2 attiva.
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_cppO2}
   \caption{Distribuzioni osservazioni in C++ O2}
-  \label{distribuzione_cppO2}
+  \label{prodottomatrici_distribuzione_cppO2}
 \end{figure}
-Dalla \figurename~\ref{distribuzione_cppO2} si nota
+Dalla \figurename~\ref{prodottomatrici_distribuzione_cppO2} si nota
 che la distribuzione per dimensione 2048 non è normale poiché è rifiutata
 l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni a 1024 e 4096,
 in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare che
@@ -269,10 +269,10 @@ linguaggio C++.
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_cpp}
   \caption{Distribuzioni osservazioni in C++}
-  \label{distribuzione_cpp}
+  \label{prodottomatrici_distribuzione_cpp}
 \end{figure}
 
-Dalla \figurename~\ref{distribuzione_cpp} si nota
+Dalla \figurename~\ref{prodottomatrici_distribuzione_cpp} si nota
 che le distribuzioni per dimensioni 1024 e 4096 non sono normali poiché è rifiutata
 l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione 2048,
 in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
@@ -288,10 +288,10 @@ linguaggio Java.
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_java}
   \caption{Distribuzioni osservazioni in Java}
-  \label{distribuzione_java}
+  \label{prodottomatrici_distribuzione_java}
 \end{figure}
 
-Dalla \figurename~\ref{distribuzione_java} si nota
+Dalla \figurename~\ref{prodottomatrici_distribuzione_java} si nota
 che la distribuzione per dimensione 1024 non è normale, essendo rifiutata
 l'ipotesi nulla del test Shapiro-Wilk, a differenza delle distribuzioni 2048 e
 4096, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
@@ -309,10 +309,10 @@ linguaggio Java con JIT Compiler disattivato.
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{distribuzione_javaNoJIT}
   \caption{Distribuzioni osservazioni in Java NoJIT}
-  \label{distribuzione_javaNoJIT}
+  \label{prodottomatrici_distribuzione_javaNoJIT}
 \end{figure}
 
-Dalla \figurename~\ref{distribuzione_javaNoJIT} si nota
+Dalla \figurename~\ref{prodottomatrici_distribuzione_javaNoJIT} si nota
 che le distribuzioni per dimensione pari a 1024 e 2048 non sono normali, essendo
 rifiutata l'ipotesi nulla del test Shapiro-Wilk, a differenza della distribuzione
 4096, in cui l'ipotesi nulla non è rigettata e quindi non è possibile affermare
@@ -340,7 +340,7 @@ successivamente.
   \centering
   \includegraphics[width=1\linewidth,keepaspectratio]{CI_mediana}
   \caption{Intervalli di confidenza}
-  \label{CI_mediana}
+  \label{prodottomatrici_CI_mediana}
 \end{figure}
 
 Come si può osservare, che non tutte le medie calcolata sugli 8 esperimenti finali
@@ -363,7 +363,7 @@ Di seguito vengono mostrati i risultati ottenuti da JMP.\\
   \centering
   \includegraphics[width=1\linewidth,keepaspectratio]{Wilcoxon_Kruskal-Wallis_1024}
   \caption{Test di Wilcoxon/Kruskal-Wallis con matrici quadrate di dimensione 1024}
-  \label{Wilcoxon_Kruskal-Wallis_1024}
+  \label{prodottomatrici_Wilcoxon_Kruskal-Wallis_1024}
 \end{figure}
 
 \clearpage
@@ -371,7 +371,7 @@ Di seguito vengono mostrati i risultati ottenuti da JMP.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{Wilcoxon_Kruskal-Wallis_2048}
   \caption{Test di Wilcoxon/Kruskal-Wallis con matrici quadrate di dimensione 2048}
-  \label{Wilcoxon_Kruskal-Wallis_2048}
+  \label{prodottomatrici_Wilcoxon_Kruskal-Wallis_2048}
 \end{figure}
 
 \clearpage
@@ -379,7 +379,7 @@ Di seguito vengono mostrati i risultati ottenuti da JMP.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{Wilcoxon_Kruskal-Wallis_4096}
   \caption{Test di Wilcoxon/Kruskal-Wallis con matrici quadrate di dimensione 4096}
-  \label{Wilcoxon_Kruskal-Wallis_4096}
+  \label{prodottomatrici_Wilcoxon_Kruskal-Wallis_4096}
 \end{figure}
 
 Tutti i test hanno portato alla stessa conclusione: l'ipotesi nulla è
