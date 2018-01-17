@@ -158,7 +158,7 @@ raffigurante, in alcuni punti, il raggiungimento del limite fisico(1Gb/s).\\
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{client_rete_bottleneck}
   \caption{Infrastruttura di Rete - Bottleneck}
-  \label{webserver_webserver_bottleneck_rete}
+  \label{webserver_bottleneck_rete}
 \end{figure}
 
 \clearpage
@@ -172,7 +172,7 @@ nel Test Plan di JMeter, riportati in \figurename~\ref{webserver_conf_jmeter}
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{conf_thread_group}
   \caption{}
-  \label{webserver_webserver_conf_jmeter}
+  \label{webserver_conf_jmeter}
 \end{figure}
 
 In particolare, si evince che il Test Plan è stato caratterizzato dai seguenti
@@ -206,7 +206,7 @@ tre parametri.\\
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{distribuzioni_client}
   \caption{}
-  \label{webserver_webserver_distribuzioni_parametri}
+  \label{webserver_distribuzioni_parametri}
 \end{figure}
 
 Come si può osservare dal plot Q-Q e dal test di bontà di adattamento, le distribuzioni
@@ -341,7 +341,7 @@ Di seguito è riportato il coefficiente di variazione per ogni parametro.\\
 Sfortunatamente non è stato possibile eliminare alcun parametro, poiché non
 presentano CV nullo, quindi è stata applicata direttamente la PCA all'intero
 workload reale.\\
-In \figurename~\ref{webserver_webserver_pca} è riportata il risultato ottenuto in JMP.\\
+In \figurename~\ref{webserver_pca} è riportata il risultato ottenuto in JMP.\\
 
 \begin{figure}[!htbp]
   \centering
@@ -365,7 +365,7 @@ In \figurename~\ref{webserver_webserver_pca} è riportata il risultato ottenuto 
   \label{webserver_scree_pca}
 \end{figure}
 
-Osservando le Figure \ref{webserver_webserver_autovalori} e \ref{webserver_webserver_scree_pca} si è scelto di considerare
+Osservando le Figure \ref{webserver_autovalori} e \ref{webserver_scree_pca} si è scelto di considerare
 7 componenti principali conservando il 94,680\% di varianza.
 
 \clearpage
