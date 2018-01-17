@@ -152,13 +152,13 @@ la mole di richieste(infatti la CPU è mediamente occupata a circa il 40\% mentr
 la RAM al 65\%), bensì nell'infrastruttura di rete(scheda di rete e cavo Ethernet),
 limitata ad \textbf{1Gb/s}.\\
 
-In \figurename~\ref{bottleneck_rete} è riportato l'utilizzo dell'I/O di rete,
+In \figurename~\ref{webserver_bottleneck_rete} è riportato l'utilizzo dell'I/O di rete,
 raffigurante, in alcuni punti, il raggiungimento del limite fisico(1Gb/s).\\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{client_rete_bottleneck}
   \caption{Infrastruttura di Rete - Bottleneck}
-  \label{bottleneck_rete}
+  \label{webserver_webserver_bottleneck_rete}
 \end{figure}
 
 \clearpage
@@ -166,13 +166,13 @@ raffigurante, in alcuni punti, il raggiungimento del limite fisico(1Gb/s).\\
 \subsection{Analisi Alto Livello (Client)}
 \subsubsection*{Impostazioni Client (JMeter)}
 Prima di effettuare gli esperimenti, è stato necessario configurare alcuni parametri
-nel Test Plan di JMeter, riportati in \figurename~\ref{conf_jmeter}
+nel Test Plan di JMeter, riportati in \figurename~\ref{webserver_conf_jmeter}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{conf_thread_group}
   \caption{}
-  \label{conf_jmeter}
+  \label{webserver_webserver_conf_jmeter}
 \end{figure}
 
 In particolare, si evince che il Test Plan è stato caratterizzato dai seguenti
@@ -199,14 +199,14 @@ di eliminare eventuali comportamenti transitivi.\\
 I parametri utilizzati per la caratterizzazione del workload lato client sono:
 \textbf{Latency}, \textbf{Elapsed Time}, \textbf{Bytes}.\\
 
-In \figurename~\ref{distribuzioni_parametri} sono riportate le distribuzioni dei
+In \figurename~\ref{webserver_distribuzioni_parametri} sono riportate le distribuzioni dei
 tre parametri.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{distribuzioni_client}
   \caption{}
-  \label{distribuzioni_parametri}
+  \label{webserver_webserver_distribuzioni_parametri}
 \end{figure}
 
 Come si può osservare dal plot Q-Q e dal test di bontà di adattamento, le distribuzioni
@@ -231,12 +231,12 @@ Per studiare la correlazione, non volendo fare assunzioni sulla natura delle
 distribuzioni, è possibile svolgere il test non parametrico di \textbf{Kendall}.\\
 Tale test assume come ipotesi nulla l'indipendenza dei fattori.\\
 In particolare, si è interessati ad osservare eventuali correlazioni tra la Latency
-e l'Elapsed Time, in \figurename~\ref{correlazione_elapsed_latency}.\\
+e l'Elapsed Time, in \figurename~\ref{webserver_correlazione_elapsed_latency}.\\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.7\linewidth, keepaspectratio]{correlazione_elapsed_latency}
   \caption{Test di Kendall tra i parametri Elapsed Time e Latency}
-  \label{correlazione_elapsed_latency}
+  \label{webserver_correlazione_elapsed_latency}
 \end{figure}
 
 In questo caso, il test di Kendall suggerisce che l'ipotesi di indipendenza è
@@ -322,7 +322,7 @@ memoria RAM utilizzata.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{transitorio}
   \caption{Transitorio RAM/DISCO}
-  \label{transitorio}
+  \label{webserver_transitorio}
 \end{figure}
 
 \clearpage
@@ -335,26 +335,26 @@ Di seguito è riportato il coefficiente di variazione per ogni parametro.\\
   \centering
   \includegraphics[width=.4\linewidth, keepaspectratio]{cv}
   \caption{CV parametri CPU e RAM}
-  \label{cv1}
+  \label{webserver_cv1}
 \end{figure}
 \clearpage
 Sfortunatamente non è stato possibile eliminare alcun parametro, poiché non
 presentano CV nullo, quindi è stata applicata direttamente la PCA all'intero
 workload reale.\\
-In \figurename~\ref{pca} è riportata il risultato ottenuto in JMP.\\
+In \figurename~\ref{webserver_webserver_pca} è riportata il risultato ottenuto in JMP.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{pca}
   \caption{PCA}
-  \label{pca}
+  \label{webserver_pca}
 \end{figure}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{autovalori}
   \caption{Autovalori PCA}
-  \label{autovalori}
+  \label{webserver_autovalori}
 \end{figure}
 \clearpage
 
@@ -362,10 +362,10 @@ In \figurename~\ref{pca} è riportata il risultato ottenuto in JMP.\\
   \centering
   \includegraphics[width=.8\linewidth, keepaspectratio]{scree_pca}
   \caption{Grafico Scree}
-  \label{scree_pca}
+  \label{webserver_scree_pca}
 \end{figure}
 
-Osservando le Figure \ref{autovalori} e \ref{scree_pca} si è scelto di considerare
+Osservando le Figure \ref{webserver_webserver_autovalori} e \ref{webserver_webserver_scree_pca} si è scelto di considerare
 7 componenti principali conservando il 94,680\% di varianza.
 
 \clearpage
@@ -373,18 +373,18 @@ Osservando le Figure \ref{autovalori} e \ref{scree_pca} si è scelto di consider
 \subsubsection{Clustering}
 Dopo aver scelto il numero di componenti principali è stato applicato il clustering
 per ridurre il numero di righe del workload reale.\\
-In \figurename~\ref{clustering} è riportato il dendrogramma risultante dal
+In \figurename~\ref{webserver_clustering} è riportato il dendrogramma risultante dal
 clustering gerarchico con la relativa curva di clustering, ottenuta in JMP.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{clustering}
   \caption{Clustering}
-  \label{clustering}
+  \label{webserver_clustering}
 \end{figure}
 \clearpage
 
-Osservando le figure \ref{clustering}, \ref{gerarchia_cluster} e \ref{ccc}
+Osservando le figure \ref{webserver_clustering}, \ref{webserver_gerarchia_cluster} e \ref{webserver_ccc}
 è stato scelto di utilizzare 8 cluster.\\
 Infatti aggiungendo un ulteriore cluster, il guadagno ottenuto, in termini di varianza,
 sarebbe stato trascurabile.\\
@@ -394,14 +394,14 @@ sarebbe stato trascurabile.\\
   \begin{minipage}{0.48\linewidth}
     \begin{figure}[H]
       \includegraphics[width=0.9\linewidth]{gerarchia_cluster}
-      \label{gerarchia_cluster}
+      \label{webserver_gerarchia_cluster}
       \caption{Gerarchia di clustering}
     \end{figure}
   \end{minipage}
   \begin{minipage}{0.48\linewidth}
     \begin{figure}[H]
       \includegraphics[width=.9\linewidth]{ccc}
-      \label{ccc}
+      \label{webserver_ccc}
       \caption{Criterio di Clusterizzazione Cubica}
     \end{figure}
   \end{minipage}
@@ -411,16 +411,16 @@ sarebbe stato trascurabile.\\
 
 \subsubsection{Caratterizzazione Cluster}
 Per caratterizzare ogni cluster, ovvero per individuare quale stato del sistema
-esso rappresentasse, sono state analizzate le figure \ref{autovettori}, \ref{graph}
-e \ref{cluster_time}.\\
-La figura \ref{autovettori} mostra gli autovettori delle 7 componenti principali,
+esso rappresentasse, sono state analizzate le figure \ref{webserver_autovettori}, \ref{webserver_graph}
+e \ref{webserver_cluster_time}.\\
+La figura \ref{webserver_autovettori} mostra gli autovettori delle 7 componenti principali,
 dai quali è facile individuare i parametri del workload reale che maggiormente
 incidono su ognuna di esse.\\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.9\linewidth, keepaspectratio]{autovettori}
   \caption{Autovettori PCA}
-  \label{autovettori}
+  \label{webserver_autovettori}
 \end{figure}
 
 In particolare:
@@ -441,21 +441,21 @@ In particolare:
 
 \clearpage
 
-La figura \ref{graph} mostra quali sono le componenti principali che hanno contribuito
+La figura \ref{webserver_graph} mostra quali sono le componenti principali che hanno contribuito
 maggiormente alla creazione dei cluster.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=0.8\linewidth, keepaspectratio]{graph}
   \caption{}
-  \label{graph}
+  \label{webserver_graph}
 \end{figure}
-La figura \ref{cluster_time} mostra la composizione dei cluster rispetto al tempo.\\
+La figura \ref{webserver_cluster_time} mostra la composizione dei cluster rispetto al tempo.\\
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.8\linewidth, keepaspectratio]{cluster_time}
   \caption{}
-  \label{cluster_time}
+  \label{webserver_cluster_time}
 \end{figure}
 
 \clearpage
@@ -472,22 +472,22 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.45\linewidth, keepaspectratio]{cluster1}
     \caption{Grafico 3D del Cluster 1}
-    \label{cluster1}
+    \label{webserver_cluster1}
   \end{figure}
 
   \item \textbf{Cluster 1}: influenzato maggiormente da valori negativi della
   1 e 2 componente principale e positivi della 6.\\
-  In particolare, osservando la figura \ref{cluster_time} e \ref{cluster1}, i campioni contenuti
+  In particolare, osservando la figura \ref{webserver_cluster_time} e \ref{webserver_cluster1}, i campioni contenuti
   in questo cluster appartengono alla prima metà dell'esperimento.\\
   Analizzando più approfonditamente la cause della creazione di tale cluster si
   identifica quale stato del sistema esso rappresenta.\\
   A causa di valori negativi della prima componente principale esso
   rappresenta uno stato del sistema con bassa occupazione della memoria RAM,
   in quanto il valore della parametro \textit{Free} nei campioni del cluster 1,
-  essendo negativo in corrispondenza della principale 1 in figura \ref{autovettori},
+  essendo negativo in corrispondenza della principale 1 in figura \ref{webserver_autovettori},
   fornisce sicuramente un impatto maggiore rispetto agli altri parametri.\\
   Inoltre si può affermare che a causa della seconda componente principale negativa
-  l'attività di rete è bassa, in quanto nella figura \ref{autovettori} si osserva
+  l'attività di rete è bassa, in quanto nella figura \ref{webserver_autovettori} si osserva
   che i parametri di rete influenzano positivamente la principale due, di conseguenza
   per assumere valori negativi, i parametri di rete devono assumere valori bassi.
 
@@ -497,12 +497,12 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.45\linewidth, keepaspectratio]{cluster2}
     \caption{Cluster 2}
-    \label{cluster2}
+    \label{webserver_cluster2}
   \end{figure}
 
   \item \textbf{Cluster 2}: influenzato maggiormente da valori negativi della
   1 e positivi della 2 e 4 componente principale.\\
-  In particolare, osservando la figura \ref{cluster_time} e \ref{cluster1}, i campioni contenuti
+  In particolare, osservando la figura \ref{webserver_cluster_time} e \ref{webserver_cluster1}, i campioni contenuti
   in questo cluster appartengono alla prima metà dell'esperimento.\\
   Analizzando più approfonditamente la cause della creazione di tale cluster si
   identifica quale stato del sistema esso rappresenta.\\
@@ -516,12 +516,12 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=0.45\linewidth, keepaspectratio]{cluster3}
     \caption{Cluster 3}
-    \label{cluster3}
+    \label{webserver_cluster3}
   \end{figure}
 
   \item \textbf{Cluster 3}: influenzato maggiormente da valori negativi della
   1 e 7 principale, e positivi della 5.\\
-  In particolare, osservando la figura \ref{cluster_time} e \ref{cluster1}, i campioni contenuti
+  In particolare, osservando la figura \ref{webserver_cluster_time} e \ref{webserver_cluster1}, i campioni contenuti
   in questo cluster appartengono ad un intervallo temporale centrale dell'esperimento.\\
   Analizzando più approfonditamente la cause della creazione di tale cluster si
   identifica quale stato del sistema esso rappresenta.\\
@@ -535,7 +535,7 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.45\linewidth, keepaspectratio]{cluster4}
     \caption{Cluster 4}
-    \label{cluster4}
+    \label{webserver_cluster4}
   \end{figure}
 
   \item \textbf{Cluster 4}: presenta valori delle componenti principali per cui non
@@ -543,17 +543,17 @@ rosso l'ultimo.\\
   Per poter essere ugualmente analizzato, il cluster è stato suddiviso in due
   sotto-cluster, utilizzando la cronologia di clusterizzazione mostrata in
   precedenza.\\
-  In figura \ref{cluster_4_diviso} è riportata l'incidenza delle componenti
+  In figura \ref{webserver_cluster_4_diviso} è riportata l'incidenza delle componenti
   principali sui due sotto-cluster.\\
 
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.6\linewidth, keepaspectratio]{cluster_4_diviso}
     \caption{}
-    \label{cluster_4_diviso}
+    \label{webserver_cluster_4_diviso}
   \end{figure}
 
-  Dalla figura \ref{cluster_4_diviso} si possono caratterizzare i cluster 4.1 e 4.2.\\
+  Dalla figura \ref{webserver_cluster_4_diviso} si possono caratterizzare i cluster 4.1 e 4.2.\\
   Il cluster 4.1 risulta influenzato  negativamente dalle principali 1 e 4
   e positivamente dalla principale 2, quindi c'è un alta attività di rete
   e una bassa quantità di memoria RAM occupata.\\
@@ -566,14 +566,14 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.45\linewidth, keepaspectratio]{cluster41}
     \caption{Cluster 4.1}
-    \label{cluster41}
+    \label{webserver_cluster41}
   \end{figure}
 
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.45\linewidth, keepaspectratio]{cluster42}
     \caption{Cluster 4.2}
-    \label{cluster42}
+    \label{webserver_cluster42}
   \end{figure}
 
   \clearpage
@@ -582,14 +582,14 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.4\linewidth, keepaspectratio]{cluster5}
     \caption{Cluster 5}
-    \label{cluster5}
+    \label{webserver_cluster5}
   \end{figure}
 
   \item \textbf{Cluster 5}: tale cluster è formato da un solo campione, essendo
   esso un outlier, necessita di essere analizzato per capire se è possibile eliminarlo.\\
   La creazione di tale cluster è attribuita maggiormente alla principale
   2, condizionata a sua volta dai parametri \textbf{RxPktTot} e \textbf{RxKBTot}.\\
-  Analizzando il grafico in figura \ref{cluster5_temp_analisi}, il quale riporta
+  Analizzando il grafico in figura \ref{webserver_cluster5_temp_analisi}, il quale riporta
   l'andamento temporale di \textbf{RxKBTot}, si osserva che in corrispondenza del
   cluster 5 c'è un picco negativo il quale può essere attribuito ad una riduzione
   della velocità di trasmissione del client.\\
@@ -600,7 +600,7 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.5\linewidth, keepaspectratio]{cluster5_temp_analisi}
     \caption{Andamento temporale di RxPktTot}
-    \label{cluster5_temp_analisi}
+    \label{webserver_cluster5_temp_analisi}
   \end{figure}
 
   \clearpage
@@ -609,13 +609,13 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=0.45\linewidth, keepaspectratio]{cluster6}
     \caption{Cluster 6}
-    \label{cluster6}
+    \label{webserver_cluster6}
   \end{figure}
 
   \item \textbf{Cluster 6}: la formazione di tale cluster è attribuita alle
   componenti principali 2,3 e 5, le quali sono state influenzate maggiormente
   da \textit{RxPktTot}, \textit{Tot\%}, \textit{TxPktTot} e \textit{Ctx/s}.\\
-  Analizzando la figura \ref{analisi_temp_cluster_6}, la quale riporta l'andamento
+  Analizzando la figura \ref{webserver_analisi_temp_cluster_6}, la quale riporta l'andamento
   temporale dei parametri sopra descritti, si nota che tali campioni sono consecutivi
   e individuano un picco di \textit{Ctx/s}, il quale può essere attributo all'esecuzione
   di altri processi presenti nel server.\\
@@ -626,7 +626,7 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=0.6\linewidth, keepaspectratio]{analisi_temp_cluster_6}
     \caption{Analisi temporale \textit{RxPktTot}, \textit{Tot\%}, \textit{TxPktTot} e \textit{Ctx/s}}
-    \label{analisi_temp_cluster_6}
+    \label{webserver_analisi_temp_cluster_6}
   \end{figure}
 
   \clearpage
@@ -635,12 +635,12 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.45\linewidth, keepaspectratio]{cluster7}
     \caption{Cluster 7}
-    \label{cluster7}
+    \label{webserver_cluster7}
   \end{figure}
 
   \item \textbf{Cluster 7}: la formazione di tale cluster è attribuibile maggiormente
   alla 3 componente principale, la quale è stata influenza dal parametro \textit{Tot\%}.\\
-  Analizzando il comportamento temporale di tale parametro, in figura \ref{analisi_temp_cluster_7},
+  Analizzando il comportamento temporale di tale parametro, in figura \ref{webserver_analisi_temp_cluster_7},
   si osserva che tale cluster contiene picchi di utilizzo della CPU, ad ogni
   occorrenza del primo secondo di ogni minuto di test.\\
   \'E stato monitorato il sistema server anche in assenza di esecuzione del workload,
@@ -653,7 +653,7 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=0.6\linewidth, keepaspectratio]{analisi_temp_cluster_7}
     \caption{Analisi temporale \textit{Tot\%}}
-    \label{analisi_temp_cluster_7}
+    \label{webserver_analisi_temp_cluster_7}
   \end{figure}
 
   \clearpage
@@ -662,7 +662,7 @@ rosso l'ultimo.\\
     \centering
     \includegraphics[width=.45\linewidth, keepaspectratio]{cluster8}
     \caption{Cluster 8}
-    \label{cluster8}
+    \label{webserver_cluster8}
   \end{figure}
 
   \item \textbf{Cluster 8}: rappresenta la parte finale dell'esperimento.\\
@@ -677,7 +677,7 @@ Sintetico ottenuto è il seguente.
   \centering
   \includegraphics[width=1\linewidth, keepaspectratio]{centroidi}
   \caption{Workload Sintetico}
-  \label{centroidi}
+  \label{webserver_centroidi}
 \end{figure}
 
 La percentuale di devianza persa approssimando il workload reale con quello
@@ -723,14 +723,14 @@ attivi.\\
 \subsection{Test pagine HTML piccole}
 In questo caso sono state utilizzate esclusivamente le richieste HTTP per le pagine
 \textit{small\_text} e \textit{small\_image}.\\
-In \figurename~\ref{small_page_summary_report} sono presenti gli esiti del
+In \figurename~\ref{webserver_small_page_summary_report} sono presenti gli esiti del
 Summary Report di JMeter.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_small}
   \caption{Test pagine HTML piccole}
-  \label{small_page_summary_report}
+  \label{webserver_small_page_summary_report}
 \end{figure}
 
 Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
@@ -746,14 +746,14 @@ di Throughput ed Elapsed Time, e definiti i punti di \textit{Knee Capacity} e
 \subsection{Test pagine HTML medie}
 In questo caso sono state utilizzate esclusivamente le richieste HTTP per le pagine
 \textit{medium\_text} e \textit{medium\_image}.\\
-In \figurename~\ref{medium_page_summary_report} sono presenti gli esiti del
+In \figurename~\ref{webserver_medium_page_summary_report} sono presenti gli esiti del
 Summary Report di JMeter.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_medium}
   \caption{Test pagine HTML medie}
-  \label{medium_page_summary_report}
+  \label{webserver_medium_page_summary_report}
 \end{figure}
 
 Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
@@ -771,14 +771,14 @@ di Throughput ed Elapsed Time, e definiti i punti di \textit{Knee Capacity} e
 \subsection{Test pagine HTML grandi}
 In questo caso sono state utilizzate esclusivamente le richieste HTTP per le pagine
 \textit{big\_text} e \textit{big\_image}.\\
-In \figurename~\ref{big_page_summary_report} sono presenti gli esiti del
+In \figurename~\ref{webserver_big_page_summary_report} sono presenti gli esiti del
 Summary Report di JMeter.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_big}
   \caption{Test pagine HTML grandi}
-  \label{big_page_summary_report}
+  \label{webserver_big_page_summary_report}
 \end{figure}
 
 Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
@@ -819,14 +819,14 @@ capacity test per definire i punti di funzionamento nel caso di un Random Contro
 che genera, in maniera uniforme, richieste HTTP relative a tutte le tipologie di
 pagine.\\
 
-In \figurename~\ref{random_page_summary_report} sono presenti gli esiti del
+In \figurename~\ref{webserver_random_page_summary_report} sono presenti gli esiti del
 Summary Report di JMeter.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.4\linewidth, keepaspectratio]{capacitytest_random}
   \caption{Test pagine random}
-  \label{random_page_summary_report}
+  \label{webserver_random_page_summary_report}
 \end{figure}
 
 Utilizzando il costruttore di Grafici di \textit{JMP} sono stati analizzati i plot
@@ -852,13 +852,13 @@ da variazioni casuali dovute ad errori di misura e/o parametri non controllabili
 Inoltre, il design of experiments è fondamentale anche per ridurre il numero di
 esperimenti, quindi il costo, necessari al testing del sistema.\\
 Per fare ciò è stata utilizzata la funzionalità \textit{Piano Fattoriale Completo},
-resa disponibile dal tool JMP e configurata come in figura \ref{piano_fattoriale_completo}.\\
+resa disponibile dal tool JMP e configurata come in figura \ref{webserver_piano_fattoriale_completo}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.9\linewidth, keepaspectratio]{doe_setup}
   \caption{Piano Fattoriale Completo}
-  \label{piano_fattoriale_completo}
+  \label{webserver_piano_fattoriale_completo}
 \end{figure}
 
 \clearpage
@@ -876,14 +876,14 @@ ed è in particolare definito su 4 livelli:
   \item \textbf{High} - 80\% della usable capacity
 \end{itemize}
 
-In figura \ref{fattori} sono riportate le capacità usate per ogni dimensione di
+In figura \ref{webserver_fattori} sono riportate le capacità usate per ogni dimensione di
 pagina e per ogni categoria di carico.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.7\linewidth, keepaspectratio]{fattori}
   \caption{Req/min al variare del carico e della tipologia di pagina}
-  \label{fattori}
+  \label{webserver_fattori}
 \end{figure}
 
 \clearpage
@@ -891,19 +891,19 @@ pagina e per ogni categoria di carico.\\
 \subsection{Modello}
 In seguito ai 120 esperimenti effettuati è possibile stimare il modello ottenuto.\\
 Fare ciò in JMP è molto semplice grazie alla funzionalità \textit{Stima Modello},
-riportata in figura \ref{stima_modello}
+riportata in figura \ref{webserver_stima_modello}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.6\linewidth, keepaspectratio]{stima_modello}
   \caption{Stima del modello ottenuto}
-  \label{stima_modello}
+  \label{webserver_stima_modello}
 \end{figure}
 
 Osservando il \textbf{coefficiente di determinazione}($R^{2}$) è possibile
 immediatamente affermare che il modello effettua un ottimo fitting dei dati.\\
 Infatti il modello spiega circa il 99.8\% della devianza totale.\\
-Nell'analisi della varianza riportata in figura \ref{stima_modello} è possibile anche
+Nell'analisi della varianza riportata in figura \ref{webserver_stima_modello} è possibile anche
 osservare che il modello ottenuto è significativo con un livello di confidenza
 del 95\%, essendo il test di Fisher rigettato con un $p-value<0.001$.\\
 
@@ -920,14 +920,14 @@ modello rispetto all'errore e può essere studiata utilizzando un test sulla
 varianza.\\
 
 \subsubsection{Importanza}
-In figura \ref{importanza_fattori} sono riportati i valori di importanza dei due
+In figura \ref{webserver_importanza_fattori} sono riportati i valori di importanza dei due
 fattori in studio.
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=.9\linewidth, keepaspectratio]{importanza_fattori}
   \caption{Importanza dei Fattori}
-  \label{importanza_fattori}
+  \label{webserver_importanza_fattori}
 \end{figure}
 
 Come si evince dalla tabella, il fattore più importante è il \textbf{Page Size},
@@ -948,7 +948,7 @@ la significatività dei fattori.\\
 \subsubsection*{Normalità}
 La normalità è studiata sui residui relativi al modello, ottenibili semplicemente
 in JMP dalla scheda di \textit{Stima del Modello}.\\
-In figura \ref{normalita} è riportata la distribuzione dei residui ed il test
+In figura \ref{webserver_normalita} è riportata la distribuzione dei residui ed il test
 di \textit{Shapiro-Wilk} per la normalità su un campione di $N<2000$ esperimenti.\\
 Il test suggerisce un $p-value<0.001$, quindi l'ipotesi di normalità è rigettata
 con il 95\% di confidenza.\\
@@ -957,7 +957,7 @@ con il 95\% di confidenza.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{normalita}
   \caption{Normalità dei residui del modello stimato}
-  \label{normalita}
+  \label{webserver_normalita}
 \end{figure}
 
 \clearpage
@@ -968,7 +968,7 @@ essendo essa la proprietà di costanza della varianza, al variare dei livelli di
 ogni singolo fattore.\\
 Per fare ciò in JMP, non è studiata la distribuzione dei residui,
 ma è effettuata una \textit{Stima Y rispetto X}, per ciascun fattore.\\
-In figura \ref{omoschedasticita} è possibile osservare che il test di \textbf{Levene},
+In figura \ref{webserver_omoschedasticita} è possibile osservare che il test di \textbf{Levene},
 scelto per analizzare l'omoschedasticità dei residui rispetto ai singoli fattori,
 dà risultato negativo, rigettando l'ipotesi nulla in entrambi i casi.\\
 \'E stato scelto in particolare il test di Levene e non altri per la sua
@@ -978,7 +978,7 @@ robustezza a situazioni di non normalità dei dati.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{omoschedasticita}
   \caption{Omoschedasticità dei residui rispetto ai fattori}
-  \label{omoschedasticita}
+  \label{webserver_omoschedasticita}
 \end{figure}
 
 \clearpage
@@ -987,7 +987,7 @@ Avendo stabilito che il modello stimato non soddisfa le assunzioni di normalità
 omoschedasticità, non è possibile utilizzare l'ANOVA classico con il Fisher-Test
 per studiare la significatività dei fattori, bensì il \textit{Kruskal-Wallis Test}.\\
 
-In figura \ref{kruskal_wallis_significativita} si osservano gli esiti del test
+In figura \ref{webserver_kruskal_wallis_significativita} si osservano gli esiti del test
 di significatività effettuato su entrambi i fattori.\\
 Come da attesa, il fattore \textit{Page Size} è molto significativo,
 essendo l'ipotesi nulla pienamente rigettata.\\
@@ -999,5 +999,5 @@ confidenza, ma solo con il 90\% circa.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{kruskal_wallis_significativita}
   \caption{Kruskal-Wallis Test per la significatività dei fattori}
-  \label{kruskal_wallis_significativita}
+  \label{webserver_kruskal_wallis_significativita}
 \end{figure}
