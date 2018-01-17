@@ -8,23 +8,23 @@
 \chapter{Teoria delle Code}
 
 \section{Traccia}
-\textit{A set of K=3 processes runnning on a computer can be modelled as a closed
+\textit{A set of K=3 processes running on a computer can be modelled as a closed
 network queueing.\\
 Each process require CPU and I/O resources.\\
 After executing on the CPU, for a time $ e^{5t} $ the process require the I/O with
 probability $q=1/3$ before continue its execution.\\
 The time for an I/O operation is $ e^{2t}$.\\
 Analyze the queuing network using the MVA technique.\\
-Implement the MVA algorithm in MATLAB, and find the solution of the previus excercise
-varing the number K.\\
-How varies the responce time of the I/O subsystem and the CPU subsystem, for
+Implement the MVA algorithm in MATLAB, and find the solution of the previous exercise
+varying the number K.\\
+How varies the response time of the I/O subsystem and the CPU subsystem, for
 increasing the number of tasks? Plot the results.\\}
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{traccia}
   \caption{}
-  \label{traccia}
+  \label{code_traccia}
 \end{figure}
 
 \clearpage
@@ -44,11 +44,11 @@ ciascun sottosistema.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{coda_elaborato_mkc}
   \caption{Catena degli Stati di Markov}
-  \label{}
+  \label{code_}
 \end{figure}
 
 Applicando l'equazione di conservazione del flusso su tutti i sottosistemi, in
-\figurename~\ref{traccia} si ottiene:
+\figurename~\ref{code_code_traccia} si ottiene:
 $$
 \begin{cases}\lambda_2 = q\lambda_1 \\
 \lambda_1 = (1-q)\lambda_1 + \lambda_2 \\
@@ -134,7 +134,7 @@ Di seguito è riportata l'implementazione, in \textit{Matlab}, del metodo presen
 da \textbf{Gordon} e \textbf{Newell}.\\
 \lstinputlisting[language=Matlab, caption={Funzione Gordon-Newell Matlab}, label={fun1}]{GordonNewell.m}
 
-Per l'esecuzione della funzione mostrata nel listato \ref{fun1}, è stato implementato
+Per l'esecuzione della funzione mostrata nel listato \ref{code_code_fun1}, è stato implementato
 il seguente script Matlab, il quale esegue la funzione \textit{GordonNewell}
 per il calcolo delle probabilità di essere in ciascuno dei quattro stati del sistema
 e successivamente calcola il \textit{Numero medio di job} dei due sottosistemi.\\
@@ -144,7 +144,7 @@ e successivamente calcola il \textit{Numero medio di job} dei due sottosistemi.\
 \lstinputlisting[language=Matlab, caption={Script per il calcolo di Tempo medio di riposta, Numero medio di job e $\lambda$}, label={script1}]{CalcoloParametriSistemaGordonNewell.m}
 
 \vspace{0.4cm}
-L'output dello script \ref{script1} è il seguente:
+L'output dello script \ref{code_script1} è il seguente:
 
 \color{black} \begin{verbatim}
 K =
@@ -251,7 +251,7 @@ Di seguito è riportata l'implementazione, in \textit{Matlab}, dell'algoritmo
 della \textbf{Mean Value Analisys}.\\
 \lstinputlisting[language=Matlab, caption={Funzione Mean Value Analsys Matlab}, label={fun}]{mva.m}
 
-Per l'esecuzione della funzione mostrata nel listato \ref{fun}, è stato implementato
+Per l'esecuzione della funzione mostrata nel listato \ref{code_fun}, è stato implementato
  il seguente script Matlab, il quale esegue la funzione \textit{mva} con $K=3$,
  mostrandone l'output, ed infine esegue la \textbf{\textit{Mean Value Analysis}} con
  $K=50$, mostrando i grafici relativi al \textit{Tempo medio di Risposta},
@@ -261,7 +261,7 @@ Per l'esecuzione della funzione mostrata nel listato \ref{fun}, è stato impleme
 \lstinputlisting[language=Matlab, caption={Script per il calcolo di Tempo medio di riposta, Numero medio di job e $\lambda$}, label={script2}]{CalcoloParametriSistemaMVA.m}
 
 \vspace{0.4cm}
-L'output dello script \ref{script2} è il seguente:
+L'output dello script \ref{code_script2} è il seguente:
 
 \color{black} \begin{verbatim}
 K =
@@ -296,10 +296,10 @@ L =
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{grafico}
   \caption{Grafico Tempo medio di riposta, Numero medio di job e $\lambda$}
-  \label{graph1}
+  \label{code_graph1}
 \end{figure}
 
-Dal grafico in \figurename~\ref{graph1} si osserva che a partire da $K=17$ il
+Dal grafico in \figurename~\ref{code_graph1} si osserva che a partire da $K=17$ il
 tempo di risposta medio della CPU diviene maggiore di quello dell'I/O, ciò può
 essere attribuito al raggiungimento del tasso di risposta massimo della CPU,
 la quale, essendo in serie con l'I/O, funge da collo di bottiglia.\\
@@ -313,5 +313,5 @@ risulterebbero migliori.\\
   \centering
   \includegraphics[width=\linewidth, keepaspectratio]{grafico}
   \caption{Grafico Tempo medio di riposta, Numero medio di job e $\lambda$, con $\mu_1=6$}
-  \label{graph1}
+  \label{code_graph1}
 \end{figure}
