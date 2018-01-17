@@ -60,26 +60,26 @@ Il log è formato dai seguenti campi:
 \subsection{Finestra di Coalescenza - CWIN}
 La finestra di coalescenza, definita in secondi, definisce un intervallo temporale
 in cui cadono tutti gli eventi che vi appartengono.\\
-Lo script \textbf{tupleCount\_func\_CWINpy.sh}(riportato in figura \ref{coalescence_window_mercury}), con input i file \textit{MercuryErrorLog.txt}
+Lo script \textbf{tupleCount\_func\_CWINpy.sh}(riportato in figura \ref{ffda_coalescence_window_mercury}), con input i file \textit{MercuryErrorLog.txt}
 e \textit{tentative-CWIN.txt}, è stato utilizzato per calcolare il numero di tuple al
 variare della dimensione della finestra di coalescenza.\\
 
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{coalescence_window_mercury}
   \caption{Script conteggio tuple al variare della finestra di coalescenza}
-  \label{coalescence_window_mercury}
+  \label{ffda_coalescence_window_mercury}
 \end{figure}
 
 \clearpage
 
-L'output di tale script, plottato in matlab e presente in figura \ref{plot_coalescence_window_mercury},
+L'output di tale script, plottato in matlab e presente in figura \ref{ffda_plot_coalescence_window_mercury},
 è infine utilizzato per determinare un singolo valore di CWIN, ottenuto
 considerando il punto successivo al ginocchio(knee) della curva.\\
 Il valore di CWIN scelto è 300.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{plot_coalescence_window_mercury}
   \caption{Plot finestre di coalescenza}
-  \label{plot_coalescence_window_mercury}
+  \label{ffda_plot_coalescence_window_mercury}
 \end{figure}
 
 Lo script bash \textbf{tupling\_with\_CWIN.sh} suddivide le righe del file di log,
@@ -103,7 +103,7 @@ In figura è riportato il grafico delle due CDF.
   \centering
   \includegraphics[width=1\linewidth,keepaspectratio]{ttf_rel_mercury}
   \caption{Plot TTF e Reliability}
-  \label{ttf_rel_mercury}
+  \label{ffda_ttf_rel_mercury}
 \end{figure}
 
 \subsection{Curve Fitting}
@@ -118,13 +118,13 @@ analizzare i seguenti modelli:
   \item \textbf{Esponenziale}:
   $$ y = e^{- \lambda  x} $$
   Il valore $\lambda$ è stato inizializzato a $1/MTTF$.\\
-  Il modello risultante in matlab è riportato nella figura \ref{Exponential_mercury}.\\
+  Il modello risultante in matlab è riportato nella figura \ref{ffda_Exponential_mercury}.\\
 
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=.9\linewidth,keepaspectratio]{Exponential_mercury}
     \caption{Curve Fitting modello Esponenziale}
-    \label{Exponential_mercury}
+    \label{ffda_Exponential_mercury}
   \end{figure}
 
   Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -133,7 +133,7 @@ analizzare i seguenti modelli:
     \centering
     \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_exp_mercury}
     \caption{Kolmogorov-Smirnov Test esponenziale}
-    \label{ks_exp_mercury}
+    \label{ffda_ks_exp_mercury}
   \end{figure}
 
   L'ipotesi nulla è rigettata al 99,48\%, con confidenza del 95\%.
@@ -142,11 +142,11 @@ analizzare i seguenti modelli:
 
   \item \textbf{Weibull}:
   $$ y = e^{- (\lambda x)^\alpha} $$
-  Il modello risultante in matlab è riportato nella figura \ref{Weibull_mercury}.\\
+  Il modello risultante in matlab è riportato nella figura \ref{ffda_Weibull_mercury}.\\
   \begin{figure}[!htbp]
     \includegraphics[width=0.9\linewidth,keepaspectratio]{Weibull_mercury}
     \caption{Curve Fitting modello Weibull}
-    \label{Weibull_mercury}
+    \label{ffda_Weibull_mercury}
   \end{figure}
 
   Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -155,7 +155,7 @@ analizzare i seguenti modelli:
     \centering
     \includegraphics[width=0.4\linewidth,keepaspectratio]{ks_weibull_mercury}
     \caption{Kolmogorov-Smirnov Test Weibull}
-    \label{ks_weibull_mercury}
+    \label{ffda_ks_weibull_mercury}
   \end{figure}
 
   L'ipotesi nulla è valida al 72,72\%, con confidenza del 95\%.\\
@@ -166,13 +166,13 @@ analizzare i seguenti modelli:
 
   \item \textbf{Iperesponenziale}:
   $$ y = a e^{- \lambda_1  x} +  b  e^{- \lambda_2  x} $$
-  Il modello risultante in matlab è riportato nella figura \ref{HyperExponential_mercury}.\\
+  Il modello risultante in matlab è riportato nella figura \ref{ffda_HyperExponential_mercury}.\\
 
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.9\linewidth,keepaspectratio]{HyperExponential_mercury}
     \caption{Curve Fitting modello iperesponenziale}
-    \label{HyperExponential_mercury}
+    \label{ffda_HyperExponential_mercury}
   \end{figure}
 
   Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -181,7 +181,7 @@ analizzare i seguenti modelli:
     \centering
     \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_hyperexp_mercury}
     \caption{Kolmogorov-Smirnov Test Weibull}
-    \label{ks_hyperexp_mercury}
+    \label{ffda_ks_hyperexp_mercury}
   \end{figure}
 
   L'ipotesi non è rigettata al 7,66\%, con confidenza del 95\%.\\
@@ -200,7 +200,7 @@ dati.\\
 \clearpage
 
 \subsection{Analisi del Log}
-Nella figura \ref{first_5_node} è riportata l'esecuzione dello script
+Nella figura \ref{ffda_first_5_node} è riportata l'esecuzione dello script
 \textit{logStatistics.sh}, che fornisce informazioni sul numero di fallimenti
 per categoria e per nodo.\\
 Da quest'analisi risulta esserci un collo di bottiglia per le categorie:
@@ -210,20 +210,20 @@ Da quest'analisi risulta esserci un collo di bottiglia per le categorie:
   \centering
   \includegraphics[width=\linewidth,keepaspectratio]{first_5_node}
   \caption{Esecuzione script logStatistics.txt}
-  \label{first_5_node}
+  \label{ffda_first_5_node}
 \end{figure}
 
-In tabella \ref{nodi_dev} i fallimenti sono distribuiti sulle righe per nodo
+In tabella \ref{ffda_nodi_dev} i fallimenti sono distribuiti sulle righe per nodo
 (solo i 5 nodi più influenti) e sulle colonne per categoria.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth,keepaspectratio]{nodi_dev}
   \caption{Numero fallimenti per categorie e nodi}
-  \label{nodi_dev}
+  \label{ffda_nodi_dev}
 \end{figure}
 
-Dalla tabella \ref{nodi_dev} è possibile notare che:
+Dalla tabella \ref{ffda_nodi_dev} è possibile notare che:
 \begin{itemize}
   \item nessuno dei 5 nodi riportati ha occorrenze per la
   categoria di errore \textit{PRO};
@@ -241,7 +241,7 @@ Dalla tabella \ref{nodi_dev} è possibile notare che:
 \subsubsection*{Soluzione}
 Per poter rispondere alla domanda è necessario calcolare la finestra di coalescenza
 per ogni log filtrato per nodo.\\
-I risultati ottenuti sono riportati in figura \ref{cwin_5_nodi}.\\
+I risultati ottenuti sono riportati in figura \ref{ffda_cwin_5_nodi}.\\
 
 \begin{minipage}{\linewidth}
   \centering
@@ -278,7 +278,7 @@ I risultati ottenuti sono riportati in figura \ref{cwin_5_nodi}.\\
   \end{minipage}
 \end{minipage}
 \captionof{figure}{CWIN: log filtrato per Nodo}
-\label{cwin_5_nodi}
+\label{ffda_cwin_5_nodi}
 
 \clearpage
 
@@ -323,7 +323,7 @@ Inoltre, quale categoria è la pìù/meno Reliable?}
 \subsubsection*{Soluzione}
 Per poter rispondere alla domanda è necessario calcolare la finestra di coalescenza
 per ogni log filtrato per categoria di errore.\\
-I valori di CWIN ottenuti sono riportati in figura \ref{cwin_categorie}.\\
+I valori di CWIN ottenuti sono riportati in figura \ref{ffda_cwin_categorie}.\\
 
 \begin{minipage}{\linewidth}
   \centering
@@ -360,7 +360,7 @@ I valori di CWIN ottenuti sono riportati in figura \ref{cwin_categorie}.\\
   \end{minipage}
 \end{minipage}
 \captionof{figure}{CWIN: log filtrato per categoria di errore}
-\label{cwin_categorie}
+\label{ffda_cwin_categorie}
 
 \clearpage
 
@@ -371,12 +371,12 @@ seguenti:
   \centering
   \includegraphics[width=.4\linewidth,keepaspectratio]{error_cwin}
   \caption{CWIN: log filtrato per categoria errore}
-  \label{error_cwin}
+  \label{ffda_error_cwin}
 \end{figure}
 
 \clearpage
 
-Le reliability empiriche, invece, sono riportati in figura \ref{modello_reliability_e}.\\
+Le reliability empiriche, invece, sono riportati in figura \ref{ffda_modello_reliability_e}.\\
 
 \begin{minipage}{\linewidth}
   \centering
@@ -413,7 +413,7 @@ Le reliability empiriche, invece, sono riportati in figura \ref{modello_reliabil
   \end{minipage}
 \end{minipage}
 \captionof{figure}{Reliability empirica}
-\label{modello_reliability_e}
+\label{ffda_modello_reliability_e}
 
 \clearpage
 
@@ -423,7 +423,7 @@ Le reliability empiriche, invece, sono riportati in figura \ref{modello_reliabil
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_dev}
   \caption{Curve Fitting modello Weibull categoria di errore DEV}
-  \label{rel_model_dev}
+  \label{ffda_rel_model_dev}
 \end{figure}
 
 Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -432,7 +432,7 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_dev}
   \caption{Kolmogorov-Smirnov Test Weibull categoria di errore DEV}
-  \label{ks_dev}
+  \label{ffda_ks_dev}
 \end{figure}
 
 L'ipotesi è rigettata con 85,28\% , con confidenza del 95\%.\\
@@ -445,7 +445,7 @@ L'ipotesi è rigettata con 85,28\% , con confidenza del 95\%.\\
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_io}
   \caption{Curve Fitting modello Weibull categoria di errore IO}
-  \label{rel_model_io}
+  \label{ffda_rel_model_io}
 \end{figure}
 
 Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -454,7 +454,7 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_io}
   \caption{Kolmogorov-Smirnov Test Weibull categoria di errore IO}
-  \label{ks_io}
+  \label{ffda_ks_io}
 \end{figure}
 
 L'ipotesi non è rigettata al 73,69\%, con confidenza del 95\%.\\
@@ -466,7 +466,7 @@ L'ipotesi non è rigettata al 73,69\%, con confidenza del 95\%.\\
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_mem}
   \caption{Curve Fitting modello iperesponenziale categoria di errore MEM}
-  \label{rel_model_mem}
+  \label{ffda_rel_model_mem}
 \end{figure}
 
 Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -475,7 +475,7 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_mem}
   \caption{Kolmogorov-Smirnov Test iperesponenziale categoria di errore MEM}
-  \label{ks_mem}
+  \label{ffda_ks_mem}
 \end{figure}
 
 L'ipotesi non è rigettata al 95,61\% , con confidenza del 95\%.\\
@@ -487,7 +487,7 @@ L'ipotesi non è rigettata al 95,61\% , con confidenza del 95\%.\\
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_net}
   \caption{Curve Fitting modello Weibull categoria di errore NET}
-  \label{rel_model_net}
+  \label{ffda_rel_model_net}
 \end{figure}
 
 Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -496,7 +496,7 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_net}
   \caption{Kolmogorov-Smirnov Test Weibull categoria di errore NET}
-  \label{ks_net}
+  \label{ffda_ks_net}
 \end{figure}
 
 L'ipotesi non è rigettata al 81,64\%, con confidenza del 95\%.\\
@@ -508,7 +508,7 @@ L'ipotesi non è rigettata al 81,64\%, con confidenza del 95\%.\\
   \centering
   \includegraphics[width=0.9\linewidth,keepaspectratio]{rel_model_pro}
   \caption{Curve Fitting modello Weibull categoria di errore PRO}
-  \label{rel_model_pro}
+  \label{ffda_rel_model_pro}
 \end{figure}
 
 Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -517,21 +517,21 @@ Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smi
   \centering
   \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_pro}
   \caption{Kolmogorov-Smirnov Test Weibull categoria di errore PRO}
-  \label{ks_pro}
+  \label{ffda_ks_pro}
 \end{figure}
 
 L'ipotesi non è rigettata al 99,96\%, con confidenza del 95\%.\\
 
 \clearpage
 
-Studiando le figure \ref{error_cwin} e \ref{rel_models} è possibile osservare
+Studiando le figure \ref{ffda_error_cwin} e \ref{ffda_rel_models} è possibile osservare
 che la categoria più reliable è \textit{PRO}(13), la meno è \textit{DEV}(293).\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth,keepaspectratio]{rel_conf_error}
   \caption{Confronto modelli di Reliability}
-  \label{rel_models}
+  \label{ffda_rel_models}
 \end{figure}
 
 \clearpage
@@ -565,7 +565,7 @@ Il log è formato dai seguenti campi:
 \subsection{Finestra di Coalescenza - CWIN}
 La finestra di coalescenza, definita in secondi, definisce un intervallo temporale
 in cui cadono tutti gli eventi che vi appartengono.\\
-Lo script \textbf{tupleCount\_func\_CWINpy.sh}(riportato in figura \ref{coalescence_window_mercury}), con input i file \textit{MercuryErrorLog.txt}
+Lo script \textbf{tupleCount\_func\_CWINpy.sh}(riportato in figura \ref{ffda_coalescence_window_mercury}), con input i file \textit{MercuryErrorLog.txt}
 e \textit{tentative-CWIN.txt}, è stato utilizzato per calcolare il numero di tuple al
 variare della dimensione della finestra di coalescenza.\\
 
@@ -573,17 +573,17 @@ variare della dimensione della finestra di coalescenza.\\
   \centering
   \includegraphics[width=1\linewidth,keepaspectratio]{coalescence_window_bgl}
   \caption{Script conteggio tuple al variare della finestra di coalescenza}
-  \label{coalescence_window_bgl}
+  \label{ffda_coalescence_window_bgl}
 \end{figure}
 
-L'output di tale script, plottato in matlab e presente in figura \ref{plot_coalescence_window_bgl},
+L'output di tale script, plottato in matlab e presente in figura \ref{ffda_plot_coalescence_window_bgl},
 è infine utilizzato per determinare un singolo valore di CWIN, ottenuto
 considerando il punto successivo al ginocchio(knee) della curva.\\
 Il valore di CWIN scelto è 500.\\
 \begin{figure}[!htbp]
   \includegraphics[width=1\linewidth,keepaspectratio]{plot_coalescence_window_bgl}
   \caption{Plot finestre di coalescenza}
-  \label{plot_coalescence_window_bgl}
+  \label{ffda_plot_coalescence_window_bgl}
 \end{figure}
 
 Lo script bash \textbf{tupling\_with\_CWIN.sh} suddivide le righe del file di log,
@@ -605,7 +605,7 @@ In figura è riportato il grafico delle due CDF.
   \centering
   \includegraphics[width=.9\linewidth,keepaspectratio]{ttf_rel_bgl}
   \caption{Plot TTF e Reliability}
-  \label{ttf_rel_bgl}
+  \label{ffda_ttf_rel_bgl}
 \end{figure}
 
 
@@ -621,12 +621,12 @@ analizzare i seguenti modelli:
   \item \textbf{Esponenziale}:
   $$ y = e^{- \lambda  x} $$
   Il valore $\lambda$ è stato inizializzato a $1/MTTF$.\\
-  Il modello risultante in matlab è riportato nella figura \ref{Exponential_bgl}.\\
+  Il modello risultante in matlab è riportato nella figura \ref{ffda_Exponential_bgl}.\\
 
   \begin{figure}[!htbp]
     \includegraphics[width=.9\linewidth,keepaspectratio]{Exponential_bgl}
     \caption{Curve Fitting modello Esponenziale}
-    \label{Exponential_bgl}
+    \label{ffda_Exponential_bgl}
   \end{figure}
 
   Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -635,7 +635,7 @@ analizzare i seguenti modelli:
     \centering
     \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_exp_bgl}
     \caption{Kolmogorov-Smirnov Test esponenziale}
-    \label{ks_exp_bgl}
+    \label{ffda_ks_exp_bgl}
   \end{figure}
 
   L'ipotesi nulla è rigettata al 96,91\%, con confidenza del 95\%.
@@ -644,12 +644,12 @@ analizzare i seguenti modelli:
 
   \item \textbf{Weibull}:
   $$ y = e^{- (\lambda x)^\alpha} $$
-  Il modello risultante in matlab è riportato nella figura \ref{Weibull_bgl}.\\
+  Il modello risultante in matlab è riportato nella figura \ref{ffda_Weibull_bgl}.\\
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.9\linewidth,keepaspectratio]{Weibull_bgl}
     \caption{Curve Fitting modello Weibull}
-    \label{Weibull_bgl}
+    \label{ffda_Weibull_bgl}
   \end{figure}
 
   Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -658,7 +658,7 @@ analizzare i seguenti modelli:
     \centering
     \includegraphics[width=0.4\linewidth,keepaspectratio]{ks_weibull_bgl}
     \caption{Kolmogorov-Smirnov Test Weibull}
-    \label{ks_weibull_bgl}
+    \label{ffda_ks_weibull_bgl}
   \end{figure}
 
   L'ipotesi nulla è valida al 28,31\%, con confidenza del 95\%.\\
@@ -669,13 +669,13 @@ analizzare i seguenti modelli:
 
   \item \textbf{Iperesponenziale}:
   $$ y = a e^{- \lambda_1  x} +  b  e^{- \lambda_2  x} $$
-  Il modello risultante in matlab è riportato nella figura \ref{HyperExponential_bgl}.\\
+  Il modello risultante in matlab è riportato nella figura \ref{ffda_HyperExponential_bgl}.\\
 
   \begin{figure}[!htbp]
     \centering
     \includegraphics[width=0.9\linewidth,keepaspectratio]{HyperExponential_bgl}
     \caption{Curve Fitting modello iperesponenziale}
-    \label{HyperExponential_bgl}
+    \label{ffda_HyperExponential_bgl}
   \end{figure}
 
   Per valutare la bontà del fitting è stato utilizzato il \textbf{Kolmogorov-Smirnov Test}.\\
@@ -684,7 +684,7 @@ analizzare i seguenti modelli:
     \centering
     \includegraphics[width=0.5\linewidth,keepaspectratio]{ks_hyperexp_bgl}
     \caption{Kolmogorov-Smirnov Test Weibull}
-    \label{ks_hyperexp_bgl}
+    \label{ffda_ks_hyperexp_bgl}
   \end{figure}
 
   L'ipotesi è valida al 100\%, con confidenza del 95\%.\\
@@ -697,7 +697,7 @@ analizzare i seguenti modelli:
 \clearpage
 
 \subsection{Analisi del Log}
-Nella figura \ref{statistics_bgl} è riportata l'esecuzione dello script
+Nella figura \ref{ffda_statistics_bgl} è riportata l'esecuzione dello script
 \textit{logStatistics.sh}, che fornisce informazioni sul numero di fallimenti
 per categoria e per nodo.\\
 Da quest'analisi risulta esserci un collo di bottiglia per le categorie:
@@ -707,7 +707,7 @@ Da quest'analisi risulta esserci un collo di bottiglia per le categorie:
   \centering
   \includegraphics[width=.8\linewidth,keepaspectratio]{statistics_bgl}
   \caption{Esecuzione script logStatistics.txt}
-  \label{statistics_bgl}
+  \label{ffda_statistics_bgl}
 \end{figure}
 
 \clearpage
@@ -718,7 +718,7 @@ Da quest'analisi risulta esserci un collo di bottiglia per le categorie:
 \subsubsection*{Soluzione}
 Per poter rispondere alla domanda è necessario calcolare la finestra di coalescenza
 per ogni log filtrato per nodo.
-I risultati ottenuti sono riportati in figura \ref{cwin_5_nodi_bgl}.\\
+I risultati ottenuti sono riportati in figura \ref{ffda_cwin_5_nodi_bgl}.\\
 
 \begin{minipage}{\linewidth}
   \centering
@@ -756,7 +756,7 @@ I risultati ottenuti sono riportati in figura \ref{cwin_5_nodi_bgl}.\\
   \end{minipage}
 \end{minipage}
 \captionof{figure}{CWIN: log filtrato per Nodo}
-\label{cwin_5_nodi_bgl}
+\label{ffda_cwin_5_nodi_bgl}
 
 \clearpage
 
@@ -770,7 +770,7 @@ collisioni tra differenti eventi di fallimento.\\
   \centering
   \includegraphics[width=.5\linewidth,keepaspectratio]{node_cwin_bgl}
   \caption{Tabella fallimenti per categorie e nodi}
-  \label{node_cwin_bgl}
+  \label{ffda_node_cwin_bgl}
 \end{figure}
 
 \clearpage
@@ -866,11 +866,11 @@ echo " * only the 5 most occurring racks are reported"
 echo ""
 \end{lstlisting}
 
-L'output ottenuto è riportato in figura \ref{u6}.\\
+L'output ottenuto è riportato in figura \ref{ffda_u6}.\\
 
 \begin{figure}[!htbp]
   \centering
   \includegraphics[width=\linewidth,keepaspectratio]{u6}
   \caption{Report Script logStatistics.sh}
-  \label{u6}
+  \label{ffda_u6}
 \end{figure}
